@@ -1,6 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
+const path = require('path');
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
@@ -32,7 +32,13 @@ const config = {
     locales: ['en'],
   },
 
-  plugins: ['@docusaurus/theme-live-codeblock'],
+  plugins: [
+    '@docusaurus/theme-live-codeblock',
+    path.resolve(
+      __dirname,
+      'src/plugins/docusaurus-plugin-zerokit.js'
+    ),
+  ],
 
   presets: [
     [
@@ -56,7 +62,10 @@ const config = {
             'https://github.com/zerodevapp/zerokit-docs/edit/main/blog/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [
+            require.resolve('./src/css/custom.css'),
+            require.resolve('@zerodevapp/rainbowkit/styles.css')
+          ],
         },
       }),
     ],
