@@ -23,7 +23,11 @@ Fill out the [closed beta signup form](https://docs.google.com/forms/d/e/1FAIpQL
 </Tabs>
 
 ### Step 3: Setup the SDK
+
+ZeroKit is built on top of RainbowKit, so the dev experience is almost the same.  [See here](/rainbow-kit) for convert a RainbowKit app to a ZeroKit app.
+
 You will need your `projectId` here to setup the SDK.
+
 ```jsx
 import '@zerodev/zerokit/styles.css';
 import { ZeroKitProvider } from "@zerodevapp/zerokit";
@@ -35,9 +39,14 @@ import { ZeroKitProvider } from "@zerodevapp/zerokit";
 ```
 
 ### Step 4: Action
+
+In `YourApp`, use the `ConnectButton` component to create a connect button, and use Wagmi to interact with the user's wallet.
+
 ```jsx
 import { ConnectButton } from "@zerodevapp/zerokit";
 ```
 ```jsx live
-<ConnectButton label="ZeroDev Wallet" />
+<ConnectButton label="Social Wallet" />
 ```
+
+[See here](/examples/sponsored-mint) for a full example.
