@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ZeroKit is built on top of `Rainbow` and `wagami`, therefore fully compatible with these libaries.
 
-ZeroKit comes with sensible defaults, so you don't need as much boilerplate.  Here's how you would configure a typical RainbowKit app into ZeroKit app.
+ZeroKit comes with sensible defaults, so you don't need as much boilerplate.  Here's how you would convert a typical RainbowKit app into ZeroKit app.
 
 ```jsx
 const { chains, provider } = configureChains(
