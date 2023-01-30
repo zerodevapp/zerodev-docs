@@ -16,6 +16,7 @@ npm install @zerodevapp/zerokit
 ### Step 3: Setup the SDK
 You will need your `projectId` here to setup the SDK.
 ```jsx
+import '@zerodev/zerokit/styles.css';
 import { ZeroKitProvider } from "@zerodevapp/zerokit";
 ```
 ```jsx
