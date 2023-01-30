@@ -22,7 +22,7 @@
     "@mantine/core": "^5.10.2",
     "@mantine/hooks": "^5.10.2",
     "@mdx-js/react": "^1.6.22",
-    "@zerodevapp/zerokit": "*",
+    "zerokit": "*",
     "assert": "^2.0.0",
     "clsx": "^1.2.1",
     "crypto-browserify": "^3.12.0",

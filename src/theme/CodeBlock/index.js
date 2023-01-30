@@ -2,7 +2,7 @@ import React from 'react';
 import Playground from '@theme/Playground';
 import ReactLiveScope from '@theme/ReactLiveScope';
 import CodeBlock from '@theme-init/CodeBlock';
-import { ZeroKitProvider } from "@zerodevapp/zerokit"
+import { ZeroKitProvider } from "zerokit"
 
 const withLiveEditor = (Component) => {
   function WrappedComponent(props) {

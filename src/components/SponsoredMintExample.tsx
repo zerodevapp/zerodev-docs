@@ -6,9 +6,9 @@ import {
     useContractRead,
     useNetwork
 } from "wagmi";
-import { ConnectButton } from "@zerodevapp/zerokit";
+import { ConnectButton } from "zerokit";
 import contractAbi from "../../static/contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json";
-import { ZeroKitProvider } from "@zerodevapp/zerokit";
+import { ZeroKitProvider } from "zerokit";
 import { MantineProvider } from '@mantine/core';
 import { Button, Anchor } from '@mantine/core';
   

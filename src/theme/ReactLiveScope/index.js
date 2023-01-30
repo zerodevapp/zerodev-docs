@@ -1,6 +1,6 @@
 import React from 'react';
-import { ConnectButton } from "@zerodevapp/zerokit";
-import { ZeroKitProvider } from "@zerodevapp/zerokit"
+import { ConnectButton } from "zerokit";
+import { ZeroKitProvider } from "zerokit"
 import {
   useAccount,
   usePrepareContractWrite,

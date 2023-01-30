@@ -1,6 +1,6 @@
 import CodeBlock from '@theme-original/CodeBlock';
 import React from 'react';
-import { ZeroKitProvider } from "@zerodevapp/zerokit";
+import { ZeroKitProvider } from "zerokit";
 
 export default function WrappedCodeBlock(props) {
   return (

@@ -63,7 +63,7 @@ const config = {
         theme: {
           customCss: [
             require.resolve('./src/css/custom.css'),
-            require.resolve('@zerodevapp/zerokit/styles.css')
+            require.resolve('zerokit/styles.css')
           ],
         },
       }),
