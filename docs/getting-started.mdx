@@ -12,12 +12,12 @@ Fill out the [closed beta signup form](https://docs.google.com/forms/d/e/1FAIpQL
 <Tabs>
   <TabItem value="npm" label="npm" default>
     <pre>
-        <codeblock>npm install --save @zerodevapp/zerokit</codeblock>
+        <codeblock>npm install --save zerokit</codeblock>
     </pre>
   </TabItem>
   <TabItem value="yarn" label="yarn">
     <pre>
-        <codeblock>yarn add @zerodevapp/zerokit</codeblock>
+        <codeblock>yarn add zerokit</codeblock>
     </pre>
   </TabItem>
 </Tabs>
@@ -30,7 +30,7 @@ You will need your `projectId` here to setup the SDK.
 
 ```jsx
 import '@zerodev/zerokit/styles.css';
-import { ZeroKitProvider } from "@zerodevapp/zerokit";
+import { ZeroKitProvider } from "zerokit";
 ```
 ```jsx
 <ZeroKitProvider projectId="<your-project-id>">
@@ -43,7 +43,7 @@ import { ZeroKitProvider } from "@zerodevapp/zerokit";
 In `YourApp`, use the `ConnectButton` component to create a connect button, and use Wagmi to interact with the user's wallet.
 
 ```jsx
-import { ConnectButton } from "@zerodevapp/zerokit";
+import { ConnectButton } from "zerokit";
 ```
 ```jsx live
 <ConnectButton label="Social Wallet" />

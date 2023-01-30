@@ -6,7 +6,7 @@ sidebar_position: 1
 Here is the contract we are using:
 [0x34bE7f35132E97915633BC1fc020364EA5134863](pathname://../../contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json).
 ```jsx
-import { ConnectButton } from "@zerodevapp/zerokit";
+import { ConnectButton } from "zerokit";
 
 import {
   useAccount,
