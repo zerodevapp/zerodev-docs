@@ -4,7 +4,7 @@ import { ZeroKitProvider } from "@zerodevapp/zerokit";
 
 export default function WrappedCodeBlock(props) {
   return (
-    <ZeroKitProvider projectId="b5486fa4-e3d9-450b-8428-646e757c10f6" modalSize="compact">
+    <ZeroKitProvider projectId="f5359ea1-5124-4051-af8f-220f34bf2f59" modalSize="compact">
       <CodeBlock {...props} />
     </ZeroKitProvider>
   );
