@@ -64,7 +64,7 @@ const config = {
         theme: {
           customCss: [
             require.resolve('./src/css/custom.css'),
-            require.resolve('@zerodevapp/rainbowkit/styles.css')
+            require.resolve('@zerodevapp/zerokit/styles.css')
           ],
         },
       }),
