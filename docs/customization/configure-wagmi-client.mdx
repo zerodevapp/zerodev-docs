@@ -1,56 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# Customization
-
-
-## Default configuration
-```jsx
-<ZeroKitProvider projectId="<your-project-id>">
-    <YourApp />
-</ZeroKitProvider>
-```
-
-## Customize login methods
-
-You can configure which login methods to show by using the `enabledConnectors` prop.
-```jsx
-<ZeroKitProvider projectId="<your-project-id>" enabledConnectors={["google", "metaMask"]}>
-  <YourApp />
-</ZeroKitProvider>
-```
-import ConfigureEnabledConnectors from '@site/src/components/ConfigureEnabledConnectors';
-
-<ConfigureEnabledConnectors />
-
-
-### Default connector list
-```
-[
-  'google', 
-  'twitch', 
-  'ledger',
-  'rainbow', 
-  'coinbaseWallet', 
-  'metaMask', 
-  'walletConnect', 
-  'injected'
-]
-```
-
-### Customize RainbowKit
-Furthermore, the `ZeroKitProvider` accept all `RainbotKitProvider` props, like:
-```jsx
-<ZeroKitProvider projectId="<your-project-id>" showRecentTransactions>
-  <YourApp />
-</ZeroKitProvider>
-```
-import ConfigureRainbowKit from '@site/src/components/ConfigureRainbowKit';
-
-<ConfigureRainbowKit />
-
-## Configure Wagmi Client
+# Configure Wagmi Client
 
 For maximal customization, configure your own wagmi client.  You can do so by using the `wagmiClientConfig` and `chains` props:
 ```jsx
