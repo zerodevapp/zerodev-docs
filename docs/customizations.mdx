@@ -1,0 +1,100 @@
+---
+sidebar_position: 4
+---
+
+# Customizations
+
+
+## Default
+```jsx
+<ZeroKitProvider projectId="<your-project-id>">
+    <YourApp />
+</ZeroKitProvider>
+```
+
+## Customize shown connectors
+You can change the connectors you wanna show by using the `enabledConnectors` props.
+```jsx
+<ZeroKitProvider projectId="<your-project-id>" enabledConnectors={["google", "metaMask"]}>
+  <YourApp />
+</ZeroKitProvider>
+```
+import ConfigureEnabledConnectors from '@site/src/components/ConfigureEnabledConnectors';
+
+<ConfigureEnabledConnectors />
+
+
+### Default connector list
+```
+[
+  'google', 
+  'twitch', 
+  'ledger',
+  'rainbow', 
+  'coinbaseWallet', 
+  'metaMask', 
+  'walletConnect', 
+  'injected'
+]
+```
+
+### Customize RainbowKit
+Furthermore, the `ZeroKitProvider` accept all `RainbotKitProvider` props, like:
+```jsx
+<ZeroKitProvider projectId="<your-project-id>" showRecentTransactions>
+  <YourApp />
+</ZeroKitProvider>
+```
+import ConfigureRainbowKit from '@site/src/components/ConfigureRainbowKit';
+
+<ConfigureRainbowKit />
+
+## Configure Wagmit Client
+In case you wanna configure your wagmi client, you can do so by using the `wagmiClientConfig` and `chains` props:
+```jsx
+import { connectorsForWallets } from 'zerokit';
+import {
+  injectedWallet,
+  rainbowWallet,
+  walletConnectWallet,
+} from 'zerokit/wallets';
+import { configureChains, mainnet } from 'wagmi';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
+const { chains } = configureChains(
+  [mainnet],
+  [
+    alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
+    publicProvider(),
+  ]
+);
+
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Recommended',
+    wallets: [
+      injectedWallet({ chains }),
+      rainbowWallet({ chains }),
+      walletConnectWallet({ chains }),
+    ],
+  },
+]);
+const wagmiClientConfig = {
+  autoConnect: true,
+  connectors
+}
+<ZeroKitProvider projectId="<your-project-id>" wagmiClientConfig={wagmiClientConfig} chains={chains}>
+  <YourApp />
+</ZeroKitProvider>
+```
+import ConfigureWagmitClient from '@site/src/components/ConfigureWagmitClient';
+
+<ConfigureWagmitClient />
+
+<br />
+
+:::info
+
+Keep in mind that the Social logins are still getting injected, to disable them use the enabledConnectors props.
+
+:::
