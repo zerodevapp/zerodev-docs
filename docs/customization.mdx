@@ -5,15 +5,16 @@ sidebar_position: 3
 # Customization
 
 
-## Default
+## Default configuration
 ```jsx
 <ZeroKitProvider projectId="<your-project-id>">
     <YourApp />
 </ZeroKitProvider>
 ```
 
-## Customize shown connectors
-You can change the connectors you wanna show by using the `enabledConnectors` props.
+## Customize login methods
+
+You can configure which login methods to show by using the `enabledConnectors` prop.
 ```jsx
 <ZeroKitProvider projectId="<your-project-id>" enabledConnectors={["google", "metaMask"]}>
   <YourApp />
@@ -50,7 +51,8 @@ import ConfigureRainbowKit from '@site/src/components/ConfigureRainbowKit';
 <ConfigureRainbowKit />
 
 ## Configure Wagmi Client
-In case you wanna configure your wagmi client, you can do so by using the `wagmiClientConfig` and `chains` props:
+
+For maximal customization, configure your own wagmi client.  You can do so by using the `wagmiClientConfig` and `chains` props:
 ```jsx
 import { connectorsForWallets } from 'zerokit';
 import {
@@ -95,6 +97,6 @@ import ConfigureWagmiClient from '@site/src/components/ConfigureWagmiClient';
 
 :::info
 
-Keep in mind that the Social logins are still getting injected, to disable them use the enabledConnectors props.
+Social logins are injected by default, to disable them use the enabledConnectors props.
 
 :::
