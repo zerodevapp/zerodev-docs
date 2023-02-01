@@ -1,0 +1,20 @@
+---
+sidebar_position: 6
+---
+
+# Common Issues
+
+## React - Webpack 5
+There are some issues using webpack 5 as certain packages (ethers.js and web3.js) which we are using require dependencies in the browser environment which webpack 5 is not providing.
+This can be overcome by reconfiguring webpack 5. [Here](https://web3auth.io/docs/troubleshooting/webpack-issues#react) is an guide how to do so when initiating an application via `create-react-app`.
+
+## Next.js
+You will have to add `zerokit` and `@web3` to be transpiled by your typescript compiler:
+
+```next.config.js```
+```diff
+const nextConfig = {
+  reactStrictMode: true,
++  transpilePackages: ['zerokit', '@web3'],
+}
+```
