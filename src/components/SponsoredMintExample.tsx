@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import {
     useAccount,
     usePrepareContractWrite,
@@ -23,7 +23,7 @@ function SponsoredMintExample() {
       functionName: "mint",
       args: [address],
     });
-    const { write: mint, isLoading, isSuccess } = useContractWrite(config);
+    const { write: mint, isLoading } = useContractWrite(config);
   
     const { data: balance = 0, refetch } = useContractRead({
       address: "0x34bE7f35132E97915633BC1fc020364EA5134863",
@@ -31,12 +31,28 @@ function SponsoredMintExample() {
       functionName: "balanceOf",
       args: [address],
     });
-  
-    useEffect(() => {
-      if (isSuccess) {
-          refetch();
+
+    const interval = useRef<any>()
+
+    const handleClick = useCallback(() => {
+      if (mint) {
+        mint()
+        interval.current = setInterval(() => {
+          refetch()
+        }, 1000)
+        setTimeout(() => {
+          if (interval.current) {
+            clearInterval(interval.current)
+          }
+        }, 100000)
       }
-    }, [refetch, isSuccess]);
+    }, [mint, refetch])
+
+    useEffect(() => {
+      if (interval.current) {
+        clearInterval(interval.current)
+      }
+    }, [balance, interval]);
   
     return (
       <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection:'column', gap: '1rem'}}>
@@ -48,7 +64,7 @@ function SponsoredMintExample() {
             <Button
               loading={isLoading}
               size={'lg'}
-              onClick={() => mint()}
+              onClick={handleClick}
             >
               Gas-free Mint
             </Button>

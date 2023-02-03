@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   useAccount,
   useContractRead,
@@ -19,10 +19,13 @@ function SponsoredMintExample() {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const { data: signer } = useSigner()
 
   const batchMint = async () => {
     const nftContract = new Contract(nftAddress, contractAbi, signer)
+    setIsLoading(true)
     await zd.execBatch(signer, [
       {
         to: nftAddress,
@@ -33,6 +36,7 @@ function SponsoredMintExample() {
         data: nftContract.interface.encodeFunctionData("mint", [address]),
       },
     ])
+    setIsLoading(false)
   }
 
   const { data: balance = 0, refetch } = useContractRead({
@@ -41,6 +45,27 @@ function SponsoredMintExample() {
     functionName: "balanceOf",
     args: [address],
   });
+
+  const interval = useRef<any>()
+  const handleClick = useCallback(() => {
+    if (batchMint) {
+      batchMint()
+      interval.current = setInterval(() => {
+        refetch()
+      }, 1000)
+      setTimeout(() => {
+        if (interval.current) {
+          clearInterval(interval.current)
+        }
+      }, 100000)
+    }
+  }, [batchMint, refetch])
+
+  useEffect(() => {
+    if (interval.current) {
+      clearInterval(interval.current)
+    }
+  }, [balance, interval]);
 
   // useEffect(() => {
   //   if (isSuccess) {
@@ -56,9 +81,9 @@ function SponsoredMintExample() {
           <strong style={{ fontSize: '1.5rem' }}>NFT Count</strong>
           <div style={{ fontSize: "2rem", fontWeight: 'medium', width: 100, height: 100, borderRadius: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', border: '10px solid #2B8DE3' }}>{`${balance ?? 0}`}</div>
           <Button
-            // loading={isLoading}
+            loading={isLoading}
             size={'lg'}
-            onClick={() => batchMint()}
+            onClick={handleClick}
           >
             Batch Mint
           </Button>
