@@ -2,7 +2,7 @@ import React from 'react';
 import { ConnectButton, ZeroKitProvider } from 'zerokit';
 
 export default () => (
-    <ZeroKitProvider projectId="f5359ea1-5124-4051-af8f-220f34bf2f59" showRecentTransactions>
+    <ZeroKitProvider projectId="b5486fa4-e3d9-450b-8428-646e757c10f6" showRecentTransactions>
         <ConnectButton />
     </ZeroKitProvider>
 )
