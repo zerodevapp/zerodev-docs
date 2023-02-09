@@ -3,8 +3,10 @@ sidebar_position: 1
 ---
 
 # Sponsored Mint Example
-Here is the contract we are using:
-[0x34bE7f35132E97915633BC1fc020364EA5134863](pathname://../../contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json).
+
+In this example we are using an NFT contract on Polygon Mumbai:
+[0x34bE7f35132E97915633BC1fc020364EA5134863](https://mumbai.polygonscan.com/address/0x34bE7f35132E97915633BC1fc020364EA5134863).
+
 ```jsx
 import { ConnectButton } from "zerokit";
 
