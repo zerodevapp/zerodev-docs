@@ -24,7 +24,3 @@ const wallet = await zd.getSigner({
 Here, ZeroDev deterministically returns a smart contract wallet based on the private key, so the same user will also get the same wallet.
 
 And just like that, your user now has a wallet that supports gas-free transactions!  The `wallet` object that ZeroDev returns is a [`Signer`](https://docs.ethers.io/v5/api/signer/#Signer) that is widely compatible with popular Web3 libraries such as Ethers.js.  You can now use this object to transfer balance, interact with smart contracts, sign messages, and more.  To learn more, check out [Ethers's documentation](https://docs.ethers.io/v5/getting-started/).
-
-## Next Step
-
-Now that your user has a wallet, it's time to [set up your gas policies](/gas-setup-guides/pay-gas-for-users) so your users can start using you app right away, even if they don't own any crypto.

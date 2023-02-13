@@ -2,11 +2,15 @@
 sidebar_position: 1
 ---
 
-# Custom RPC Provider
+# RPC Provider
 
-[Magic](https://magic.link/) is a popular solution for signing in users who do not have wallets.  ZeroDev works great with Magic -- your users will be able to sign in through Magic, and ZeroDev saves them from paying gas.
+ZeroDev wallets are smart contract wallets.  A smart contract wallet needs one or more "owners" -- accounts that can sign transactions for the wallet.  By default, a ZeroDev wallet has a single owner.
 
-## Get a wallet
+When you create a ZeroDev wallet, you need to tell ZeroDev who its owner is going to be.  The most flexible way to do that is to provide a RPC provider (one example would be the `window.ethereum` object that MetaMask injects).
+
+## Example: Magic
+
+Say you want to use [Magic](https://magic.link/) to handle social logins, but you want to use ZeroDev to create AA wallets for your users.
 
 Magic exposes an `rpcProvider`.  To create a ZeroDev wallet using Magic, simply pass the rpc provider to the SDK:
 
@@ -23,8 +27,4 @@ const wallet = await zd.getSigner({
 })
 ```
 
-Now your user has a ZeroDev wallet that supports gas-free transactions!  The `wallet` object that ZeroDev returns is a [`Signer`](https://docs.ethers.io/v5/api/signer/#Signer) that is widely compatible with popular Web3 libraries such as Ethers.js.  You can now use this object to transfer balance, interact with smart contracts, sign messages, and more.  To learn more, check out [Ethers's documentation](https://docs.ethers.io/v5/getting-started/).
-
-## Next Step
-
-Now that your user has a wallet, it's time to [set up your gas policies](/gas-setup-guides/pay-gas-for-users) so your users can start using you app right away, even if they don't own any crypto.
+Now your user has a ZeroDev wallet that supports AA features, such as gas-free transactions!  The `wallet` object that ZeroDev returns is a [`Signer`](https://docs.ethers.io/v5/api/signer/#Signer) that is widely compatible with popular Web3 libraries such as Ethers.js.  You can now use this object to transfer balance, interact with smart contracts, sign messages, and more.  To learn more, check out [Ethers's documentation](https://docs.ethers.io/v5/getting-started/).

@@ -10,6 +10,6 @@ With ZeroDev, your users can interact with Web3 through an AA wallet, which can 
 
 If you are not sure what AA can do, we recommend that you take a look at [our AA examples](/category/account-abstraction).
 
-When you are ready to get started, take a look at [our tutorial](/tutorial/introduction).
+When you are ready to get started, take a look at [our tutorial](/sdk/tutorial/introduction).
 
 If you are looking for a turn-key AA wallet with UI, check out [ZeroKit](/zerokit/getting-started).

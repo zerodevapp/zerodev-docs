@@ -29,11 +29,13 @@ ERC-4337 is a proposal for implementing account abstraction at the application l
 
 Magic and Web3Auth solve a specific problem: generating a private key from a social login (e.g. Google).  It just so happens that on EVM chains, a private key can be used as a EOA wallet, so generating a key is just like generating a EOA wallet.
 
-Unlike Magic and Web3Auth, ZeroDev generates a *smart contract wallet* for your user, which enables gas sponsoring, bundled transactions, and [many more powerful features](/category/account-abstraction).
+Unlike Magic and Web3Auth, ZeroDev generates a *smart contract wallet* for your user, which enables gas sponsoring, bundled transactions, and [many more powerful AA features](/category/account-abstraction).
 
-Just like how a EOA wallet is controlled by a private key, a ZeroDev smart contract wallet is also controlled by a private key.  That's why many developers actually use Magic and Web3Auth *with* ZeroDev -- they use Magic/Web3Auth to support social logins and generate a key for the user, and then use the key to generate a ZeroDev wallet, in order to leverage features like gas-less transactions.
+Just like how a EOA wallet is controlled by a private key, a ZeroDev smart contract wallet is also controlled by a private key.  That's why it's possible to use Magic and Web3Auth *with* ZeroDev -- Magic/Web3Auth can generate a private key from social accounts, and then you can use the key to control a ZeroDev wallet.
 
-Here's a guide for [using Magic with ZeroDev](/signin-guides/magic).  You can use Web3Auth with ZeroDev the same way as well.
+Here's a guide for [using Magic with ZeroDev](/sdk/create-wallets/rpc-provider).  You can use Web3Auth with ZeroDev the same way as well.
+
+Note that if your goal is to build an AA wallet with social logins, [ZeroKit](/zerokit/getting-started) is the easiest way to get started.
 
 ## Which chains does ZeroDev support?
 
@@ -41,8 +43,8 @@ Currently ZeroDev supports Ethereum, Polygon, Optimism, Arbitrum, and Avalanche.
 
 ## Who owns ZeroDev wallets?
 
-By default, a ZeroDev wallet is a smart contract owned by a single key.  ZeroDev is unopinionated about how your application handles keys.  Some applications generate keys for their users and [use the keys with ZeroDev wallets](/signin-guides/private-key).
+By default, a ZeroDev wallet is a smart contract owned by a single key.  ZeroDev is unopinionated about how your application handles keys.
 
-Most of the time, however, you likely want to generate keys with one of the [sign-in providers](/category/signin-guides), in which case the user controls the key, by virtue of having access to the sign-in method (e.g. their Google account).
+Some applications generate keys for their users and [use the keys to create ZeroDev wallets](/sdk/create-wallets/private-key).  Others use a third-party key provider with ZeroDev, such as [MetaMask, Web3Auth, or Magic](/sdk/create-wallets/rpc-provider).  In the case of Web3Auth, the user ultimately owns the wallet since they control the social accounts used for constructing the private key.  This is the approach used in [ZeroKit](http://localhost:3000/zerokit/getting-started).
 
-Some providers like [Magic](/signin-guides/magic) directly provide us with a key.  In other cases, we generate a key and encrypt it with the user's unique ID from the login provider.  In any case, since only the user is able to authenticate with the provider, ZeroDev wound up being a self-custody wallet without the hassle of seed phrases.
+TLDR: whoever owns the key, owns the ZeroDev wallet.
