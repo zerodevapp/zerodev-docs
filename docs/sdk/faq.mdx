@@ -1,0 +1,48 @@
+---
+sidebar_position: 6
+slug: /faqs
+---
+
+# FAQs
+
+## What is ZeroDev in technical terms?
+
+ZeroDev is an SDK for building Web3 applications powered by account abstraction, using [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337).
+
+## What is account abstraction?
+
+On Ethereum (and Polygon/Arbitrum/Optimism), there are two types of wallets: EOA wallets such as MetaMask, and smart contract wallets such as Gnosis Safe.
+
+However, only EOA wallets are "first class citizens" -- all transactions MUST initiate from a EOA wallet.  That's why smart contract wallets see much less usage than EOA wallets, despite being way more powerful: to use a smart contract wallet, you still have to own a EOA wallet to initiate transactions for it, which largely defeats the point.
+
+The goal of account abstraction is to allow transactions to *start from* smart contracts, which would unlock the full potential of smart contract wallets since you'd be able to use smart contract wallets without using EOA wallets at all.
+
+To learn more about the use cases of AA, see [this blog](https://blog.zerodev.app/what-can-you-do-with-account-abstraction/) and [these examples](/category/account-abstraction).
+
+## What is ERC-4337?
+
+Newer networks like StarkNet and zksync modified the Ethereum protocol to support account abstraction at the protocol level.  But Ethereum itself, as well as networks that want to stay maximally compatible with Ethereum, cannot simply break the existing protocol.
+
+ERC-4337 is a proposal for implementing account abstraction at the application layer -- no protocol change is required.  The ERC was [first written by Vitalik](https://medium.com/infinitism/erc-4337-account-abstraction-without-ethereum-protocol-changes-d75c9d94dc4a), and later [revised and improved by many people](https://eips.ethereum.org/EIPS/eip-4337).
+
+## How is ZeroDev different from Magic or Web3Auth (Torus)?
+
+Magic and Web3Auth solve a specific problem: generating a private key from a social login (e.g. Google).  It just so happens that on EVM chains, a private key can be used as a EOA wallet, so generating a key is just like generating a EOA wallet.
+
+Unlike Magic and Web3Auth, ZeroDev generates a *smart contract wallet* for your user, which enables gas sponsoring, bundled transactions, and [many more powerful features](/category/account-abstraction).
+
+Just like how a EOA wallet is controlled by a private key, a ZeroDev smart contract wallet is also controlled by a private key.  That's why many developers actually use Magic and Web3Auth *with* ZeroDev -- they use Magic/Web3Auth to support social logins and generate a key for the user, and then use the key to generate a ZeroDev wallet, in order to leverage features like gas-less transactions.
+
+Here's a guide for [using Magic with ZeroDev](/signin-guides/magic).  You can use Web3Auth with ZeroDev the same way as well.
+
+## Which chains does ZeroDev support?
+
+Currently ZeroDev supports Ethereum, Polygon, Optimism, Arbitrum, and Avalanche.  StarkNet and zksync will also be supported soon, and Solana support will come next.
+
+## Who owns ZeroDev wallets?
+
+By default, a ZeroDev wallet is a smart contract owned by a single key.  ZeroDev is unopinionated about how your application handles keys.  Some applications generate keys for their users and [use the keys with ZeroDev wallets](/signin-guides/private-key).
+
+Most of the time, however, you likely want to generate keys with one of the [sign-in providers](/category/signin-guides), in which case the user controls the key, by virtue of having access to the sign-in method (e.g. their Google account).
+
+Some providers like [Magic](/signin-guides/magic) directly provide us with a key.  In other cases, we generate a key and encrypt it with the user's unique ID from the login provider.  In any case, since only the user is able to authenticate with the provider, ZeroDev wound up being a self-custody wallet without the hassle of seed phrases.

@@ -1,0 +1,30 @@
+---
+sidebar_position: 2
+---
+
+# Private Key
+
+Sometimes, your application already generates private keys for your users.  This is common in wallet applications.  In this case, you are probably using ZeroDev to save your users from having to pay gas.
+
+ZeroDev accomplishes gas-less transactions through [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337), which requires smart contract wallets.  In other words, ZeroDev creates smart contract wallets for your users, meaning that your users's wallets are NOT going to be EOA wallets.  Practically speaking, this means that your users's wallet addresses are not going to be determined by their private key, though their private keys are still required to access their smart contract wallets.
+
+## Get a ZeroDev smart contract wallet
+
+Getting a ZeroDev wallet with a private key is very simple:
+
+```javascript
+import * as zd from '@zerodevapp/sdk'
+
+const wallet = await zd.getSigner({
+  projectId: "insert your project ID",
+  privateKey: "the private key"
+})
+```
+
+Here, ZeroDev deterministically returns a smart contract wallet based on the private key, so the same user will also get the same wallet.
+
+And just like that, your user now has a wallet that supports gas-free transactions!  The `wallet` object that ZeroDev returns is a [`Signer`](https://docs.ethers.io/v5/api/signer/#Signer) that is widely compatible with popular Web3 libraries such as Ethers.js.  You can now use this object to transfer balance, interact with smart contracts, sign messages, and more.  To learn more, check out [Ethers's documentation](https://docs.ethers.io/v5/getting-started/).
+
+## Next Step
+
+Now that your user has a wallet, it's time to [set up your gas policies](/gas-setup-guides/pay-gas-for-users) so your users can start using you app right away, even if they don't own any crypto.

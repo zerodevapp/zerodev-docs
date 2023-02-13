@@ -4,10 +4,11 @@ sidebar_position: 2
 
 # Getting Started
 
+ZeroKit is a turn-key AA wallet widget that can be embedded inside your app with just 5 lines of code.  Once embedded, your users can interact with your app through an AA wallet, enabling all kinds of [powerful features](/category/account-abstraction).
+
 ### Step 1: Sign up
 
-Fill out the [closed beta signup form](https://docs.google.com/forms/d/e/1FAIpQLSfip6bMIYvd2Z5LDr3IRt-kCEc6x38TybcDe6gk_TRKvT-fMw/viewform) to get a `projectId`.
-
+Fill out the [beta signup form](https://docs.google.com/forms/d/e/1FAIpQLSfip6bMIYvd2Z5LDr3IRt-kCEc6x38TybcDe6gk_TRKvT-fMw/viewform) to get a `projectId`.
 
 ### Step 2: Installation
 <Tabs>
@@ -54,4 +55,27 @@ import { ConnectButton } from "zerokit";
 
 From here on, you would build your app the same way you build any [Wagmi](https://wagmi.sh/) apps.
 
-[See here](/examples/sponsored-mint) for a full example.
+Keep in mind that the *signer* you obtain from Wagmi (e.g. through [`useSigner`](https://wagmi.sh/react/hooks/useSigner)) is backed by an account abstraction wallet.  As a result, it can be used with the [ZeroKit SDK](/sdk/intro) to enable powerful AA features.
+
+
+```jsx
+import { useSigner } from "wagmi";
+import * as zd from '@zerodevapp/sdk';
+
+function MyComponent() {
+  const { data: signer } = useSigner()
+
+
+  const handleClick = async () => {
+    zd.execBatch(signer, [ transaction1, transaction2 ])
+  }
+
+  return (
+    <Button onClick={handleClick}>
+      Batch Mint
+    </Button>
+  )
+}
+```
+
+[See here](/category/account-abstraction) for examples of AA features.

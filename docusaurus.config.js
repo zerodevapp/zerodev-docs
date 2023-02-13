@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'ZeroKit Documentation',
-  tagline: 'Web3 Onboarding Re-imagined',
+  title: 'ZeroDev Documentation',
+  tagline: 'Use ZeroDev to build powerful and easy-to-use Web3 apps with account abstraction.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -76,9 +76,9 @@ const config = {
       // Replace with your project's social card
       image: 'img/zerokit-social-card.jpg',
       navbar: {
-        title: 'ZeroKit',
+        title: 'ZeroDev',
         logo: {
-          alt: 'ZeroKit Logo',
+          alt: 'ZeroDev Logo',
           src: 'img/zerokit_logo.svg',
         },
         items: [
@@ -88,7 +88,7 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           // {
           //   href: 'https://github.com/zerodevapp/zerokit',
           //   label: 'GitHub',

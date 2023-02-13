@@ -1,0 +1,63 @@
+---
+sidebar_position: 5
+---
+
+# Custom Authentication (Deprecated)
+
+*Creating an AA signer from a custom auth token is deprecated.  This feature may stop working at any time.  If you need social signins, consider using [ZeroKit](/zerokit/getting-started) instead.*
+
+Sometimes, your application may have a custom authentication flow that is not captured by our integrations.  But worry not!  We have built a generic way to obtain ZeroDev wallets that works with any custom authentication schemes.
+
+On a high-level, ZeroDev is able to take an opaque token from your app and send it to a webhook that you implemented, such that if the token authenticates the user, your webhook returns a `200` response and we generate a unique wallet based on the user's ID (which is also opaque from our perspective).  Let's see how this works.
+
+## Implement a Webhook
+
+The first step is to implement a webhook that accepts a POST request with the following JSON body:
+
+```
+{
+  "token": "..."
+}
+```
+
+`token` is the token that your authentication flow uses to authenticate the user.  It can be a JWT token or something else entirely, as long as it's secure (meaning that only the correct user can obtain this token) and that your webhook can verify this token.
+
+Given the POST request, if and only if the token is valid, your webhook should return:
+
+```
+{
+  "id": "..."
+}
+```
+
+Where `id` is a unique identifier that identifies the user.  It's important that the ID is stable over time (meaning it doesn't change), since ZeroDev returns a wallet based on this ID.
+
+## Save the webhook
+
+Go to the [ZeroDev dashboard](https://dashboard.zerodev.app/) and click "Social Logins," then go to the "Custom" tab:
+
+<p align="center">
+  <img src="/img/custom_login.png" width="600" />
+</p>
+
+Now save the webhook URL in the dashboard.
+
+## Get a wallet
+
+Now you are ready to create wallets for your user!  Simply write:
+
+```javascript
+import * as zd from '@zerodevapp/sdk'
+
+const wallet = await zd.getSigner({
+  projectId: "insert your project ID",
+  identity: "custom",
+  token: token, // this is the token from your auth system
+})
+```
+
+Just like that, your user now has a wallet!  The `wallet` object that ZeroDev returns is a [`Signer`](https://docs.ethers.io/v5/api/signer/#Signer) that is widely compatible with popular Web3 libraries such as Ethers.js.  You can now use this object to transfer balance, interact with smart contracts, sign messages, and more.  To learn more, check out [Ethers's documentation](https://docs.ethers.io/v5/getting-started/).
+
+## Next Step
+
+Now that your user has a wallet, it's time to [set up your gas policies](/gas-setup-guides/pay-gas-for-users) so your users can start using you app right away, even if they don't own any crypto.

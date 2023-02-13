@@ -1,0 +1,30 @@
+---
+sidebar_position: 1
+---
+
+# Custom RPC Provider
+
+[Magic](https://magic.link/) is a popular solution for signing in users who do not have wallets.  ZeroDev works great with Magic -- your users will be able to sign in through Magic, and ZeroDev saves them from paying gas.
+
+## Get a wallet
+
+Magic exposes an `rpcProvider`.  To create a ZeroDev wallet using Magic, simply pass the rpc provider to the SDK:
+
+```javascript
+import * as zd from '@zerodevapp/sdk'
+
+const magic = new Magic('MAGIC_API_KEY', {
+  // some magic options...
+})
+
+const wallet = await zd.getSigner({
+  projectId: "insert your project ID",
+  web3Provider: magic.rpcProvider,
+})
+```
+
+Now your user has a ZeroDev wallet that supports gas-free transactions!  The `wallet` object that ZeroDev returns is a [`Signer`](https://docs.ethers.io/v5/api/signer/#Signer) that is widely compatible with popular Web3 libraries such as Ethers.js.  You can now use this object to transfer balance, interact with smart contracts, sign messages, and more.  To learn more, check out [Ethers's documentation](https://docs.ethers.io/v5/getting-started/).
+
+## Next Step
+
+Now that your user has a wallet, it's time to [set up your gas policies](/gas-setup-guides/pay-gas-for-users) so your users can start using you app right away, even if they don't own any crypto.

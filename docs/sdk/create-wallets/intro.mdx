@@ -1,0 +1,26 @@
+---
+sidebar_position: 1
+---
+
+# Introduction
+
+At the core of ZeroKit SDK is an account abstraction wallet, which is a smart contract wallet that is compatible with ERC-4337.
+
+## Creating a Wallet
+
+The most straightforward way to create a wallet is through the [ZeroKit Widget](/widget/getting-started).  If you are building a DApp (as opposed to a wallet/infra/onramp), the widget is likely what you want to use.
+
+If you want to build a custom wallet experience, you'd create wallets manually with the `getSigner` function from the SDK, which returns an [Ethers signer](https://docs.ethers.org/v5/api/signer).  You can then use the signer to send transactions and interact with contracts, just like you would with the `window.ethereum` object that MetaMask injects.
+
+Generally speaking, there are two ways to creating a wallet:
+
+- [With a RPC provider (e.g. MetaMask, Magic, Web3Auth)](/sdk/create-wallets/rpc-provider)
+- [With a private key](/sdk/create-wallets/private-key)
+
+In either case, the given RPC provider or private key would become the *owner* of the smart contract wallet.
+
+## Counterfactual Wallet Deployment
+
+One important optimization of ERC-4337 is that the wallet is not deployed until the user sends their first transaction.  In other words, the wallet is deployed "lazily."  Therefore, when you call `getSigner`, the wallet is not actually deployed (and therefore no gas cost is incurred).
+
+Rather, the wallet is constructed "counterfactually," so you know the wallet's address even though it has not been deployed yet.  This means you can start displaying its address in your app and receiving assets, knowing that when the wallet is deployed it will 

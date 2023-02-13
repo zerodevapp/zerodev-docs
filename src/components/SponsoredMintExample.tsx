@@ -56,7 +56,7 @@ function SponsoredMintExample() {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
-      <ConnectButton label="Try ZeroKit" />
+      <ConnectButton label="Try Gasless Mint" />
       {isConnected && (
         <>
           <strong style={{ fontSize: '1.5rem' }}>NFT Count</strong>
