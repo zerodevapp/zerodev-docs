@@ -13,7 +13,7 @@ import { MantineProvider } from '@mantine/core';
 import { Button, Anchor } from '@mantine/core';
 
 
-function SponsoredMintExample() {
+function SponsoredMintExample({ label = undefined }) {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork()
 
@@ -56,7 +56,7 @@ function SponsoredMintExample() {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
-      <ConnectButton label="Try Gasless Mint" />
+      <ConnectButton label={label || "Try Gasless Mint"} />
       {isConnected && (
         <>
           <strong style={{ fontSize: '1.5rem' }}>NFT Count</strong>
@@ -76,10 +76,10 @@ function SponsoredMintExample() {
   );
 }
 
-export default ({ projectId }) => (
+export default ({ projectId, label }) => (
   <MantineProvider withGlobalStyles withNormalizeCSS>
     <ZeroKitProvider projectId={projectId || "b5486fa4-e3d9-450b-8428-646e757c10f6"} modalSize="compact">
-      <SponsoredMintExample />
+      <SponsoredMintExample label={label} />
     </ZeroKitProvider>
   </MantineProvider>
 )
