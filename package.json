@@ -17,12 +17,12 @@
   "dependencies": {
     "@docusaurus/core": "2.3.0",
     "@docusaurus/preset-classic": "2.3.0",
-    "@docusaurus/remark-plugin-npm2yarn": "^2.3.1",
     "@docusaurus/theme-live-codeblock": "^2.3.0",
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.10.2",
     "@mantine/hooks": "^5.10.2",
     "@mdx-js/react": "^1.6.22",
+    "zerokit": "*",
     "assert": "^2.0.0",
     "clsx": "^1.2.1",
     "crypto-browserify": "^3.12.0",
@@ -33,8 +33,7 @@
     "react-dom": "^18.2.0",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
-    "url": "^0.11.0",
-    "zerokit": "*"
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.3.0",

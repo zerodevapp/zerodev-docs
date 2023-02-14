@@ -52,9 +52,6 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/zerodevapp/zerokit-docs/edit/main/docs/',
-          remarkPlugins: [
-            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
-          ],
         },
         blog: {
           showReadingTime: true,
