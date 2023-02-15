@@ -14,6 +14,8 @@ import SubscribeExample from '@site/src/components/SubscribeExample';
 
 This demo showcases NFT subscription, which is implemented as a custom module.
 
+Make sure to first send yourself some [Polygon Mumbai MATIC](https://faucet.polygon.technology/) to pay for the subscription.
+
 Click the "Subscribe" button, then click the "Release" button to release an NFT to the subscriber.  The release is done by the NFT creator, showcasing that we can charge the subscriber without the subscriber having to send any transaction.
 
 If everything works, after clicking "Release" you should see your NFT balance go up and your MATIC balance go down.
