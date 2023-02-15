@@ -1,10 +1,20 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Bundle Transactions
 
+## Demo
+
+import BatchMintExample from '@site/src/components/BatchMintExample';
+
+<BatchMintExample />
+
+## Introduction
+
 One great advantage of smart contract wallets is the ability to execute transactions in batches.  That is, you can execute multiple transactions as if it's a single transaction, so you get to save on confirmation time and gas costs.  It's also safer because these transactions either all execute or all revert, no in-between, which is a property known as "atomicity."
+
+## API
 
 To execute transactions in batches, import the ZeroDev SDK:
 
@@ -27,10 +37,6 @@ await zd.execBatch(signer, [
   },
 ])
 ```
-
-import BatchMintExample from '@site/src/components/BatchMintExample';
-
-<BatchMintExample />
 
 <br />
 

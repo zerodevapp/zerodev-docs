@@ -1,8 +1,25 @@
 ---
-sidebar_position: 7
+sidebar_position: 3
 ---
 
 # Custom Modules
+
+## Demo
+
+import SubscribeExample from '@site/src/components/SubscribeExample';
+
+<SubscribeExample />
+
+<br/>
+
+This demo showcases NFT subscription, which is implemented as a custom module.
+
+Click the "Subscribe" button, then click the "Release" button to release an NFT to the subscriber.  The release is done by the NFT creator, showcasing that we can charge the subscriber without the subscriber having to send any transaction.
+
+If everything works, after clicking "Release" you should see your NFT balance go up and your MATIC balance go down.
+
+
+## Introduction
 
 ZeroKit is built on top of Gnosis Safe, the most widely used smart contract wallet.  As a result, ZeroKit inherits [Safe's "modules" system](https://docs.gnosis-safe.io/learn/safe-tools/modules-1).
 

@@ -40,6 +40,8 @@ import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
 
 <SponsoredMintExample />
 
+<br/>
+
 [See here](/category/account-abstraction) for more examples.
 
 ## Next Steps
