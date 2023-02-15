@@ -15,7 +15,7 @@ import { Button, Anchor } from '@mantine/core';
 
 const nftAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 
-function SponsoredMintExample() {
+function BatchMintExample() {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork()
 
@@ -98,7 +98,7 @@ function SponsoredMintExample() {
 export default () => (
   <MantineProvider withGlobalStyles withNormalizeCSS>
     <ZeroKitProvider projectId="b5486fa4-e3d9-450b-8428-646e757c10f6" modalSize="compact">
-      <SponsoredMintExample />
+      <BatchMintExample />
     </ZeroKitProvider>
   </MantineProvider>
 )
