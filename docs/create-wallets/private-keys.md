@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # Create Wallets with Private Keys
@@ -10,8 +10,8 @@ If your application already manages private keys for users, you can use ZeroDev 
 
 ### Ethers.js
 
-```
-import { AASigner, PrivateKeyOwner } from 'zerodev'
+```typescript
+import { AASigner, PrivateKeyOwner } from '@zerodevapp/sdk'
 
 const signer = new AASigner({
   projectId: "<project id>",
