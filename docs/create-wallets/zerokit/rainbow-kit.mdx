@@ -1,0 +1,82 @@
+---
+sidebar_position: 5
+---
+
+
+import {ZeroKitProvider, ConnectButton} from 'zerokit'
+
+# Migrating from RainbowKit
+
+:::info
+
+All imports from `@rainbow-me/rainbowkit` should be made from `zerokit`
+
+:::
+
+ZeroKit is built on top of `Rainbow` and `wagami`, therefore fully compatible with these libaries.
+
+ZeroKit comes with sensible defaults, so you don't need as much boilerplate.  Here's how you would convert a typical RainbowKit app into ZeroKit app.
+
+```jsx
+const { chains, provider } = configureChains(
+  [mainnet, polygon, optimism, arbitrum],
+  [
+    alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
+    publicProvider()
+  ]
+);
+
+const { connectors } = getDefaultWallets({
+  appName: 'My RainbowKit App',
+  chains
+});
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider
+})
+
+const App = () => {
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider chains={chains}>
+        <YourApp />
+      </RainbowKitProvider>
+    </WagmiConfig>
+  );
+};
+```
+
+```diff
+-const { chains, provider } = configureChains(
+-  [mainnet, polygon, optimism, arbitrum],
+-  [
+-    alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
+-    publicProvider()
+-  ]
+-);
+
+-const { connectors } = getDefaultWallets({
+-  appName: 'My RainbowKit App',
+-  chains
+-});
+
+-const wagmiClient = createClient({
+-  autoConnect: true,
+-  connectors,
+-  provider
+-})
+
+const App = () => {
+  return (
+-    <WagmiConfig client={wagmiClient}>
+-      <RainbowKitProvider chains={chains}>
++      <ZeroKitProvider projectId="<your-project-id>">
+         <YourApp />
++      </ZeroKitProvider>
+-      </RainbowKitProvider>
+-    </WagmiConfig>
+  );
+};
+```
