@@ -5,54 +5,70 @@ slug: /
 
 # Introduction
 
-ZeroDev is an SDK for builing Web3 apps powered by account abstraction (AA).
+ZeroDev is an SDK for creating account abstraction (AA) wallets, which are non-custodial and yet as easy to use as custodial wallets.
 
-ZeroDev is built on top of [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337), the first practical implementation of account abstraction (AA) on EVM blockchains.
+ZeroDev is the perfect solution for any project that needs to create wallets for users, including Web2.5 apps, wallet apps, DeFi aggregators, onramps, marketplaces, and more.
 
-## Create Web3 wallets for users
+## Custodial vs Non-custodial Wallets
 
-Like existing Web3 onboarding solutions such as Magic or Web3Auth, ZeroDev creates wallets for your users that support:
+Traditionally, there are two approaches to creating wallets:
 
-- Social logins
-- Fiat onramp
-- Embedded wallet widgets
-- WalletConnect
-- And more.
+- Use custodial wallet providers such as [Fireblocks](https://docs.fireblocks.com/api/#create-a-new-vault-account) and [Wyre](https://docs.sendwyre.com/reference/createwallet) to create and manage wallets through APIs.
 
-## Build powerful Web3 experiences
+- Use non-custodial key providers such as [Web3Auth](https://web3auth.io/) and [Magic](https://magic.link/) to generate private keys for users, which they can then use as blockchain wallets (EOA).
 
-But what makes ZeroDev unique is that it creates *smart contract wallets* powered by account abstraction.  As a result, you can build Web3 experiences that are hitherto impossible:
+The tradeoff here is of UX vs decentralization.  
 
-- Sponsor gas for your users.
-- Let your users pay gas in ERC20 tokens, such as your own DApp tokens or stablecoins.
-- Bundle transactions to vastly speed up (and lower the cost of) complex blockchain interactions, such as depositing liquidity into DeFi protocols.
-- Skip confirmations altogether with session keys -- temporary keys bound by  security policies.
-- Impose transaction checks before and after a transaction, e.g. to enforce spending limits.
-- Flexible account recovery, such as social recovery.
-- NFT subscriptions.
-- And so much more!
+### Custodial Wallets: amazing UX, terrible decentralization
 
-Did we mention that, despite all these great benefits, ZeroDev wallets are still fully non-custodial?
+With a custodial wallet provider, you are ultimately sending transactions for your users, so you can easily hide the complexity of Web3 and create an amazing UX.
 
-With ZeroDev, you can unlock the power of account abstraction with just 5 lines of code!  Here's an example:
+There are many downsides, however:
 
-import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
+- You are responsible for handling your users's assets.
+- Your users don't truly own their assets.
+- Your users can't use their assets with other DApps (no interoperability).
 
-<SponsoredMintExample />
+### Non-custodial wallets: truly Web3, terrible UX
 
-<br/>
+On the other hand, you can help your users create keys and handle their own assets, either through services like Web3Auth/Magic or some custom solution.  By doing so, your users truly own their assets and can use them on the rest of Web3.
 
-[See here](/category/account-abstraction) for more examples.
+The problems however are:
+
+- Your users may lose keys and therefore all their assets.
+- Your users will suffer poor UX, since they have to deal with gas, confirmations, etc.
+
+## The Third Way: Account Abstraction Wallets
+
+What if you didn't have to choose between good UX and decentralization?  What if there was a third way?
+
+ZeroDev is the ultimate wallet solution, thanks to account abstraction.  With ZeroDev, you can create non-custodial wallets for users that are as easy to use as custodial wallets, achieving the best of both worlds.
+
+Here's a breakdown of how the wallet solutions compare:
+
+|                                  |Self-custody Wallets|Custodial Wallets                |ZeroDev Wallets                                                                  |
+|---------------------------------------|--------------------|---------------------------------|---------------------------------------------------------------------------------|
+|Who owns the wallet?                   |User                |App                              |User                                                                             |
+|How is the wallet secured?             |Seed phrases        |Web2 logins                      | Flexible (Web2 logins, seed phrases, etc.)|
+|Does the user need to install anything?|Yes                 |No                               |No                                                                               |
+|Who pays the gas?                      |User                |App                              |App or user                                                                      |
+|What tokens can be used for gas?       |ETH                 |ETH                              |ETH or ERC20 tokens                                                              |
+|Bundle multiple transactions as one?   |No                  |No                               |Yes                                                                              |
+|Programmable security policies?        |No                  |No                               |Yes                                                                              |
+|Skip confirmations?                    |No                  |Yes, but can be abused by the app|Yes, and cannot be abused by the app                                             |
+|Send transactions for users?        |No                  |Yes, but can be abused by the app|Yes, and cannot be abused by the app                                             |
+|Interact with smart contracts?         |Yes                 |Yes, but only through API        |Yes                                                                              |
+|Use the wallet on other DApps?         |Yes                 |No                               |Yes                                                                              |
+
 
 ## Next Steps
 
-ZeroDev has two components:
+To learn how to create ZeroDev wallets, go to [Create AA Wallets](/create-wallets/overview).
 
-- ZeroKit -- an AA wallet widget that supports social logins.
-- ZeroDev SDK -- an AA wallet SDK.
+To learn how to use ZeroDev wallets, go to [Use AA Wallets](/use-wallets/overview).
 
-If you want to easily create an AA wallet for your users with beautiful UI that supports social logins (in addition to EOA wallet logins), use [ZeroKit](/zerokit/getting-started).
+Head to [Create a Wallet](/create-wallets/overview) to find the right way for you to create a wallet.
 
-If you want to build a fully customized experience with your own wallet interface, while leveraging the power of AA, start with the [ZeroDev SDK](/sdk/intro).
+Head to [Use an AA wallet](/use-wallets/overview) to learn how to use AA wallets to build amazing Web3 experiences.
 
-If you are unsure where to start, try [the tutorial](/tutorial).
+If you are ready to code, start with [the tutorial](/get-started).
