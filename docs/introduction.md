@@ -63,12 +63,6 @@ Here's a breakdown of how the wallet solutions compare:
 
 ## Next Steps
 
-To learn how to create ZeroDev wallets, go to [Create AA Wallets](/create-wallets/overview).
-
-To learn how to use ZeroDev wallets, go to [Use AA Wallets](/use-wallets/overview).
-
-Head to [Create a Wallet](/create-wallets/overview) to find the right way for you to create a wallet.
-
-Head to [Use an AA wallet](/use-wallets/overview) to learn how to use AA wallets to build amazing Web3 experiences.
-
-If you are ready to code, start with [the tutorial](/get-started).
+- Learn how to [create AA wallets](/create-wallets/overview).
+- Learn how to [use AA wallets](/use-wallets/overview) to build powerful Web3 experiences.
+- If you are ready to code, start with [the tutorial](/get-started).
