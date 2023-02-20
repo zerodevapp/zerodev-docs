@@ -22,6 +22,7 @@ function SponsoredMintExample({ label = undefined }) {
     abi: contractAbi,
     functionName: "mint",
     args: [address],
+    enabled: false
   });
   const { write: mint, isLoading } = useContractWrite(config);
 
