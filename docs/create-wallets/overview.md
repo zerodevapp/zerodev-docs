@@ -11,11 +11,11 @@ Here is a set of questions you can ask to figure out the right approach for you:
 - Does your project already have an existing Web2 account system, and you just want to tie a wallet to each user account?
   - If so, you might want to [create wallets with user IDs](/create-wallets/user-id).
 - Are you building a DApp that wants to onboard Web2 users?
-  - If so, you might want to [create wallets with social logins](/create-wallets/social-logins).
+  - If so, you might want to [create wallets with social logins](/create-wallets/zerokit/getting-started).
 - Does your project already manage private keys for users?
   - If so, you might want to [create wallets with private keys](/create-wallets/private-keys).
 - Do you want to use a EOA provider such as Web3Auth/Magic/MetaMask to handle the login experience, while using ZeroDev for wallets?
-  - If so, you might want to [create wallets with RPC provider](/create-wallets/rpc-providers).
+  - If so, you might want to [create wallets with RPC provider](/create-wallets/rpc-provider).
 
 ## API
 
