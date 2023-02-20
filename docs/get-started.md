@@ -175,6 +175,6 @@ If you are confused, you can find the full code [here](https://github.com/zerode
 
 Now that you have got a taste of ZeroDev, it's time to dive deep into the docs!
 
-If you want to customize the AA wallet widget, check out [ZeroKit](/zerokit/getting-started).
+If you want to customize the AA wallet widget, check out [ZeroKit](/create-wallets/zerokit/getting-started).
 
-If you want to build powerful features using AA, check out the [ZeroDev SDK](/sdk/intro).
+If you want to build powerful features using AA, check out the [ZeroDev SDK](/use-wallets/overview).

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Getting Started
 
-ZeroKit is a turn-key AA wallet widget that can be embedded inside your app with just 5 lines of code.  Once embedded, your users can sign in with social account and Web3 wallets, and then interact with your app through an AA wallet, enabling all kinds of [powerful features](/category/account-abstraction).
+ZeroKit is a turn-key AA wallet widget that can be embedded inside your app with just 5 lines of code.  Once embedded, your users can sign in with social account and Web3 wallets, and then interact with your app through an AA wallet, enabling all kinds of [powerful features](/use-wallets/overview).
 
 Here's a demo of an NFT drop using ZeroKit:
 
@@ -32,7 +32,7 @@ Sign up at [the ZeroDev dashboard](https://dashboard.zerodev.app) and create a n
 
 ### Step 3: Setup ZeroKit
 
-ZeroKit is built on top of [RainbowKit](https://www.rainbowkit.com/docs/introduction) and [Wagmi](https://wagmi.sh/), so the dev experience is almost the same.  [See here](/zerokit/rainbow-kit) for converting a RainbowKit app to a ZeroKit app.
+ZeroKit is built on top of [RainbowKit](https://www.rainbowkit.com/docs/introduction) and [Wagmi](https://wagmi.sh/), so the dev experience is almost the same.  [See here](/create-wallets/zerokit/rainbow-kit) for converting a RainbowKit app to a ZeroKit app.
 
 You will need your `projectId` here to setup the SDK.
 
@@ -48,7 +48,7 @@ import { ZeroKitProvider } from "zerokit";
 </ZeroKitProvider>
 ```
 
-If you are running build into issues with Webpack, [take a look here](/zerokit/common-issues).
+If you are running build into issues with Webpack, [take a look here](/create-wallets/zerokit/common-issues).
 
 ### Step 4: Connect
 
@@ -65,7 +65,7 @@ import { ConnectButton } from "zerokit";
 
 From here on, you would build your app the same way you build any [Wagmi](https://wagmi.sh/) apps.
 
-Keep in mind that the *signer* you obtain from Wagmi (e.g. through [`useSigner`](https://wagmi.sh/react/hooks/useSigner)) is backed by an account abstraction wallet.  As a result, it can be used with the [ZeroKit SDK](/sdk/intro) to enable powerful AA features.
+Keep in mind that the *signer* you obtain from Wagmi (e.g. through [`useSigner`](https://wagmi.sh/react/hooks/useSigner)) is backed by an account abstraction wallet.  As a result, it can be used with the [ZeroKit SDK](/use-wallets/overview) to enable powerful AA features.
 
 
 ```jsx
@@ -88,7 +88,7 @@ function MyComponent() {
 }
 ```
 
-[See here](/category/account-abstraction) for examples of AA features.
+[See here](/use-wallets/overview) for examples of AA features.
 
 ### Step 6: Deployment - Whitelisting your domain
 Using ZeroKit locally will work just fine, but when deployed to the WWW you will have to whitelist your domain so your hosted client is able to pass authentication.
