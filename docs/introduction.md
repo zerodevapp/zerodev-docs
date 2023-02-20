@@ -21,7 +21,7 @@ The tradeoff here is of UX vs decentralization.
 
 ### Custodial Wallets: amazing UX, terrible decentralization
 
-With a custodial wallet provider, you are ultimately sending transactions for your users, so you can easily hide the complexity of Web3 and create an amazing UX.
+With a custodial wallet provider, you are ultimately managing wallets for your users, so you can easily hide the complexity of Web3 and create an amazing UX.
 
 There are many downsides, however:
 
@@ -31,7 +31,7 @@ There are many downsides, however:
 
 ### Non-custodial wallets: truly Web3, terrible UX
 
-On the other hand, you can help your users create keys and handle their own assets, either through services like Web3Auth/Magic or some custom solution.  By doing so, your users truly own their assets and can use them on the rest of Web3.
+On the other hand, you can help your users create keys and handle their own assets, either through services like Web3Auth/Magic or some custom solution.  By doing so, your users truly own their assets and can use the assets with the rest of Web3.
 
 The problems however are:
 
