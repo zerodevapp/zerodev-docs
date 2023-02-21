@@ -13,16 +13,16 @@ Say you want to use [Magic](https://magic.link/) to handle social logins, but yo
 Magic exposes an `rpcProvider`.  To create a ZeroDev wallet using Magic, simply pass the rpc provider to the SDK:
 
 ```typescript
-import { AASigner, RPCProviderOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
 import { Magic } from 'magic-sdk';
 
 const magic = new Magic('MAGIC_API_KEY', {
   // some magic options...
 })
 
-const signer = new AASigner({
+const signer = getZeroDevSigner({
   projectId: "<project id>",
-  owner: new RPCProviderOwner(magic.rpcProvider),
+  owner: getRPCProviderOwner(magic.rpcProvider),
 })
 ```
 
