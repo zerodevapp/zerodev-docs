@@ -26,7 +26,7 @@ function SponsoredMintExample() {
     abi: contractAbi,
     functionName: "mint",
     args: [address],
-    enabled: false
+    enabled: true
   });
   const { write: mint, isLoading, isSuccess } = useContractWrite(config);
 

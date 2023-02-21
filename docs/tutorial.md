@@ -78,7 +78,7 @@ function App() {
     abi: contractABI,
     functionName: "mint",
     args: [address],
-    enabled: false
+    enabled: true
   });
   const { write: mint, isLoading } = useContractWrite(config);
 
