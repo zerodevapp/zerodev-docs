@@ -31,11 +31,11 @@ const signer = new AASigner({
 ### Ethers
 
 ```typescript
-import { AASigner, RPCProviderOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
 
-const signer = new AASigner({
+const signer = getZeroDevSigner({
   projectId: "<project id>",
-  owner: new RPCProviderOwner(rpcProvider),
+  owner: getRPCProviderOwner(rpcProvider),
 })
 ```
 

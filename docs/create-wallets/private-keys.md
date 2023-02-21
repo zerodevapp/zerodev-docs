@@ -11,11 +11,11 @@ If your application already manages private keys for users, you can use ZeroDev 
 ### Ethers.js
 
 ```typescript
-import { AASigner, PrivateKeyOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getPrivateKeyOwner } from '@zerodevapp/sdk'
 
-const signer = new AASigner({
+const signer = getZeroDevSigner({
   projectId: "<project id>",
-  owner: new PrivateKeyOwner("<private key>"),
+  owner: getPrivateKeyOwner("<private key>"),
 })
 ```
 
