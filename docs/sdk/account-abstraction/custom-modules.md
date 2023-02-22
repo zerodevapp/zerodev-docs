@@ -166,11 +166,3 @@ const tx = await zd.execBatch(adminSigner, [
   },
 ])
 ```
-
-## Putting everything together 
-
-Now let's see NFT subscription in action!
-
-DEMO UPCOMING
-
-And check out the full source code here: UPCOMING
