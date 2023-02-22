@@ -20,7 +20,7 @@ const magic = new Magic('MAGIC_API_KEY', {
   // some magic options...
 })
 
-const signer = getZeroDevSigner({
+const signer = await getZeroDevSigner({
   projectId: "<project id>",
   owner: getRPCProviderOwner(magic.rpcProvider),
 })
@@ -33,21 +33,43 @@ const signer = getZeroDevSigner({
 ```typescript
 import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
 
-const signer = getZeroDevSigner({
+const signer = await getZeroDevSigner({
   projectId: "<project id>",
   owner: getRPCProviderOwner(rpcProvider),
 })
 ```
 
-Sometimes you only have a [`Signer`](https://docs.ethers.org/v5/api/signer/) and not a full RPC provider, in which case you'd use:
+Example using MetaMask as an owner (only works if you have MetaMask installed):
 
-```typescript
-import { AASigner, SignerOwner } from '@zerodevapp/sdk'
+```jsx live
+function PrivateKeyExample() {
+  const [address, setAddress] = useState('')
+  const [loading, setLoading] = useState(false)
 
-const signer = new AASigner({
-  projectId: "<project id>",
-  owner: new SignerOwner(signer),
-})
+  const createWallet = async () => {
+    setLoading(true)
+    const signer = await getZeroDevSigner({
+      projectId: defaultProjectId,
+      owner: getRPCProviderOwner(window.ethereum),
+    })
+    setAddress(await signer.getAddress())
+    setLoading(false)
+  }
+
+  return (
+    <div>
+      <div>
+      <button onClick={createWallet} disabled={loading}>{ loading ? 'loading...' : 'Create Wallet'}</button>
+      </div>
+      {address && 
+        <div>
+          <label>Wallet: {address}</label>
+        </div>
+      }
+    </div>
+  )
+}
 ```
+
 
 ### Wagmi
