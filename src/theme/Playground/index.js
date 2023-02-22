@@ -55,7 +55,7 @@ function ThemedLiveEditor() {
 function EditorWithHeader({folded = false}) {
   if (folded) {
     return (
-      <Details summary={<summary>See Code</summary>}>
+      <Details summary={<summary>Code Editor</summary>}>
         <div>
           <ThemedLiveEditor />
         </div>
