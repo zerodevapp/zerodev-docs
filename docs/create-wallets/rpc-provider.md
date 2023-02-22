@@ -41,7 +41,7 @@ const signer = await getZeroDevSigner({
 
 Example using MetaMask as an owner (only works if you have MetaMask installed):
 
-```jsx live
+```jsx live folded
 function PrivateKeyExample() {
   const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)

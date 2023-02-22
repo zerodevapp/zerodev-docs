@@ -1,5 +1,5 @@
 import React from 'react';
-import Playground from '@theme/Playground';
+import Playground from '../Playground';
 import ReactLiveScope from '@theme/ReactLiveScope';
 import CodeBlock from '@theme-init/CodeBlock';
 import { ZeroKitProvider } from "zerokit"

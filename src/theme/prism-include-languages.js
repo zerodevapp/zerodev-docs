@@ -1,5 +1,4 @@
 import siteConfig from '@generated/docusaurus.config';
-console.log("LOL")
 export default function prismIncludeLanguages(PrismObject) {
   const {
     themeConfig: {prism},

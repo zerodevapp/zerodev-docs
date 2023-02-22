@@ -21,7 +21,7 @@ const signer = await getZeroDevSigner({
 
 Example:
 
-```jsx live
+```jsx live folded
 function PrivateKeyExample() {
   const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)

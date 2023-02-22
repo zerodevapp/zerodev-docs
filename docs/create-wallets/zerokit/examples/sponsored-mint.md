@@ -17,7 +17,7 @@ import {
   useContractRead,
 } from "wagmi";
 ```
-```jsx live
+```jsx live folded
 function SponsoredMintExample() {
   const { address, isConnected } = useAccount();
 
