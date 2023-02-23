@@ -2,8 +2,18 @@ const { ProvidePlugin } = require('webpack')
 class ESMPolyfillWrapper {
     apply(compiler) {
       compiler.options.plugins.push(new ProvidePlugin({
-        process: "process/browser.js"
+        process: "process/browser.js",
+        Buffer: ["buffer", "Buffer"],
       }))
+
+      compiler.options.module.rules.push({
+        test: /\.(js|mjs|jsx)$/,
+        enforce: "pre",
+        loader: require.resolve("source-map-loader"),
+        resolve: {
+          fullySpecified: false,
+        },
+      })
   
       compiler.options.resolve.fallback = {
         ...compiler.options.resolve.fallback,

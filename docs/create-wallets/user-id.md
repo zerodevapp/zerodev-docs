@@ -28,7 +28,7 @@ In this article we will show how to create AA wallets with user IDs.  To learn h
 ### Ethers
 
 ```typescript
-import { AASigner, UserIdOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, UserIdOwner } from '@zerodevapp/sdk'
 
 // TODO: this isn't secure since the project ID can leak on the client side
 // and then anyone would be able to take over anyone's wallet.
@@ -36,7 +36,7 @@ import { AASigner, UserIdOwner } from '@zerodevapp/sdk'
 // secret key, so the dev can generate a one-time API key on the server and
 // pass it to the frontend
 
-const signer = new AASigner({
+const signer = await getZeroDevSigner({
   projectId: "<project id>",
   owner: new UserIdOwner("<user id>"),
 })

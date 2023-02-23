@@ -62,7 +62,6 @@ import {
   useSigner,
 } from "wagmi";
 import { ConnectButton } from "zerokit";
-import * as zd from "@zerodevapp/sdk";
 
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 const contractABI = [
@@ -143,7 +142,7 @@ Add the following code to `App.tsx`:
   const batchMint = async () => {
     setIsBatchMintLoading(true)
     const nftContract = new Contract(contractAddress, contractABI, signer!)
-    await zd.execBatch(signer!, [
+    await signer.execBatch([
       {
         to: contractAddress,
         data: nftContract.interface.encodeFunctionData("mint", [address]),

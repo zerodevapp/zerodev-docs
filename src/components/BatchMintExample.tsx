@@ -7,7 +7,7 @@ import {
 } from "wagmi";
 import { ConnectButton } from "zerokit";
 import { Contract } from 'ethers'
-import * as zd from '@zerodevapp/sdk';
+import { ZeroDevSigner } from '@zerodevapp/sdk';
 import contractAbi from "../../static/contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json";
 import { ZeroKitProvider } from "zerokit";
 import { MantineProvider } from '@mantine/core';
@@ -21,12 +21,13 @@ function BatchMintExample() {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const { data: signer } = useSigner()
+  const { data } = useSigner()
+  const signer = data as ZeroDevSigner
 
   const batchMint = async () => {
     const nftContract = new Contract(nftAddress, contractAbi, signer)
     setIsLoading(true)
-    await zd.execBatch(signer, [
+    await signer.execBatch([
       {
         to: nftAddress,
         data: nftContract.interface.encodeFunctionData("mint", [address]),
