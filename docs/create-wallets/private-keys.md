@@ -54,3 +54,60 @@ function PrivateKeyExample() {
 ```
 
 ### Wagmi
+
+To connect to your wallet via `privateKey` you can use the universal ZeroDevConnector and pass the `owner` using the `getPrivateKeyOwner` initiator.
+
+```typescript
+import { ZeroDevConnector, type AccountParams } from '@zerodevapp/wagmi'
+import { getPrivateKeyOwner } from '@zerodevapp/sdk'
+const connector = new ZeroDevConnector({chains, options: {
+  projectId: <your-project-id>,
+  owner: getPrivateKeyOwner(<private-key>),
+}})
+```
+Here is an example of using the `ZeroDevConnector` in the regular `wagmi` boilerplate.
+```jsx live folded
+function WagmiPrivateKeyExample() {
+
+  const { chains, provider, webSocketProvider } = configureChains(
+    [polygonMumbai],
+    [publicProvider()],
+  )
+  const client = createClient({
+    autoConnect: false,
+    connectors: [
+      new ZeroDevConnector({chains, options: {
+        projectId: defaultProjectId,
+        owner: getPrivateKeyOwner('468f0c80d5336c4a45be71fa19b77e9320dc0abaea4fd018e0c49aca90c1db78'),
+      }})
+    ],
+    provider,
+    webSocketProvider,
+  })
+
+  const ConnectButton = () => {
+    const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
+    const { address, connector, isConnected } = useAccount()
+    const { chain } = useNetwork()
+
+    if (isConnected) {
+      return (
+        <div>
+          <div>{address}</div>
+          <div>Connected to {connector.name}</div>
+          <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a>
+        </div>
+      )
+    }
+    return (
+      <button disabled={isLoading} onClick={() => connect({connector: connectors[0]})}>
+        {isLoading ? 'loading...' : 'Connect'}
+      </button>
+    )
+  }
+  return (
+    <WagmiConfig client={client}>
+      <ConnectButton />
+    </WagmiConfig>
+  )
+}

@@ -42,17 +42,24 @@ const signer = await getZeroDevSigner({
 Example using MetaMask as an owner (only works if you have MetaMask installed):
 
 ```jsx live folded
-function PrivateKeyExample() {
+function RpcProviderExample() {
   const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)
 
   const createWallet = async () => {
     setLoading(true)
-    const signer = await getZeroDevSigner({
-      projectId: defaultProjectId,
-      owner: getRPCProviderOwner(window.ethereum),
-    })
-    setAddress(await signer.getAddress())
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts"
+      })
+      const signer = await getZeroDevSigner({
+        projectId: defaultProjectId,
+        owner: getRPCProviderOwner(window.ethereum),
+      })
+      setAddress(await signer.getAddress())
+    } catch(error) {
+      console.log(error)
+    }
     setLoading(false)
   }
 
@@ -73,3 +80,66 @@ function PrivateKeyExample() {
 
 
 ### Wagmi
+
+To connect to your wallet via `privateKey` you can use the universal ZeroDevConnector and pass the `owner` using the `getRPCProviderOwner` initiator.
+
+```typescript
+import { ZeroDevConnector, type AccountParams } from '@zerodevapp/wagmi'
+import { getPrivateKeyOwner } from '@zerodevapp/sdk'
+const connector = new ZeroDevConnector({chains, options: {
+  projectId: <your-project-id>,
+  owner: getRPCProviderOwner(<provider>),
+}})
+```
+Here is an example of using the `ZeroDevConnector` in the regular `wagmi` boilerplate. We assume you have the MetaMask extension installed as we are using it as a provider.
+```jsx live folded
+function WagmiPrivateKeyExample() {
+
+  const { chains, provider, webSocketProvider } = configureChains(
+    [polygonMumbai],
+    [publicProvider()],
+  )
+  const client = createClient({
+    autoConnect: false,
+    connectors: [
+      new ZeroDevConnector({options: {
+        projectId: defaultProjectId,
+        owner: getRPCProviderOwner(window.ethereum),
+      }})
+    ],
+    provider,
+    webSocketProvider,
+  })
+
+  const ConnectButton = () => {
+    const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
+    const { address, connector, isConnected } = useAccount()
+    const { chain } = useNetwork()
+
+    if (isConnected) {
+      return (
+        <div>
+          <div>{address}</div>
+          <div>Connected to {connector.name}</div>
+          <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a>
+        </div>
+      )
+    }
+    return (
+      <button disabled={isLoading} onClick={() => {
+        ethereum.request({
+          method: "eth_requestAccounts"
+        }).then(() => {
+          connect({connector: connectors[0]})
+        })
+      }}>
+        {isLoading ? 'loading...' : 'Connect'}
+      </button>
+    )
+  }
+  return (
+    <WagmiConfig client={client}>
+      <ConnectButton />
+    </WagmiConfig>
+  )
+}

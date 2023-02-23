@@ -17,7 +17,7 @@ import {
   useContractRead,
 } from "wagmi";
 ```
-```jsx live folded
+```jsx live folded zerokit
 function SponsoredMintExample() {
   const { address, isConnected } = useAccount();
 

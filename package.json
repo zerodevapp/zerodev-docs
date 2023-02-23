@@ -17,7 +17,7 @@
   "dependencies": {
     "@docusaurus/core": "2.3.0",
     "@docusaurus/preset-classic": "2.3.0",
-    "@docusaurus/theme-live-codeblock": "^2.3.0",
+    "@docusaurus/theme-live-codeblock": "2.3.0",
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.10.2",
     "@mantine/hooks": "^5.10.2",

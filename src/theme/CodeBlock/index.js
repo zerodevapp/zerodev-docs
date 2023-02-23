@@ -2,15 +2,12 @@ import React from 'react';
 import Playground from '../Playground';
 import ReactLiveScope from '@theme/ReactLiveScope';
 import CodeBlock from '@theme-init/CodeBlock';
-import { ZeroKitProvider } from "zerokit"
 
 const withLiveEditor = (Component) => {
   function WrappedComponent(props) {
     if (props.live) {
       return (
-        <ZeroKitProvider projectId="b5486fa4-e3d9-450b-8428-646e757c10f6">
-          <Playground scope={ReactLiveScope} {...props} />
-        </ZeroKitProvider>
+        <Playground scope={ReactLiveScope} {...props} />
       )
     }
     return <Component {...props} />
