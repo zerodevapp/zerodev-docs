@@ -6,6 +6,8 @@ sidebar_position: 2
 
 In this tutorial, you will learn how to use ZeroDev to build an account abstraction (AA) application.
 
+If you are confused at any point, you can find the full code [here](https://github.com/zerodevapp/zerodev-tutorial).
+
 ## Set up the boilerplate
 
 Set up a new ZeroDev project using our React template:
@@ -62,6 +64,7 @@ import {
   useSigner,
 } from "wagmi";
 import { ConnectButton } from "zerokit";
+import { ZeroDevSigner } from "@zerodevapp/sdk";
 
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 const contractABI = [
@@ -137,12 +140,12 @@ Add the following code to `App.tsx`:
 
 ```tsx
 // add this to your component code
-  const { data: signer } = useSigner()
+  const { data: signer } = useSigner<ZeroDevSigner>()
   const [isBatchMintLoading, setIsBatchMintLoading] = useState(false)
   const batchMint = async () => {
     setIsBatchMintLoading(true)
     const nftContract = new Contract(contractAddress, contractABI, signer!)
-    await signer.execBatch([
+    await signer!.execBatch([
       {
         to: contractAddress,
         data: nftContract.interface.encodeFunctionData("mint", [address]),
@@ -169,12 +172,9 @@ Add the following code to `App.tsx`:
 
 Now you should have a "Double Mint NFT" button.  Click that and watch your NFT balance increase by two.  Boom!  We just sent two transactions as one with ZeroDev.
 
-If you are confused, you can find the full code [here](https://github.com/zerodevapp/zerodev-tutorial).
-
 ## Next Steps
 
 Now that you have got a taste of ZeroDev, it's time to dive deep into the docs!
 
-If you want to customize the AA wallet widget, check out [ZeroKit](/create-wallets/zerokit/getting-started).
-
-If you want to build powerful features using AA, check out the [ZeroDev SDK](/use-wallets/overview).
+- Learn how to [create AA wallets](/create-wallets/overview).
+- Learn how to [use AA wallets](/use-wallets/overview) to build powerful Web3 experiences.
