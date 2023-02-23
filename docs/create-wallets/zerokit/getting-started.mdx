@@ -70,14 +70,15 @@ Keep in mind that the *signer* you obtain from Wagmi (e.g. through [`useSigner`]
 
 ```jsx
 import { useSigner } from "wagmi";
-import * as zd from '@zerodevapp/sdk';
+import { ZeroDevSigner } from '@zerodevapp/sdk';
 
 function MyComponent() {
-  const { data: signer } = useSigner()
+  const { data } = useSigner()
+  const signer = data as ZeroDevSigner
 
 
   const handleClick = async () => {
-    zd.execBatch(signer, [ transaction1, transaction2 ])
+    signer.execBatch([ transaction1, transaction2 ])
   }
 
   return (

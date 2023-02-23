@@ -11,7 +11,7 @@ import {
 import nftContractAbi from "../../static/contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json";
 import moduleContractAbi from "../../static/contracts/polygon-mumbai/0x7aC1ff64156f62dC72dAE7c433695042ce5C09c3.json";
 import { useEffect, useState } from 'react';
-import * as zd from '@zerodevapp/sdk';
+import { ZeroDevSigner, getZeroDevSigner, getPrivateKeyOwner } from '@zerodevapp/sdk';
 import { ethers } from 'ethers';
 import { ConnectButton, ZeroKitProvider } from 'zerokit';
 import { Anchor, Button, MantineProvider } from '@mantine/core';
@@ -30,7 +30,7 @@ export const SubscribeDemo = () => {
     const { refetch: refetchBalance } = useBalance({ address });
     // get signer from wagmi useSigner
     const { data: _signer } = useSigner();
-    let signer = _signer as any;
+    let signer = _signer as ZeroDevSigner;
 
     const { data: balance, refetch } = useContractRead({
         address: NFT_ADDRESS,
@@ -52,7 +52,7 @@ export const SubscribeDemo = () => {
 
     const subscribe = async () => {
         setSubLoading(true);
-        await zd.enableModule(signer, MODULE_ADDRESS);
+        await signer.enableModule(MODULE_ADDRESS);
         setSubLoading(false);
     };
 
@@ -61,11 +61,10 @@ export const SubscribeDemo = () => {
             setBalanceLoading(true);
             setReleaseLoading(true);
             // the admin signer that releases NFTs
-            const adminSigner = await zd.getSigner({
+            const adminSigner = await getZeroDevSigner({
                 projectId: 'b5486fa4-e3d9-450b-8428-646e757c10f6',
                 // some random private key we generated
-                privateKey:
-                    '0xe45061378af4e1f368d48f017e5988a7a912476feefdac7f4c328122ada2d95a',
+                owner: getPrivateKeyOwner('0xe45061378af4e1f368d48f017e5988a7a912476feefdac7f4c328122ada2d95a')
             });
             // should be 0x4F7810B609035Fa48D535A39B69ab82E6E83dC5A
             const adminAddr = await adminSigner.getAddress();
@@ -86,7 +85,7 @@ export const SubscribeDemo = () => {
             const tokenId = await nftContract.tokenId();
 
             // mint and release the token in a batch transaction
-            const tx = await zd.execBatch(adminSigner, [
+            const tx = await adminSigner.execBatch([
                 {
                     to: NFT_ADDRESS,
                     data: nftContract.interface.encodeFunctionData('mint', [adminAddr]),

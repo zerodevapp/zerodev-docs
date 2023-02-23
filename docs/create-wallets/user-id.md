@@ -31,21 +31,6 @@ UPCOMING
 
 ### Ethers
 
-```typescript
-import { getZeroDevSigner, getUserIdOwner } from '@zerodevapp/sdk'
-
-// TODO: this isn't secure since the project ID can leak on the client side
-// and then anyone would be able to take over anyone's wallet.
-// Instead, we need to use something like SAPI, along with a server-only
-// secret key, so the dev can generate a one-time API key on the server and
-// pass it to the frontend
-
-const signer = getAASigner({
-  projectId: "<project id>",
-  owner: new UserIdOwner("<user id>"),
-})
-```
-
-Note that the user ID can be string, but it has to be unique within your project.
+UPCOMING
 
 ### Wagmi
