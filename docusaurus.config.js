@@ -74,7 +74,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/zerokit-social-card.jpg',
+      // image: 'img/zerokit-social-card.jpg',
       navbar: {
         title: 'ZeroDev',
         logo: {
