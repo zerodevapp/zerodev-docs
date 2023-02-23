@@ -1,0 +1,18 @@
+---
+sidebar_position: 7
+---
+
+# Enhance Wallets with AA
+You can either enhance a connector to wallet directly using the `enhanceConnectorWithAA` wrapper provided by `@zerodevapp/wagmi`
+```typescript
+import { enhanceConnectorWithAA } from '@zerodevapp/wagmi';
+import { MetaMaskConnector } from '@wagmi/connectors/metaMask'
+```
+
+```typescript
+const MetaMaskConnectorUsingAA = enhanceConnectorWithAA(
+    new MetaMaskConnector(connectorConfig), {
+        projectId: <your-project-id>
+    }
+)
+```

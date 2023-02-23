@@ -73,3 +73,14 @@ function PrivateKeyExample() {
 
 
 ### Wagmi
+
+To connect to your wallet via `RPC Provider` you can use the universal ZeroDevConnector and pass the `owner` using the `getRPCProviderOwner` initiator.
+```
+import { ZeroDevConnector, type AccountParams } from '@zerodevapp/wagmi'
+import { getRPCProviderOwner } from '@zerodevapp/sdk'
+
+const connector = new ZeroDevConnector({chains, {
+  projectId: <your-project-id>,
+  owner: getRPCProviderOwner(window.ethereum),
+}})
+```

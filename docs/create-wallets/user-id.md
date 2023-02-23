@@ -45,3 +45,14 @@ const signer = await getZeroDevSigner({
 Note that the user ID can be string, but it has to be unique within your project.
 
 ### Wagmi
+
+To connect to your wallet via `User ID` you can use the universal ZeroDevConnector and pass the `owner` using the `UserIdOwner` initiator.
+```
+import { ZeroDevConnector, type AccountParams } from '@zerodevapp/wagmi'
+import { UserIdOwner } from '@zerodevapp/sdk'
+
+const connector = new ZeroDevConnector({chains, {
+  projectId: <your-project-id>,
+  owner: UserIdOwner("<user id>"),
+}})
+```
