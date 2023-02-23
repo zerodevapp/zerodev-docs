@@ -6,18 +6,23 @@ sidebar_position: 1
 
 With ZeroDev wallets, you can build powerful and easy-to-use Web3 applications that are only possible with account abstraction (AA).
 
-Generally speaking, the benefits of AA can be divided into two categories:
+For your convenience, we have divided our AA features into the following categories:
 
-- Validation: by abstracting how transactions are validated, you can:
-  - [Pay gas for users](/use-wallets/pay-gas-for-users)
-  - [Let users pay gas in ERC20 tokens](/use-wallets/pay-gas-in-erc20)
-  - [Replace the owner (key) of the wallet](/use-wallets/replace-wallet-owner)
-  - [Set pre-conditions for transactions](/use-wallets/set-transaction-guards)
-  - [Create session keys with limited permissions](/use-wallets/use-session-keys)
+- Improving the gas experience
+  - [Pay gas for users](/use-wallets/improve-gas-experience/pay-gas-for-users)
+  - [Let users pay gas in ERC20 tokens](/use-wallets/improve-gas-experience/pay-gas-in-erc20)
 
-- Execution: by abstracting how transactions are executed, you can:
-  - [Batch multiple transactions into one](/use-wallets/batch-transactions)
-  - [Send transactions for users (but only if they allowed you to)](/use-wallets/send-transactions-for-users)
-  - [Delegate call to a smart contract](/use-wallets/delegate-call)
-  - [Update your wallet's execution logic](/use-wallets/update-wallets)
-  - [Easily integrate with DeFi protocols](/use-wallets/integrate-defi)
+- Improving the transaction experience
+  - [Batch multiple transactions into one](/use-wallets/improve-transaction-experience/batch-transactions)
+  - [Delegate call to a smart contract](/use-wallets/improve-transaction-experience/delegate-call)
+  - [Send transactions for users (in a way that can't be abused)](/use-wallets/improve-transaction-experience/send-transactions-for-users)
+  - [Set pre-conditions for transactions](/use-wallets/improve-transaction-experience/set-transaction-guards)
+  - [Easily integrate with DeFi protocols](/use-wallets/improve-transaction-experience/integrate-defi)
+
+- Updating Wallets
+  - [Update your wallet's execution logic](/use-wallets/update-wallets/replace-wallet-owner)
+  - [Replace the owner (key) of the wallet](/use-wallets/update-wallets/update-wallet-implementation)
+
+- ZeroDev Plugins
+  - [Session keys (temporary keys with limited permissions)](/use-wallets/zerodev-plugins/use-session-keys)
+  - [Write your own plugins](/use-wallets/zerodev-plugins/build-your-own-plugin)

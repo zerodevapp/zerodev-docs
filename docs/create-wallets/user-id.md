@@ -15,7 +15,7 @@ The beauty of ZeroDev wallets is that they can be progressively non-custodial.  
 When we talk about a "wallet," we are actually talking about two things:
 
 - `Key`: the cryptographic key used for signing messages and transactions for the account.
-- `Account`: the blockchain entity identified by an address, a balance, and other state.
+- `Account`: the blockchain entity associated with an address, a balance, and other state.
 
 For an *externally owned account* (EOA), e.g. a MetaMask account, the account address is cryptographically link to the key.  Therefore, it's not possible to change the key for an account.  In other words, for EOAs, 1 key == 1 account.
 
@@ -23,12 +23,16 @@ AA wallets like ZeroDev are smart contract accounts, however.  A smart contract 
 
 In this article we will show how to create AA wallets with user IDs.  To learn how to let users take control with their own keys, see [Replace Wallet Owner](/use-wallets/replace-wallet-owner).
 
+## Tutorial: Integrating Custom Web2 Login with ZeroDev
+
+UPCOMING
+
 ## API
 
 ### Ethers
 
 ```typescript
-import { AASigner, UserIdOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getUserIdOwner } from '@zerodevapp/sdk'
 
 // TODO: this isn't secure since the project ID can leak on the client side
 // and then anyone would be able to take over anyone's wallet.
@@ -36,7 +40,7 @@ import { AASigner, UserIdOwner } from '@zerodevapp/sdk'
 // secret key, so the dev can generate a one-time API key on the server and
 // pass it to the frontend
 
-const signer = new AASigner({
+const signer = getAASigner({
   projectId: "<project id>",
   owner: new UserIdOwner("<user id>"),
 })

@@ -18,7 +18,8 @@ One great advantage of smart contract wallets is the ability to execute transact
 
 ### Ethers
 
-```jsx
+```typescript
+// signer is a ZeroDevSigner
 // This will mint two NFTs at a time
 await signer.execBatch([
   {
