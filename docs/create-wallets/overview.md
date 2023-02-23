@@ -23,6 +23,6 @@ ZeroDev wallets can be used through two interfaces:
 
 - [Ethers.js](https://docs.ethers.org/): you can access a ZeroDev wallet as an instance of `ZeroDevSigner`, which is compatible with Ethers' [`Signer` interface](https://docs.ethers.org/v5/api/signer/).  As a result, you can use the signer just like a regular Ethers signer (e.g. to sign messages and send transactions), but it also exposes additional AA functions which are detailed in [Use AA Wallets](/use-wallets/overview).
 
-- [Wagmi](https://wagmi.sh/):
+- [Wagmi](https://wagmi.sh/): you can create ZeroDev wallets through Wagmi connectors, and access the wallet through Wagmi hooks like `useSigner` as well as our custom AA hooks like `useContractBatchWrite`.
 
 Each of the following sections will document both the Ethers and the Wagmi API.
