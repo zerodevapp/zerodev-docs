@@ -8,7 +8,7 @@ One superpower that ZeroDev wallets have is [`delegatecall`](https://solidity-by
 
 As an example, say you want to, in a single transaction, sell a number of USDC for ETH, and then stake all the ETH via Lido.
 
-If you had read the tutorial on [batching](/use-wallets/batch-transactions), you might think that you can do this via a batch.  The challenge, however, is that the amount of ETH you obtain from selling USDC is not precisely known until the sale is executed, so you wouldn't be able to precisely determine how much ETH you would be staking, at the time you execute the batch.
+If you had read the tutorial on [batching](/use-wallets/improve-transaction-experience/batch-transactions), you might think that you can do this via a batch.  The challenge, however, is that the amount of ETH you obtain from selling USDC is not precisely known until the sale is executed, so you wouldn't be able to precisely determine how much ETH you would be staking, at the time you execute the batch.
 
 With `delegatecall`, however, you would be able to write a contract like this (in pseudo-solidity):
 

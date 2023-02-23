@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # Update Wallet Implementation
 
-As described in the [technical overview](/technical-overview), ZeroDev wallets are based off [Safe](https://safe.global/).  Specifically, ZeroDev wallets are [Safe proxies](https://github.com/safe-global/safe-contracts/blob/e59cf7a0db91c8291c34d72bddc665ee6b10d4bc/contracts/proxies/SafeProxy.sol) which are upgradable by their owners (your users).
+ZeroDev wallets are built on top of [Safe](https://safe.global/).  Specifically, ZeroDev wallets are [Safe proxies](https://github.com/safe-global/safe-contracts/blob/e59cf7a0db91c8291c34d72bddc665ee6b10d4bc/contracts/proxies/SafeProxy.sol) which are upgradable by their owners (your users).
 
 The benefits of making ZeroDev wallets upgradable are two-fold:
 
