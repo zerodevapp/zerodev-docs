@@ -78,20 +78,19 @@ function RpcProviderExample() {
 }
 ```
 
-
 ### Wagmi
 
-To connect to your wallet via `privateKey` you can use the universal ZeroDevConnector and pass the `owner` using the `getRPCProviderOwner` initiator.
-
 ```typescript
-import { ZeroDevConnector, type AccountParams } from '@zerodevapp/wagmi'
+import { ZeroDevConnector } from '@zerodevapp/wagmi'
 import { getPrivateKeyOwner } from '@zerodevapp/sdk'
 const connector = new ZeroDevConnector({chains, options: {
   projectId: <your-project-id>,
   owner: getRPCProviderOwner(<provider>),
 }})
 ```
-Here is an example of using the `ZeroDevConnector` in the regular `wagmi` boilerplate. We assume you have the MetaMask extension installed as we are using it as a provider.
+
+Example:
+
 ```jsx live folded
 function WagmiPrivateKeyExample() {
 
@@ -143,3 +142,4 @@ function WagmiPrivateKeyExample() {
     </WagmiConfig>
   )
 }
+```

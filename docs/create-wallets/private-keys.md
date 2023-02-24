@@ -55,17 +55,17 @@ function PrivateKeyExample() {
 
 ### Wagmi
 
-To connect to your wallet via `privateKey` you can use the universal ZeroDevConnector and pass the `owner` using the `getPrivateKeyOwner` initiator.
-
 ```typescript
-import { ZeroDevConnector, type AccountParams } from '@zerodevapp/wagmi'
+import { ZeroDevConnector } from '@zerodevapp/wagmi'
 import { getPrivateKeyOwner } from '@zerodevapp/sdk'
 const connector = new ZeroDevConnector({chains, options: {
-  projectId: <your-project-id>,
-  owner: getPrivateKeyOwner(<private-key>),
+  projectId: "<your-project-id>",
+  owner: getPrivateKeyOwner("<private-key>"),
 }})
 ```
-Here is an example of using the `ZeroDevConnector` in the regular `wagmi` boilerplate.
+
+Example:
+
 ```jsx live folded
 function WagmiPrivateKeyExample() {
 
@@ -111,3 +111,4 @@ function WagmiPrivateKeyExample() {
     </WagmiConfig>
   )
 }
+```
