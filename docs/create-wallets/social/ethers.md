@@ -5,7 +5,7 @@ sidebar_position: 3
 # Ethers API
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getSocialWalletOwner } from '@zerodevapp/sdk'
 
 import { 
   MultiSocialWallet, 
@@ -21,7 +21,7 @@ const socialWallet = new AnySocialWalletFromAbove()
 
 const signer = await getZeroDevSigner({
   projectId: "<project id>",
-  owner: getRPCProviderOwner(await socialWallet.connect(<chain-id>)),
+  owner: await getSocialWalletOwner("<project id>", socialWallet),
 })
 ```
 
@@ -38,14 +38,11 @@ function RpcProviderExample() {
   
   const createWallet = async () => {
     setLoading(true)
-    const provider = await socialWallet.connect(80001)
-    if (provider) {
-      const signer = await getZeroDevSigner({
-        projectId: defaultProjectId,
-        owner: getRPCProviderOwner(provider)
-      })
-      setAddress(await signer.getAddress())
-    }
+    const signer = await getZeroDevSigner({
+      projectId: defaultProjectId,
+      owner: await getSocialWalletOwner(defaultProjectId, socialWallet)
+    })
+    setAddress(await signer.getAddress())
     setLoading(false)
   }
 

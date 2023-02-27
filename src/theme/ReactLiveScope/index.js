@@ -19,6 +19,7 @@ import {
   getZeroDevSigner,
   getPrivateKeyOwner,
   getRPCProviderOwner,
+  getSocialWalletOwner,
   ZeroDevSigner
 } from "@zerodevapp/sdk"
 import contractAbi from "../../../static/contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json";
@@ -31,7 +32,14 @@ import {
   DiscordSocialWalletConnector,
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
-  AccountParams 
+  AccountParams,
+  googleWallet,
+  facebookWallet,
+  githubWallet,
+  discordWallet,
+  twitchWallet,
+  twitterWallet,
+  connectKitSupportedConnectors
 } from '@zerodevapp/wagmi'
 import { 
   MultiSocialWallet, 
@@ -42,8 +50,13 @@ import {
   TwitchSocialWallet,
   TwitterSocialWallet
 } from '@zerodevapp/social-wallet';
-
-
+import {
+  RainbowKitProvider,
+  ConnectButton as RainbowKitConnectButton,
+  connectorsForWallets
+} from '@rainbow-me/rainbowkit';
+import { ConnectKitProvider, ConnectKitButton, getDefaultClient, supportedConnectors } from "connectkit";
+supportedConnectors.push(...connectKitSupportedConnectors)
 
 
 // Add react-live imports you need here
@@ -63,6 +76,7 @@ const ReactLiveScope = {
   getZeroDevSigner,
   getPrivateKeyOwner,
   getRPCProviderOwner,
+  getSocialWalletOwner,
   ZeroDevSigner,
   defaultProjectId: 'b5486fa4-e3d9-450b-8428-646e757c10f6',
   WagmiConfig,
@@ -88,8 +102,19 @@ const ReactLiveScope = {
   DiscordSocialWalletConnector,
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
-  AccountParams 
-
+  AccountParams,
+  RainbowKitProvider,
+  RainbowKitConnectButton,
+  ConnectKitProvider,
+  ConnectKitButton,
+  getDefaultClient,
+  connectorsForWallets,
+  googleWallet,
+  facebookWallet,
+  githubWallet,
+  discordWallet,
+  twitchWallet,
+  twitterWallet
 };
 
 
