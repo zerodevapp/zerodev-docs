@@ -4,13 +4,58 @@ sidebar_position: 2
 
 # Integrate with RainbowKit
 
-Example:
+You can easily add social logins to RainbowKit with our helper functions:
+
+```jsx
+import { 
+  googleWallet,
+  facebookWallet,
+  githubWallet,
+  discordWallet,
+  twitchWallet,
+  twitterWallet,
+} from '@zerodevapp/wagmi/rainbowkit'
+```
+
+Use these with RainbowKit's `connectorsForWallets` function:
+
+```jsx
+import {
+  connectorsForWallets
+} from '@rainbow-me/rainbowkit'
+
+const projectId = "<your-project-id>"
+
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Social',
+    wallets: [
+      googleWallet({options: { projectId }}),
+      facebookWallet({options: { projectId  }}),
+      githubWallet({options: { projectId }}),
+      discordWallet({options: { projectId }}),
+      twitchWallet({options: { projectId }}),
+      twitterWallet({options: { projectId }})
+    ],
+  },
+  {
+    groupName: 'Web3',
+    wallets: [
+      metaMaskWallet({ chains }),
+      rainbowWallet({ chains }),
+      walletConnectWallet({ chains }),
+    ],
+  },
+])
+```
+
+# Example
 
 ```jsx live folded
 function RainbowKitExample() {
   const connectors = connectorsForWallets([
     {
-      groupName: 'Recommended',
+      groupName: 'Social',
       wallets: [
         googleWallet({options: { projectId: defaultProjectId }}),
         facebookWallet({options: { projectId: defaultProjectId }}),
@@ -18,6 +63,14 @@ function RainbowKitExample() {
         discordWallet({options: { projectId: defaultProjectId }}),
         twitchWallet({options: { projectId: defaultProjectId }}),
         twitterWallet({options: { projectId: defaultProjectId }})
+      ],
+    },
+    {
+      groupName: 'Web3',
+      wallets: [
+        metaMaskWallet({ chains }),
+        rainbowWallet({ chains }),
+        walletConnectWallet({ chains }),
       ],
     },
   ]);

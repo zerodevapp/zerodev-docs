@@ -11,7 +11,7 @@ import {
   useConnect,
   configureChains,
   createClient,
-  useDisconnect
+  useDisconnect,
 } from "wagmi";
 import { polygonMumbai } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
@@ -55,6 +55,12 @@ import {
   ConnectButton as RainbowKitConnectButton,
   connectorsForWallets
 } from '@rainbow-me/rainbowkit';
+import {
+  injectedWallet,
+  metaMaskWallet,
+  rainbowWallet,
+  walletConnectWallet,
+} from '@rainbow-me/rainbowkit/wallets';
 import { ConnectKitProvider, ConnectKitButton, getDefaultClient, supportedConnectors } from "connectkit";
 supportedConnectors.push(...connectKitSupportedConnectors)
 
@@ -114,7 +120,11 @@ const ReactLiveScope = {
   githubWallet,
   discordWallet,
   twitchWallet,
-  twitterWallet
+  twitterWallet,
+  injectedWallet,
+  metaMaskWallet,
+  rainbowWallet,
+  walletConnectWallet,
 };
 
 

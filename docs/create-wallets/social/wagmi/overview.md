@@ -1,8 +1,11 @@
 ---
 sidebar_position: 1
+sidebar_label: API
 ---
 
-# Overview
+# Wagmi API
+
+ZeroDev exposes a number of [Wagmi connectors](https://wagmi.sh/examples/custom-connector) for enabling social logins.  You initialize a connector by passing in a ZeroDev project ID, as follows:
 
 ```typescript
 import { 
@@ -13,7 +16,8 @@ import {
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
 } from '@zerodevapp/wagmi'
-const connector = new AnySocialWalletConnectorFromAbove({options: {
+
+const connector = new GoogleSocialWalletConnector({options: {
   projectId: <your-project-id>,
 }})
 ```
@@ -21,7 +25,7 @@ const connector = new AnySocialWalletConnectorFromAbove({options: {
 Example:
 
 ```jsx live folded
-function WagmiPrivateKeyExample() {
+function WagmiGoogleExample() {
 
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
@@ -62,7 +66,7 @@ function WagmiPrivateKeyExample() {
     }
     return (
       <button disabled={isLoading || loading} onClick={connectWallet}>
-        {isLoading || loading ? 'loading...' : 'Connect'}
+        {isLoading || loading ? 'loading...' : 'Connect to Google'}
       </button>
     )
   }
