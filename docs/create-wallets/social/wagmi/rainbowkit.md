@@ -51,6 +51,17 @@ const connectors = connectorsForWallets([
 
 # Example
 
+```typescript
+import { 
+  googleWallet,
+  facebookWallet,
+  githubWallet,
+  discordWallet,
+  twitchWallet,
+  twitterWallet,
+} from '@zerodevapp/wagmi/rainbowkit'
+```
+
 ```jsx live folded
 function RainbowKitExample() {
   const connectors = connectorsForWallets([

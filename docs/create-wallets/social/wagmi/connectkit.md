@@ -8,9 +8,9 @@ sidebar_position: 3
 ## Installation
 Since ConnectKit only supports `injected`, `metaMask`, `coinbaseWallet`, and `walletConnect`, we need to artifically support our social wallets. We do so by extending the `supportedConnectors` constant in `connectkit` with our social wallets. This should be one of the first lines of your application.
 ```typescript
-import { connectKitSupportedConnectors} from '@zerodevapp/wagmi'
+import { supportedSocialConnectors } from '@zerodevapp/wagmi/connectkit'
 import { supportedConnectors } from "connectkit";
-supportedConnectors.push(...connectKitSupportedConnectors)
+supportedConnectors.push(...supportedSocialConnectors)
 ```
 
 ## Example
