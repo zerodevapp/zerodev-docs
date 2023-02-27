@@ -33,14 +33,19 @@ import {
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
   AccountParams,
+  
+} from '@zerodevapp/wagmi'
+import { 
   googleWallet,
   facebookWallet,
   githubWallet,
   discordWallet,
   twitchWallet,
   twitterWallet,
-  connectKitSupportedConnectors
-} from '@zerodevapp/wagmi'
+} from '@zerodevapp/wagmi/rainbowkit'
+import { 
+  supportedSocialConnectors
+} from '@zerodevapp/wagmi/connectkit'
 import { 
   MultiSocialWallet, 
   GoogleSocialWallet, 
@@ -56,7 +61,7 @@ import {
   connectorsForWallets
 } from '@rainbow-me/rainbowkit';
 import { ConnectKitProvider, ConnectKitButton, getDefaultClient, supportedConnectors } from "connectkit";
-supportedConnectors.push(...connectKitSupportedConnectors)
+supportedConnectors.push(...supportedSocialConnectors)
 
 
 // Add react-live imports you need here
