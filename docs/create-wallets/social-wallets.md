@@ -11,10 +11,6 @@ sidebar_position: 5
 ```typescript
 import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
 
-const signer = await getZeroDevSigner({
-  projectId: "<project id>",
-  owner: getRPCProviderOwner(rpcProvider),
-})
 import { 
   MultiSocialWallet, 
   GoogleSocialWallet, 
@@ -33,7 +29,7 @@ const signer = await getZeroDevSigner({
 })
 ```
 
-Example using MultiSocialWallet as an owner (only works if you have MetaMask installed):
+Example using MultiSocialWallet as an owner:
 
 ```jsx live folded
 function RpcProviderExample() {
