@@ -5,7 +5,15 @@ sidebar_label: API
 
 # Wagmi API
 
-ZeroDev exposes a number of [Wagmi connectors](https://wagmi.sh/examples/custom-connector) for enabling social logins.  You initialize a connector by passing in a ZeroDev project ID, as follows:
+ZeroDev exposes a number of [Wagmi connectors](https://wagmi.sh/examples/custom-connector) for enabling social logins.
+
+Install our Wagmi package:
+
+```bash
+npm i @zerodevapp/wagmi
+```
+
+Then initialize a connector by passing in a ZeroDev project ID, as follows:
 
 ```typescript
 import { 

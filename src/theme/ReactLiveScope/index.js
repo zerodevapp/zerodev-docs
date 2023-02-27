@@ -33,8 +33,8 @@ import {
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
   AccountParams,
-  
 } from '@zerodevapp/wagmi'
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { 
   googleWallet,
   facebookWallet,
@@ -130,6 +130,7 @@ const ReactLiveScope = {
   metaMaskWallet,
   rainbowWallet,
   walletConnectWallet,
+  MetaMaskConnector,
 };
 
 
