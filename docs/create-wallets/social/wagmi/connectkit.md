@@ -17,6 +17,7 @@ Then you can use ConnectKit with our social connectors:
 
 ```typescript
 import { 
+  SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
   GithubSocialWalletConnector,

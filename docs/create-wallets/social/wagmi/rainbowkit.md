@@ -16,6 +16,7 @@ import {
   twitterWallet,
 } from '@zerodevapp/wagmi/rainbowkit'
 ```
+We also offer the option to extend rainbowkit wallets with AA using `enhanceWalletWithAAConnector`.
 
 Use these with RainbowKit's `connectorsForWallets` function:
 
@@ -41,9 +42,17 @@ const connectors = connectorsForWallets([
   {
     groupName: 'Web3',
     wallets: [
-      metaMaskWallet({ chains }),
       rainbowWallet({ chains }),
       walletConnectWallet({ chains }),
+    ],
+  },
+  {
+    groupName: 'AA Wallets',
+    wallets: [
+      enhanceWalletWithAAConnector(
+        metaMaskWallet({ chains }),
+        { projectId }
+      ),
     ],
   },
 ])
@@ -79,9 +88,17 @@ function RainbowKitExample() {
     {
       groupName: 'Web3',
       wallets: [
-        metaMaskWallet({ chains }),
         rainbowWallet({ chains }),
         walletConnectWallet({ chains }),
+      ],
+    },
+    {
+      groupName: 'AA Wallets',
+      wallets: [
+        enhanceWalletWithAAConnector(
+          metaMaskWallet({ chains }),
+          { projectId: defaultProjectId }
+        ),
       ],
     },
   ]);
@@ -106,3 +123,4 @@ function RainbowKitExample() {
   )
 }
 ```
+

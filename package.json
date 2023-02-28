@@ -23,7 +23,10 @@
     "@mantine/hooks": "^5.10.2",
     "@mdx-js/react": "^1.6.22",
     "@rainbow-me/rainbowkit": "^0.11.0",
+    "@web3modal/ethereum": "^2.1.1",
+    "@web3modal/react": "^2.1.1",
     "@zerodevapp/social-wallet": "1.0.0",
+    "@zerodevapp/wagmi": "1.0.2",
     "assert": "^2.0.0",
     "clsx": "^1.2.1",
     "connectkit": "^1.2.0",
@@ -37,6 +40,7 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0",
+    "wagmi": "^0.11.7",
     "zerokit": "1.2.3"
   },
   "devDependencies": {

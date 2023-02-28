@@ -16,7 +16,7 @@ Then import the social wallets and use them with `getZeroDevSigner` from the SDK
 import { getZeroDevSigner, getSocialWalletOwner } from '@zerodevapp/sdk'
 
 import { 
-  MultiSocialWallet, 
+  SocialWallet, 
   GoogleSocialWallet, 
   FacebookSocialWallet,
   GithubSocialWallet,
@@ -33,7 +33,7 @@ const signer = await getZeroDevSigner({
 })
 ```
 
-You can pick and choose the social login methods you'd like to use, or use `MultiSocialWallet` which shows a meta login modal with all login methods.  Here's an example:
+You can pick and choose the social login methods you'd like to use, or use `SocialWallet` which shows a meta login modal with all login methods.  Here's an example:
 
 ```jsx live folded
 function RpcProviderExample() {
@@ -41,7 +41,7 @@ function RpcProviderExample() {
   const [loading, setLoading] = useState(false)
 
   const socialWallet = useMemo(() => {
-    return new MultiSocialWallet()
+    return new SocialWallet()
   }, [])
   
   const createWallet = async () => {

@@ -26,12 +26,14 @@ import contractAbi from "../../../static/contracts/polygon-mumbai/0x34bE7f35132E
 import { ethers } from "ethers";
 import { 
   ZeroDevConnector, 
+  SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
   GithubSocialWalletConnector,
   DiscordSocialWalletConnector,
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
+  enhanceConnectorWithAA,
   AccountParams,
 } from '@zerodevapp/wagmi'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
@@ -42,12 +44,14 @@ import {
   discordWallet,
   twitchWallet,
   twitterWallet,
+  enhanceWalletWithAAConnector
 } from '@zerodevapp/wagmi/rainbowkit'
 import { 
   supportedSocialConnectors
 } from '@zerodevapp/wagmi/connectkit'
+import { web3ModalConfig } from '@zerodevapp/wagmi/web3modal'
 import { 
-  MultiSocialWallet, 
+  SocialWallet, 
   GoogleSocialWallet, 
   FacebookSocialWallet,
   GithubSocialWallet,
@@ -68,6 +72,14 @@ import {
 } from '@rainbow-me/rainbowkit/wallets';
 import { ConnectKitProvider, ConnectKitButton, getDefaultClient, supportedConnectors } from "connectkit";
 supportedConnectors.push(...supportedSocialConnectors)
+import {
+  EthereumClient,
+  modalConnectors,
+  walletConnectProvider,
+} from "@web3modal/ethereum";
+
+import { Web3Modal, Web3Button } from "@web3modal/react";
+const defaultWalletConenctProjectId = 'df7cda28d80ccef14260ff3e2bfb1388'
 
 
 // Add react-live imports you need here
@@ -99,7 +111,7 @@ const ReactLiveScope = {
   useEffect,
   useMemo,
   useRef,
-  MultiSocialWallet, 
+  SocialWallet, 
   GoogleSocialWallet, 
   FacebookSocialWallet,
   GithubSocialWallet,
@@ -107,6 +119,7 @@ const ReactLiveScope = {
   TwitchSocialWallet,
   TwitterSocialWallet,
   ZeroDevConnector, 
+  SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
   GithubSocialWalletConnector,
@@ -114,6 +127,7 @@ const ReactLiveScope = {
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
   AccountParams,
+  enhanceConnectorWithAA,
   RainbowKitProvider,
   RainbowKitConnectButton,
   ConnectKitProvider,
@@ -126,11 +140,19 @@ const ReactLiveScope = {
   discordWallet,
   twitchWallet,
   twitterWallet,
+  enhanceWalletWithAAConnector,
   injectedWallet,
   metaMaskWallet,
   rainbowWallet,
   walletConnectWallet,
   MetaMaskConnector,
+  EthereumClient,
+  modalConnectors,
+  walletConnectProvider,
+  Web3Modal,
+  Web3Button,
+  defaultWalletConenctProjectId,
+  web3ModalConfig
 };
 
 

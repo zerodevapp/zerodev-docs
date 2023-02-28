@@ -143,3 +143,20 @@ function WagmiPrivateKeyExample() {
   )
 }
 ```
+
+We also offer the option to extend wagmi connctors with AA.
+
+```typescript
+import { enhanceConnectorWithAA } from '@zerodevapp/wagmi'
+const wagmiClient = createClient({
+  autoConnect: false,
+  connectors: [
+    enhanceConnectorWithAA(
+      new MetaMaskConnector({ chains }), 
+      { projectId: "<project-id>" }
+    )
+  ],
+  provider,
+  webSocketProvider,
+})
+```
