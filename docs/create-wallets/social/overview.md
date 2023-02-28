@@ -7,7 +7,7 @@ sidebar_label: Overview
 
 ZeroDev makes it easy to create AA wallets, and it doesn't get easier than using social logins.  This allows you to build a powerful Web3 experience where:
 
-- Your users don't need to download wallets and back up seed phrases.
+- Your users don't need to download wallets or back up seed phrases.
 - You app can offer a Web2-level UX through AA features like gas-less transactions, transaction bundling, etc.
 
 Here's an example of how it can look like:
@@ -49,6 +49,6 @@ function RainbowKitExample() {
 }
 ```
 
-If you are using [RainbowKit](/create-wallets/social/wagmi/rainbowkit), [ConnectKit](/create-wallets/social/wagmi/connectkit), or [Web3Auth](/create-wallets/social/wagmi/web3auth) to handle your onboarding flow, check out our guides for them.
+If you are using [RainbowKit](/create-wallets/social/wagmi/rainbowkit), [ConnectKit](/create-wallets/social/wagmi/connectkit), or [Web3Modal](/create-wallets/social/wagmi/web3modal) to handle your onboarding flow, check out our guides for them.
 
 Otherwise, check out our [Wagmi](/create-wallets/social/wagmi/overview) and [Ethers](/create-wallets/social/ethers) APIs.

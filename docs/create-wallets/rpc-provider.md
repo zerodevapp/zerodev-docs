@@ -92,8 +92,7 @@ const connector = new ZeroDevConnector({chains, options: {
 Example:
 
 ```jsx live folded
-function WagmiPrivateKeyExample() {
-
+function WagmiRPCProviderExample() {
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
     [publicProvider()],
@@ -144,19 +143,70 @@ function WagmiPrivateKeyExample() {
 }
 ```
 
-We also offer the option to extend wagmi connctors with AA.
+You can also "wrap" an existing Wagmi connect with `enhanceConnectorWithAA`, which will create an AA wallet and use the connector as a signer/owner for the AA wallet.
 
 ```typescript
 import { enhanceConnectorWithAA } from '@zerodevapp/wagmi'
-const wagmiClient = createClient({
-  autoConnect: false,
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+
+const client = createClient({
   connectors: [
     enhanceConnectorWithAA(
       new MetaMaskConnector({ chains }), 
-      { projectId: "<project-id>" }
-    )
+      { projectId: "<your-project-id>" }
+    ),
   ],
-  provider,
-  webSocketProvider,
 })
+```
+
+```jsx live folded
+function WagmiWrappedRPCProviderExample() {
+  const { chains, provider, webSocketProvider } = configureChains(
+    [polygonMumbai],
+    [publicProvider()],
+  )
+  const client = createClient({
+    autoConnect: false,
+    connectors: [
+      enhanceConnectorWithAA(
+        new MetaMaskConnector({ chains }), 
+        { projectId: defaultProjectId }
+      ),
+    ],
+    provider,
+    webSocketProvider,
+  })
+
+  const ConnectButton = () => {
+    const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
+    const { address, connector, isConnected } = useAccount()
+    const { chain } = useNetwork()
+
+    if (isConnected) {
+      return (
+        <div>
+          <div>{address}</div>
+          <div>Connected to {connector.name}</div>
+          <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a>
+        </div>
+      )
+    }
+    return (
+      <button disabled={isLoading} onClick={() => {
+        ethereum.request({
+          method: "eth_requestAccounts"
+        }).then(() => {
+          connect({connector: connectors[0]})
+        })
+      }}>
+        {isLoading ? 'loading...' : 'Connect'}
+      </button>
+    )
+  }
+  return (
+    <WagmiConfig client={client}>
+      <ConnectButton />
+    </WagmiConfig>
+  )
+}
 ```

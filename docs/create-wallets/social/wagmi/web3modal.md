@@ -5,7 +5,7 @@ sidebar_label: Integrate with Web3Modal
 
 # Integrate with Web3Modal
 
-Example:
+Configure the Wagmi client with ZeroDev's social connectors, and it will seamlessly work with [Web3Modal](https://web3modal.com/).
 
 ```typescript
 import { web3ModalConfig } from '@zerodevapp/wagmi/web3modal'

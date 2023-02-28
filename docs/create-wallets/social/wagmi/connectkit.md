@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # Integrate with ConnectKit
 
-Due to the way ConnectKit is structured, we need a hack to add social logins.  Start by adding this code to your app's initialization flow:
+Due to the way [ConnectKit](https://docs.family.co/connectkit) is structured, we need a hack to add social logins.  Start by adding this code to your app's initialization flow:
 
 ```typescript
 import { supportedSocialConnectors } from '@zerodevapp/wagmi/connectkit'
