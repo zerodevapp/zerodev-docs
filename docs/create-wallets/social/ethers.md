@@ -4,6 +4,14 @@ sidebar_position: 3
 
 # Ethers API
 
+Install the following package:
+
+```bash
+npm i @zerodevapp/social-wallet
+```
+
+Then import the social wallets and use them with `getZeroDevSigner` from the SDK:
+
 ```typescript
 import { getZeroDevSigner, getSocialWalletOwner } from '@zerodevapp/sdk'
 
@@ -17,7 +25,7 @@ import {
   TwitterSocialWallet
 } from '@zerodevapp/social-wallet';
 
-const socialWallet = new AnySocialWalletFromAbove()
+const socialWallet = new GoogleSocialWallet()
 
 const signer = await getZeroDevSigner({
   projectId: "<project id>",
@@ -25,7 +33,7 @@ const signer = await getZeroDevSigner({
 })
 ```
 
-Example using MultiSocialWallet as an owner:
+You can pick and choose the social login methods you'd like to use, or use `MultiSocialWallet` which shows a meta login modal with all login methods.  Here's an example:
 
 ```jsx live folded
 function RpcProviderExample() {
