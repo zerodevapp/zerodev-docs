@@ -66,6 +66,11 @@ For Web3 wallets like MetaMask, you can use them as they are (as EOA), or "wrap"
 
 ```jsx live folded
 function RainbowKitExample() {
+  const { chains, provider, webSocketProvider } = configureChains(
+    [polygonMumbai],
+    [publicProvider()],
+  )
+
   const connectors = connectorsForWallets([
     {
       groupName: 'EOA Wrapped with AA',
@@ -90,10 +95,6 @@ function RainbowKitExample() {
     },
   ]);
 
-  const { chains, provider, webSocketProvider } = configureChains(
-    [polygonMumbai],
-    [publicProvider()],
-  )
   const client = createClient({
     autoConnect: false,
     connectors,
