@@ -49,6 +49,6 @@ function RainbowKitExample() {
 }
 ```
 
-If you are using [RainbowKit](/create-wallets/social/wagmi/rainbowkit), [ConnectKit](/create-wallets/social/wagmi/connectkit), or [Web3Auth](/create-wallets/social/wagmi/web3auth) to handle your onboarding flow, check out our guides for them.
+If you are using [RainbowKit](/create-wallets/social/wagmi/rainbowkit), [ConnectKit](/create-wallets/social/wagmi/connectkit), or [Web3Modal](/create-wallets/social/wagmi/web3modal) to handle your onboarding flow, check out our guides for them.
 
 Otherwise, check out our [Wagmi](/create-wallets/social/wagmi/overview) and [Ethers](/create-wallets/social/ethers) APIs.
