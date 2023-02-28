@@ -83,11 +83,9 @@ function RainbowKitExample() {
       ],
     },
     {
-      groupName: 'Social',
+      groupName: 'Social (AA)',
       wallets: [
         googleWallet({options: { projectId: defaultProjectId }}),
-        facebookWallet({options: { projectId: defaultProjectId }}),
-        twitterWallet({options: { projectId: defaultProjectId }})
       ],
     },
   ]);
