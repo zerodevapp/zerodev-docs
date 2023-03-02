@@ -52,7 +52,7 @@ function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash, uint2
 
 That is, ZeroDev accounts are programmed such that it first checks if there's an active plugin, and if so, it *delegates* the validation logic to the plugin.  Otherwise it proceeds normally.  Therefore, building a ZeroDev plugin comes down to building a contract that implements the `validateUserOp` function.
 
-But how do we determine if a plugin is enabled?  Since plugins modify how transactions are validated, they are as dangerous as it gets.
+But how do we determine if a plugin is enabled?  Since plugins modify how transactions are validated, it's important that we only accept plugins enabled by the owner.
 
 ## Using a plugin
 
