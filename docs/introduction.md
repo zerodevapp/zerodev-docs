@@ -5,9 +5,9 @@ slug: /
 
 # Introduction
 
-ZeroDev is an SDK for creating account abstraction (AA) wallets, which are non-custodial and yet as easy to use as custodial wallets.
+ZeroDev is an SDK for creating wallets and DApps powered by account abstraction.
 
-ZeroDev is the perfect solution for any project that needs to create wallets for users, including Web2.5 apps, wallet apps, onboarding kits, DeFi apps, onramps, marketplaces, and more.
+ZeroDev is the perfect solution for any project that needs great wallet UX, including Web2.5 apps, wallet apps, onboarding kits, DeFi apps, onramps, marketplaces, and more.
 
 ## Custodial vs Non-custodial Wallets
 
