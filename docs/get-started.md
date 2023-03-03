@@ -49,63 +49,29 @@ Make sure to click "Save".
 
 ## Send transactions with Wagmi
 
-For this tutorial, we will build an NFT drop.  We have already deployed the NFT contract on Mumbai at `0x34bE7f35132E97915633BC1fc020364EA5134863`.  The contract has a `mint()` function that anyone can call to mint and receive an NFT. We also using RainbowKit.
+For this tutorial, we will build an NFT drop.  We have already deployed the NFT contract on Mumbai at `0x34bE7f35132E97915633BC1fc020364EA5134863`.  The contract has a `mint()` function that anyone can call to mint and receive an NFT.
 
-RainbowKit is built on [Wagmi](https://wagmi.sh/), so use Wagmi functions to interact with the contract.  Go to `App.tsx` and replace the content with the following:
+The tutorial template uses RainbowKit, which is built on [Wagmi](https://wagmi.sh/), so we will be using Wagmi to interact with the contract.  Go to `App.tsx` and replace the content with the following:
 
 ```tsx
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import './App.css';
 import { Contract } from 'ethers'
 import {
-  WagmiConfig,
-  configureChains,
-  createClient,
   useAccount,
   usePrepareContractWrite,
   useContractWrite,
   useContractRead,
   useSigner,
 } from "wagmi";
-import { publicProvider } from 'wagmi/providers/public'
-import { polygonMumbai } from 'wagmi/chains'
-import { connectorsForWallets, RainbowKitProvider, ConnectButton } from '@rainbow-me/rainbowkit'
-import { googleWallet } from '@zerodevapp/wagmi/rainbowkit'
-
-const { chains, provider, webSocketProvider } = configureChains(
-  [polygonMumbai],
-  [publicProvider()],
-)
-const connectors = connectorsForWallets([
-  {
-    groupName: 'Social',
-    wallets: [
-      googleWallet({options: { projectId: "<your-project-id>" }}),
-    ],
-  },
-]);
-
-const client = createClient({
-  autoConnect: false,
-  connectors,
-  provider,
-  webSocketProvider,
-})
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { ZeroDevSigner } from '@zerodevapp/sdk'
 
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 const contractABI = [
   'function mint(address _to) public',
   'function balanceOf(address owner) external view returns (uint256 balance)'
 ]
-
-function Wrapper(Component: React.ComponentType) {
-  return (
-    <WagmiConfig client={client}>
-      <RainbowKitProvider chains={chains}>
-        <Component />
-      </RainbowKitProvider>
-    </WagmiConfig>
-  )
-}
 
 function App() {
   const { address, isConnected } = useAccount();
@@ -161,8 +127,7 @@ function App() {
     </div>
   );
 }
-
-export default Wrapper(App);
+export default App;
 ```
 
 Now try minting the NFT.  If your NFT balance went up -- congrats!  You've just accomplished the impossible: sending transactions without paying gas.  This is all thanks to the gas sponsoring policies you set up earlier.
