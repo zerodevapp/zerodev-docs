@@ -30,7 +30,7 @@ class ESMPolyfillWrapper {
 
 module.exports = function () {
   return {
-    name: 'docusaurus-plugin-zerokit',
+    name: 'docusaurus-plugin-zerodev',
     configureWebpack(_config, isServer, utils) {
         return {
             plugins: [

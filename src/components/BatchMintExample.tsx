@@ -5,13 +5,13 @@ import {
   useNetwork,
   useSigner,
 } from "wagmi";
-import { ConnectButton } from "zerokit";
 import { Contract } from 'ethers'
 import { ZeroDevSigner } from '@zerodevapp/sdk';
 import contractAbi from "../../static/contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json";
-import { ZeroKitProvider } from "zerokit";
 import { MantineProvider } from '@mantine/core';
 import { Button, Anchor } from '@mantine/core';
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import ZeroDevWrapper from "./ZeroDevWrapper";
 
 const nftAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 
@@ -98,8 +98,8 @@ function BatchMintExample() {
 
 export default () => (
   <MantineProvider withGlobalStyles withNormalizeCSS>
-    <ZeroKitProvider projectId="b5486fa4-e3d9-450b-8428-646e757c10f6" modalSize="compact">
+    <ZeroDevWrapper>
       <BatchMintExample />
-    </ZeroKitProvider>
+    </ZeroDevWrapper>
   </MantineProvider>
 )

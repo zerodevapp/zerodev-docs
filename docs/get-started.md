@@ -51,10 +51,11 @@ Make sure to click "Save".
 
 For this tutorial, we will build an NFT drop.  We have already deployed the NFT contract on Mumbai at `0x34bE7f35132E97915633BC1fc020364EA5134863`.  The contract has a `mint()` function that anyone can call to mint and receive an NFT.
 
-ZeroKit is built on [Wagmi](https://wagmi.sh/), so use Wagmi functions to interact with the contract.  Go to `App.tsx` and replace the content with the following:
+The tutorial template uses RainbowKit, which is built on [Wagmi](https://wagmi.sh/), so we will be using Wagmi to interact with the contract.  Go to `App.tsx` and replace the content with the following:
 
 ```tsx
 import { useCallback, useEffect, useRef, useState } from "react";
+import './App.css';
 import { Contract } from 'ethers'
 import {
   useAccount,
@@ -63,8 +64,8 @@ import {
   useContractRead,
   useSigner,
 } from "wagmi";
-import { ConnectButton } from "zerokit";
-import { ZeroDevSigner } from "@zerodevapp/sdk";
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { ZeroDevSigner } from '@zerodevapp/sdk'
 
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 const contractABI = [
@@ -126,7 +127,6 @@ function App() {
     </div>
   );
 }
-
 export default App;
 ```
 
@@ -171,6 +171,8 @@ Add the following code to `App.tsx`:
 ```
 
 Now you should have a "Double Mint NFT" button.  Click that and watch your NFT balance increase by two.  Boom!  We just sent two transactions as one with ZeroDev.
+
+Note that this example is contrived to demonstrate how to use the SDK directly.  In reality, if you are building a Wagmi app, you would use our [Wagmi API](http://localhost:3000/use-wallets/improve-transaction-experience/batch-transactions#wagmi) to implement transaction bundling.
 
 ## Next Steps
 

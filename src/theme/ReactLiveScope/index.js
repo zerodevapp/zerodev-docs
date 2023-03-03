@@ -1,6 +1,4 @@
 import React, { useEffect, useMemo, useRef } from 'react';
-import { ConnectButton } from "zerokit";
-import { ZeroKitProvider } from "zerokit"
 import {
   WagmiConfig,
   useAccount,
@@ -86,8 +84,6 @@ const defaultWalletConenctProjectId = 'df7cda28d80ccef14260ff3e2bfb1388'
 const ReactLiveScope = {
   React,
   ...React,
-  ConnectButton,
-  ZeroKitProvider,
   useAccount,
   usePrepareContractWrite,
   useContractWrite,

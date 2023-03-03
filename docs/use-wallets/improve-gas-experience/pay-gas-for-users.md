@@ -106,6 +106,6 @@ Click `Create Policy` to finish the setup.
 
 Ordinarily with ERC-4337, you would have to set up your own "paymasters," which are on-chain smart contracts that pay gas for users.
 
-With ZeroKit, we simplify the task for you -- you just have to put down a credit card, and we will charge you for gas at the end of every month.
+With ZeroDev, we simplify the task for you -- you just have to put down a credit card, and we will charge you for gas at the end of every month.
 
 You can set up billing on the [dashboard](https://dashboard.zerodev.app/).
