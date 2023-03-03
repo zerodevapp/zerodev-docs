@@ -5,7 +5,7 @@ slug: /
 
 # Introduction
 
-ZeroDev is an SDK for creating wallets and DApps powered by account abstraction.
+ZeroDev is an SDK for creating wallets and DApps powered by account abstraction (ERC-4337).
 
 ZeroDev is the perfect solution for any project that needs great wallet UX, including Web2.5 apps, wallet apps, onboarding kits, DeFi apps, onramps, marketplaces, and more.
 

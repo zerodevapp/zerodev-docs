@@ -172,7 +172,7 @@ Add the following code to `App.tsx`:
 
 Now you should have a "Double Mint NFT" button.  Click that and watch your NFT balance increase by two.  Boom!  We just sent two transactions as one with ZeroDev.
 
-Note that this example is contrived to demonstrate how to use the SDK directly.  In reality, if you are building a Wagmi app, you would use our [Wagmi API](http://localhost:3000/use-wallets/improve-transaction-experience/batch-transactions#wagmi) to implement batching.
+Note that this example is contrived to demonstrate how to use the SDK directly.  In reality, if you are building a Wagmi app, you would use our [Wagmi API](http://localhost:3000/use-wallets/improve-transaction-experience/batch-transactions#wagmi) to implement transaction bundling.
 
 ## Next Steps
 
