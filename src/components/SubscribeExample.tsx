@@ -13,8 +13,9 @@ import moduleContractAbi from "../../static/contracts/polygon-mumbai/0x7aC1ff641
 import { useEffect, useState } from 'react';
 import { ZeroDevSigner, getZeroDevSigner, getPrivateKeyOwner } from '@zerodevapp/sdk';
 import { ethers } from 'ethers';
-import { ConnectButton, ZeroKitProvider } from 'zerokit';
 import { Anchor, Button, MantineProvider } from '@mantine/core';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import ZeroDevWrapper from './ZeroDevWrapper';
 
 const NFT_ADDRESS = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 const MODULE_ADDRESS = '0xA9947501D0D98Dc699409930fc15Db7e5b027f3e'
@@ -149,8 +150,8 @@ export const SubscribeDemo = () => {
 
 export default ({ projectId }) => (
     <MantineProvider withGlobalStyles withNormalizeCSS>
-        <ZeroKitProvider projectId={projectId || "b5486fa4-e3d9-450b-8428-646e757c10f6"} modalSize="compact">
+        <ZeroDevWrapper>
             <SubscribeDemo />
-        </ZeroKitProvider>
+        </ZeroDevWrapper>
     </MantineProvider>
 )

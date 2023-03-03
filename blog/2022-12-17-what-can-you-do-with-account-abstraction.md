@@ -71,4 +71,4 @@ By now, hopefully I have convinced you that account abstraction can vastly impro
 
 The answer is a resounding yes.  New rollups such as [StarkNet](https://docs.openzeppelin.com/contracts-cairo/0.4.0/accounts) and [zksync](https://v2-docs.zksync.io/dev/developer-guides/aa.html) natively support account abstraction, while [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) has brought account abstraction to all EVM blockchains, including Ethereum, Polygon, Arbitrum, Optimism, Avalanche, and more.
 
-In a future blog post, I will dive deeper into ERC-4337 and explain how account abstraction actually works.  For now, my team at ZeroDev has created an SDK that you can use today to enable account abstraction in your app.  [Give it a try now](https://zerokit.io/), or [join our new Discord](https://discord.gg/KS9MRaTSjx) and say hi!
+In a future blog post, I will dive deeper into ERC-4337 and explain how account abstraction actually works.  For now, my team at ZeroDev has created an SDK that you can use today to enable account abstraction in your app.  [Give it a try now](https://zerodev.app/), or [join our new Discord](https://discord.gg/KS9MRaTSjx) and say hi!

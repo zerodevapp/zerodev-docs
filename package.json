@@ -26,7 +26,7 @@
     "@web3modal/ethereum": "^2.1.1",
     "@web3modal/react": "^2.1.1",
     "@zerodevapp/social-wallet": "1.0.0",
-    "@zerodevapp/wagmi": "1.0.2",
+    "@zerodevapp/wagmi": "1.0.5",
     "assert": "^2.0.0",
     "clsx": "^1.2.1",
     "connectkit": "^1.2.0",
@@ -40,8 +40,7 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0",
-    "wagmi": "^0.11.7",
-    "zerokit": "1.2.3"
+    "wagmi": "^0.11.7"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "2.3.0",
