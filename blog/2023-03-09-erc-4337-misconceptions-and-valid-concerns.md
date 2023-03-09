@@ -1,6 +1,6 @@
 ---
 slug: erc-4337-misconceptions-and-valid-concerns
-title: ERC-4337 — Misconceptions and Valid Criticisms
+title: ERC-4337 — Misconceptions and Valid Concerns
 authors: derek
 ---
 
@@ -8,13 +8,13 @@ At ZeroDev, it’s our job to help devs learn and adopt AA, so naturally we have
 
 In this post, I’d like to summarize some common pushbacks against ERC-4337 and AA in general, and I will group them into three categories:
 
-- **Completely wrong**: things that are just not true.
+- **Misconceptions**: things that are just not true.
 - **Yes and no**: somewhat true, but the reality is nuanced.
 - **Valid concerns**: real issues that need to be addressed.
 
 Let’s dive in!
 
-# Completely Wrong
+# Misconceptions
 
 ### AA is no big deal because SCW has been around for years
 
