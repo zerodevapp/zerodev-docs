@@ -28,7 +28,7 @@ A typical AA wallet has the following architecture:
 
 For wallet devs, ZeroDev provides value in the app and account layers (highlighted in blue).  Enterprise plans include bundler access as well, though you can use ZeroDev with any bundler provider.
 
-On the account layer, ZeroDev provides a highly optimized and extensible smart contract account that's compatible with ERC-4337.  An analogy here would be Android -- new phone makers don't build their own mobile OS from scratch, but rather build on top of Android.  ZeroDev is like the Android of smart contract wallets -- we provide a *wallet kernel* that can dramatically shorten your time to market, while ensuring that your wallet is
+On the account layer, ZeroDev provides a highly optimized and extensible smart contract account that's compatible with ERC-4337.  An analogy here would be Android -- new phone makers don't build their own mobile OS from scratch, but rather build on top of Android.  ZeroDev is like the Android of smart contract wallets -- we provide a *wallet kernel* that can dramatically shorten your time to market, while ensuring that your wallet is:
 
 - Secure
 - Performant
