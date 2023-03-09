@@ -7,3 +7,28 @@ sidebar_position: 6
 ## Polyfill issues
 
 If you are running errors like `Uncaught Reference Error: process is not defined`, it's likely that you are running into polyfill issues.  [Please check here](https://web3auth.io/docs/troubleshooting/webpack-issues) for how to fix it.
+
+## NextJS
+
+(Example Project)[https://github.com/zerodevapp/zerodev-nextjs-example]
+
+Web3Auth and our builds require to be transpiled because they are ES Modules and not CommonJS Modules.
+
+For NextJS running on a version <=13.1.x, you need to use [this package](https://www.npmjs.com/package/next-transpile-modules).
+```
+// next.config.js
+
+const withTM = require('next-transpile-modules')(['@zerodevapp', '@web3']); // pass the modules you would like to see transpiled
+
+module.exports = withTM({});
+```
+
+For NextJS running on a version >= 13.2.x, you can utilize the build-in transpile package config.
+```
+// next.config.js
+
+module.exports = {
+  reactStrictMode: true,
+  transpilePackages: ["@zerodevapp", "@web3"],
+};
+```
