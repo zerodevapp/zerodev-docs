@@ -59,6 +59,7 @@ Here's a breakdown of how the wallet solutions compare:
 |Send transactions for users?        |No                  |Yes, but can be abused by the app|Yes, and cannot be abused by the app                                             |
 |Interact with smart contracts?         |Yes                 |Yes, but only through API        |Yes                                                                              |
 |Use the wallet on other DApps?         |Yes                 |No                               |Yes                                                                              |
+|Progressively onboard to self-custody wallets?         |N/A                 |No                               |Yes                                                                              |
 
 
 ## Next Steps
