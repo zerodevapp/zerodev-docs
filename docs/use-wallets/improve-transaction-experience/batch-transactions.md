@@ -44,20 +44,36 @@ Each object in the array for `execBatch` can have three keys:
 ### Wagmi
 
 ```typescript
-import { useContractBatchWrite } from "@zerodevapp/wagmi";
+import { usePrepareContractBatchWrite, useContractBatchWrite, useWaitForAATransaction  } from "@zerodevapp/wagmi";
 const Component = () => {
-  const {write: batchMint, loading} = useContractBatchWrite([{
-    address: nftAddress,
-    abi: contractAbi,
-    functionName: "mint",
-    args: [address],
-  }, {
-    address: nftAddress,
-    abi: contractAbi,
-    functionName: "mint",
-    args: [address],
-  }])
+ const { config } = usePrepareContractBatchWrite({
+    args: [
+      [
+        {
+          address: nftAddress,
+          abi: contractAbi,
+          functionName: "mint",
+          args: [address],
+        }, {
+          address: nftAddress,
+          abi: contractAbi,
+          functionName: "mint",
+          args: [address],
+        }
+      ],
+    ]
+  })
+
+  const { write: batchMint, isLoading, data } = useContractBatchWrite(config) 
+
+  useWaitForAATransaction({
+    wait: data?.wait,
+    onSuccess() {
+      console.log("Transaction was successful.")
+    }
+  })
   ...
+  
 }
 
 ```
