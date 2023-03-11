@@ -17,7 +17,7 @@ When we talk about a "wallet," we are actually talking about two things:
 - `Key`: the cryptographic key used for signing messages and transactions for the account.
 - `Account`: the blockchain entity associated with an address, a balance, and other state.
 
-For an *externally owned account* (EOA), e.g. a MetaMask account, the account address is cryptographically link to the key.  Therefore, it's not possible to change the key for an account.  In other words, for EOAs, 1 key == 1 account.
+For an *externally owned account* (EOA), e.g. a MetaMask account, the account address is cryptographically linked to the key.  Therefore, it's not possible to change the key for an account.  In other words, for EOAs, 1 key == 1 account.
 
 AA wallets like ZeroDev are smart contract accounts, however.  A smart contract account has its own address, which is independent of the key that manages it.  As a result, it's possible to *replace* the key with another key, without changing the blockchain address of the account at all.
 
