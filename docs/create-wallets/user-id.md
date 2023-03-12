@@ -21,7 +21,7 @@ For an *externally owned account* (EOA), e.g. a MetaMask account, the account ad
 
 AA wallets like ZeroDev are smart contract accounts, however.  A smart contract account has its own address, which is independent of the key that manages it.  As a result, it's possible to *replace* the key with another key, without changing the blockchain address of the account at all.
 
-In this article we will show how to create AA wallets with user IDs.  To learn how to let users take control with their own keys, see [Replace Wallet Owner](/use-wallets/update-wallets/replace-wallet-owner).
+In this article we will show how to create AA wallets with user IDs.  To learn how to let users take control with their own keys, see [Replace Wallet Owner](/use-wallets/wallet-management/replace-wallet-owner).
 
 ## Tutorial: Integrating Custom Web2 Login with ZeroDev
 

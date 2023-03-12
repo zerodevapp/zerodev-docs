@@ -19,9 +19,10 @@ For your convenience, we have divided our AA features into the following categor
   - [Set pre-conditions for transactions](/use-wallets/improve-transaction-experience/set-transaction-guards)
   - [Easily integrate with DeFi protocols](/use-wallets/improve-transaction-experience/integrate-defi)
 
-- Updating Wallets
-  - [Update your wallet's execution logic](/use-wallets/update-wallets/replace-wallet-owner)
-  - [Replace the owner (key) of the wallet](/use-wallets/update-wallets/update-wallet-implementation)
+- Manage Wallets
+  - [Transfer all assets to another wallet](/use-wallets/wallet-management/transfer-all-assets)
+  - [Update your wallet's execution logic](/use-wallets/wallet-management/replace-wallet-owner)
+  - [Replace the owner (key) of the wallet](/use-wallets/wallet-management/update-wallet-implementation)
 
 - ZeroDev Plugins
   - [Session keys (temporary keys with limited permissions)](/use-wallets/zerodev-plugins/use-session-keys)
