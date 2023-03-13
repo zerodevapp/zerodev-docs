@@ -1,25 +1,18 @@
 ---
-sidebar_position: 1
-slug: /
+sidebar_position: 2
 ---
 
-# Introduction
+# Why Account Abstraction
 
-ZeroDev is an SDK for creating wallets and DApps powered by account abstraction (ERC-4337).
-
-ZeroDev is the perfect solution for any project that needs great wallet UX, including Web2.5 apps, wallet apps, onboarding kits, DeFi apps, onramps, marketplaces, and more.
-
-## Custodial vs Non-custodial Wallets
-
-Traditionally, there are two approaches to creating wallets:
+Traditionally, there are two approaches to managing Web3 wallets:
 
 - Use custodial wallet providers such as [Fireblocks](https://docs.fireblocks.com/api/#create-a-new-vault-account) and [Wyre](https://docs.sendwyre.com/reference/createwallet) to create and manage wallets through APIs.
 
-- Use non-custodial key providers such as [Web3Auth](https://web3auth.io/) and [Magic](https://magic.link/) to generate private keys for users, which they can then use as blockchain wallets (EOA).
+- Ask users to install non-custodial wallets such as MetaMask, or generate wallets for them with solutions like [Web3Auth](https://web3auth.io/) and [Magic](https://magic.link/).
 
 The tradeoff here is of UX vs decentralization.  
 
-### Custodial Wallets: amazing UX, terrible decentralization
+## Custodial Wallets: amazing UX, terrible decentralization
 
 With a custodial wallet provider, you are ultimately managing wallets for your users, so you can easily hide the complexity of Web3 and create an amazing UX.
 
@@ -29,9 +22,9 @@ There are many downsides, however:
 - Your users don't truly own their assets.
 - Your users can't use their assets with other DApps (no interoperability).
 
-### Non-custodial wallets: truly Web3, terrible UX
+## Non-custodial wallets: truly Web3, terrible UX
 
-On the other hand, you can help your users create keys and handle their own assets, either through services like Web3Auth/Magic or some custom solution.  By doing so, your users truly own their assets and can use the assets with the rest of Web3.
+On the other hand, you can help your users manage their own assets, either through their own wallets or through services like Web3Auth/Magic.  By doing so, your users truly own their assets and can use the assets with the rest of Web3.
 
 The problems however are:
 
@@ -42,7 +35,11 @@ The problems however are:
 
 What if you didn't have to choose between good UX and decentralization?  What if there was a third way?
 
-ZeroDev is the ultimate wallet solution, thanks to account abstraction.  With ZeroDev, you can create non-custodial wallets for users that are as easy to use as custodial wallets, achieving the best of both worlds.
+Account abstraction is the ultimate wallet solution.  With AA, you can create non-custodial wallets for users that are as easy to use as custodial wallets, achieving the best of both worlds.
+
+At its core, AA enables your users to use *smart contract wallets*.  While smart contract wallets have been around for a while, the breakthrough of AA is that it made smart contract wallets accessible to the average user, by allowing transactions to be sent directly from the smart contract wallet (whereas before transactions would have to be relayed).
+
+Since smart contract wallets are programmable, it can deal with gas and transactions in highly flexible ways, which is ultimately why you can build amazing UX with account abstraction.
 
 Here's a breakdown of how the wallet solutions compare:
 
@@ -61,10 +58,3 @@ Here's a breakdown of how the wallet solutions compare:
 |Use the wallet on other DApps?         |Yes                 |No                               |Yes                                                                              |
 |Progressively onboard to self-custody wallets?         |N/A                 |No                               |Yes                                                                              |
 
-
-## Next Steps
-
-- If you are not sure if ZeroDev is right for you, [read this](/who-is-zerodev-for).
-- If you are ready to code, start with [the tutorial](/get-started).
-- Learn how to [create AA wallets](/create-wallets/overview).
-- Learn how to [use AA wallets](/use-wallets/overview) to build powerful Web3 experiences.

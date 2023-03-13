@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Who is ZeroDev for?
@@ -14,19 +14,19 @@ Broadly speaking, ZeroDev is useful for:
 
 ## ZeroDev for Wallets
 
-If you are building a wallet in 2023, it's hard to justfiy NOT making it an AA smart contract wallet.  See the [introduction](/) for the advantages of AA wallets.
+If you are building a wallet in 2023, it's hard to justfiy NOT making it an AA smart contract wallet.  See [this page](/introduction/why-account-abstraction) for the advantages of AA wallets.
 
 A typical AA wallet has the following architecture:
 
 <p align="center">
-  <img src="/img/wallet_architecture.png" width="30%" />
+  <img src="/img/wallet_architecture.png" width="80%" />
 </p>
 
 - Wallet app: the off-chain UI and features that your users actually interact with.
 - Smart contract account: the on-chain smart contract account that your wallet app is based on.
 - ERC-4337 bundler: the infrastructure that submits AA transactions on-chain.
 
-For wallet devs, ZeroDev provides value in the app and account layers (highlighted in blue).  Enterprise plans include bundler access as well, though you can use ZeroDev with any bundler provider.
+For wallet devs, ZeroDev provides value in all three layers.
 
 On the account layer, ZeroDev provides a highly optimized and extensible smart contract account that's compatible with ERC-4337.  An analogy here would be Android -- new phone makers don't build their own mobile OS from scratch, but rather build on top of Android.  ZeroDev is like the Android of smart contract wallets -- we provide a *wallet kernel* that can dramatically shorten your time to market, while ensuring that your wallet is:
 
@@ -37,7 +37,7 @@ On the account layer, ZeroDev provides a highly optimized and extensible smart c
 
 On the wallet app layer, ZeroDev provides an SDK for you to *interact* with the smart contract account.  It's important to understand that to build a certain smart wallet experience such as "subscriptions" or "batch calls," the account and the app typically need to work in tandem, meaning that you need to program your smart account to support these features, while writing your app code to leverage those features.  ZeroDev simplifies both.
 
-To take the Android analogy further, ZeroDev provides not just a "wallet OS", but also an SDK for building wallet features on top of the OS.
+On the bundler layer, ZeroDev works with bundler providers to offer a *meta bundler network*, which distributes load across multiple bundlers, and if one bundler fails, another takes over.  This allows your wallet to achieve uptime that's not possible to achieve with any single bundler provider.
 
 ## ZeroDev for DApps
 
@@ -57,11 +57,13 @@ A typical AA DApp has the following architecture:
   <img src="/img/dapp_architecture.png" width="80%" />
 </p>
 
-For DApps, ZeroDev provides two things (highlighted in blue):
+For DApps, ZeroDev provides the following (highlighted in blue):
 
-- Embedded AA wallets for onboarding.  These wallets can be integrated with login solutions such as [RainbowKit](/create-wallets/social/wagmi/rainbowkit) and [Web3Modal](/create-wallets/social/wagmi/web3modal).
+- Embedded AA wallets.  These wallets can be integrated with login solutions such as [RainbowKit](/create-wallets/social/wagmi/rainbowkit) and [Web3Modal](/create-wallets/social/wagmi/web3modal).
 
-- SDK for interacting with smart contract wallets.  ZeroDev takes away the complexity of supporting different kinds of smart contract wallets, by providing a "compatibility layer" with a unified interface for interacting with all smart contract wallets.  This allows you to leverage SCW features such as "batching" without caring about which specific SCW the user is using.
+- SDK for interacting with smart contract wallets (including AA wallets).  ZeroDev takes away the complexity of supporting different kinds of smart contract wallets, by providing a "compatibility layer" with a unified interface for interacting with all smart contract wallets.  This allows you to leverage SCW features such as "batching" without caring about which specific SCW the user is using.
+
+- Meta bundler network.  ZeroDev works with bundler providers to offer a *meta bundler network*, which distributes load across multiple bundlers, and if one bundler fails, another takes over.  This allows your DApp to achieve uptime that's not possible to achieve with any single bundler provider.
 
 ## ZeroDev for Others
 

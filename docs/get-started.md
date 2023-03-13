@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Get Started
+# Getting Started
 
 In this tutorial, you will learn how to use ZeroDev to build an account abstraction (AA) application.
 

@@ -84,7 +84,7 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'introduction',
+            docId: 'introduction/zerodev-overview',
             position: 'left',
             label: 'Documentation',
           },
