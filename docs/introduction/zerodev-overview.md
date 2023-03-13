@@ -52,7 +52,7 @@ As a result, AA applications built on ZeroDev get higher uptime than what can ty
 
 ## Next Steps
 
-- If you are not sure if ZeroDev is right for you, [read this](/who-is-zerodev-for).
+- If you are not sure if ZeroDev is right for you, [read this](/introduction/who-is-zerodev-for).
 - If you are ready to code, start with [the tutorial](/getting-started).
 - Learn how to [create AA wallets](/create-wallets/overview).
 - Learn how to [use AA wallets](/use-wallets/overview) to build powerful Web3 experiences.
