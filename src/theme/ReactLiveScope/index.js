@@ -33,6 +33,9 @@ import {
   TwitterSocialWalletConnector,
   enhanceConnectorWithAA,
   AccountParams,
+  usePrepareContractBatchWrite, 
+  useContractBatchWrite, 
+  useWaitForAATransaction
 } from '@zerodevapp/wagmi'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { 
@@ -148,7 +151,10 @@ const ReactLiveScope = {
   Web3Modal,
   Web3Button,
   defaultWalletConenctProjectId,
-  web3ModalConfig
+  web3ModalConfig,
+  usePrepareContractBatchWrite, 
+  useContractBatchWrite, 
+  useWaitForAATransaction
 };
 
 

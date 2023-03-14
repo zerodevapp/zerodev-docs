@@ -45,35 +45,54 @@ Each object in the array for `execBatch` can have three keys:
 
 ```typescript
 import { usePrepareContractBatchWrite, useContractBatchWrite, useWaitForAATransaction  } from "@zerodevapp/wagmi";
-const Component = () => {
- const { config } = usePrepareContractBatchWrite({
-    args: [
-      [
-        {
-          address: nftAddress,
-          abi: contractAbi,
-          functionName: "mint",
-          args: [address],
-        }, {
-          address: nftAddress,
-          abi: contractAbi,
-          functionName: "mint",
-          args: [address],
-        }
-      ],
-    ]
-  })
+```
 
-  const { write: batchMint, isLoading, data } = useContractBatchWrite(config) 
+```typescript live folded zerodev
+function Component() {
+  const { address, connector, isConnected } = useAccount()
 
-  useWaitForAATransaction({
-    wait: data?.wait,
-    onSuccess() {
-      console.log("Transaction was successful.")
-    }
-  })
-  ...
-  
+  const MintButton = () => {
+    const nftAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
+    const { config } = usePrepareContractBatchWrite({
+        args: [
+          [
+            {
+              address: nftAddress,
+              abi: contractAbi,
+              functionName: "mint",
+              args: [address],
+            }, {
+              address: nftAddress,
+              abi: contractAbi,
+              functionName: "mint",
+              args: [address],
+            }
+          ],
+        ]
+      })
+
+    const { writeAsync: batchMint, isLoading, data } = useContractBatchWrite(config) 
+
+    useWaitForAATransaction({
+      wait: data ? data.wait : undefined,
+      onSuccess() {
+        alert("Transaction was successful.")
+      },
+      onError() {
+        alert("Transaction was unsuccessful.")
+      }
+    })
+
+    return (
+      <button disabled={isLoading} onClick={batchMint}>
+        {isLoading ? 'loading...' : 'Batch Example'}
+      </button>
+    )
+  }
+
+  if (isConnected) {
+    return <MintButton />
+  }
+  return <RainbowKitConnectButton />
 }
-
 ```
