@@ -63,7 +63,7 @@ As a result, whether AA transactions or normal transactions cost more gas actual
 
 There’s no doubt that anyone building something on AA/ERC-4337 today is a trailblazer — there are not many prior examples to look to or patterns to borrow from.  In that sense, building something on AA certainly involves more technical risks than building a classic DApp.
 
-However, everything you need to build a full AA application, notably ERC-4337 itself, is already running in production/mainnet.  We are at an inflection point where you are either building one of the last non-AA projects, or one of the first AA projects.  The choice is yours.
+However, everything you need to build a full AA application, notably ERC-4337 itself, is already running in production/mainnet.  **We are at an inflection point where you are either building one of the last non-AA applications, or one of the first AA applications.**  The choice is yours.
 
 ### AA is not compatible with existing DApps
 
@@ -84,7 +84,7 @@ The reason why Ethereum and most other EVM chains have not enshrined AA is two-f
 
 Enshrining AA into the protocol itself also means that **every** EVM chain has to implement this breaking change, which can take a very very long time.  In contrast, since ERC-4337 is implemented as smart contracts, deploying to a new chain is literally a matter of deploying a few smart contracts.  That’s why ERC-4337 is already running on all EVM chains today.
 
-In any case, the distinction between “real AA” and “ERC-4337 AA” matter little to the end users — from their perspective, their transactions “just work” either way.   Therefore, given the level of community buy-in for ERC-4337, it’s our best hope for achieving AA on EVM blockchains in the near term.
+In any case, the distinction between “real AA” and “ERC-4337 AA” matters little to the end users.  From their perspective, their transactions “just work” either way.   Therefore, given the level of community buy-in for ERC-4337, it’s our best hope for achieving AA on EVM blockchains in the near term.
 
 # Valid Concerns
 
@@ -98,13 +98,13 @@ In practice, however, most bundler implementations except for StackUp are not pr
 
 While ERC-4337 has been deployed on mainnet, it’s not technically finalized.  [The EIP is still in draft status](https://eips.ethereum.org/EIPS/eip-4337), and the core team has acknowledged that the EIP and the smart contracts could still change.
 
-Fortunately, it’s expected that any changes to the EIP and core smart contracts won’t affect the core account interface, so wallets that are compatible with ERC-4337 will most likely still be compatible with ERC-4337 in the future.
+Fortunately, it’s expected that any changes to the EIP and core smart contracts won’t affect the core account interface, so wallets that are compatible with ERC-4337 today will most likely still be compatible with ERC-4337 in the future.
 
 ### ERC-4337 has not been formally verified
 
 While ERC-4337 [has been audited](https://blog.openzeppelin.com/eip-4337-ethereum-account-abstraction-incremental-audit/), it has NOT been [formally verified](https://ethereum.org/en/developers/docs/smart-contracts/formal-verification/), so one cannot completely rule out the possibility that there are some critical security issues.
 
-Fortunately, there are teams working on the formal verification of ERC-4337 (with our very own [taek](https://twitter.com/leekt216) being a major contributor).  When ERC-4337 has been formally verified, that’s when we expect to see the EIP finalized.
+Fortunately, there are teams working on the formal verification of ERC-4337 (with our very own [taek](https://twitter.com/leekt216) being a major contributor).  When ERC-4337 has been formally verified, that’s when we expect to see it finalized.
 
 # The Bottom Line
 
