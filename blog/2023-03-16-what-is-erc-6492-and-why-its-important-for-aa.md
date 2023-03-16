@@ -55,7 +55,7 @@ On a high level, ERC-6492 works by using a `[UniversalSigValidator` contract](ht
 
 But wait!  You might say.  The signature verifier has to *deploy* the contract if it doesn’t exist?  Isn’t that incurring a lot of cost for the verifier?
 
-The answer is no because the verifier will be using `[eth_call](https://docs.alchemy.com/reference/eth-call)`, which essentially simulates the transaction without actually executing it on-chain.
+The answer is no because the verifier will be using [`eth_call`](https://docs.alchemy.com/reference/eth-call), which essentially simulates the transaction without actually executing it on-chain.
 
 # Next Steps
 
