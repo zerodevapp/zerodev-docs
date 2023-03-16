@@ -8,6 +8,7 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 import {usePrismTheme} from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 import Details from '@theme/Details';
+import ZeroDevWrapper from '@site/src/components/ZeroDevWrapper';
 
 function Header({children}) {
   return <div className={clsx(styles.playgroundHeader)}>{children}</div>;
@@ -18,9 +19,10 @@ function LivePreviewLoader() {
   return <div>Loading...</div>;
 }
 
-function ResultWithHeader() {
+function ResultWithHeader(zerodev = false) {
+  const Wrapper = zerodev ? ZeroDevWrapper : React.Fragment
   return (
-    <>
+    <Wrapper>
       <Header>
         <Translate
           id="theme.Playground.result"
@@ -39,7 +41,7 @@ function ResultWithHeader() {
           )}
         </BrowserOnly>
       </div>
-    </>
+    </Wrapper>
   );
 }
 function ThemedLiveEditor() {
@@ -89,6 +91,7 @@ export default function Playground({children, transformCode, ...props}) {
   const prismTheme = usePrismTheme();
   const noInline = props.metastring?.includes('noInline') ?? false;
   const folded = props.metastring?.includes('folded') ?? false;
+  const zerodev = props.metastring?.includes('zerodev') ?? false;
   return (
     <div className={styles.playgroundContainer}>
       {/* @ts-expect-error: type incompatibility with refs */}
@@ -100,13 +103,13 @@ export default function Playground({children, transformCode, ...props}) {
         {...props}>
         {playgroundPosition === 'top' ? (
           <>
-            <ResultWithHeader />
+            <ResultWithHeader zerodev={zerodev} />
             <EditorWithHeader folded={folded} />
           </>
         ) : (
           <>
             <EditorWithHeader folded={folded} />
-            <ResultWithHeader />
+            <ResultWithHeader zerodev={zerodev} />
           </>
         )}
       </LiveProvider>
