@@ -88,8 +88,8 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
+          { to: 'https://zerodev-api.readme.io/', label: 'API', position: 'left'},
           { to: '/blog', label: 'Blog', position: 'left' },
-          { to: 'https://zerodev-api.readme.io/', label: 'API', position: 'left'}
           // {
           //   href: 'https://github.com/zerodevapp/zerokit',
           //   label: 'GitHub',
