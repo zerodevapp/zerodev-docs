@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Getting Started
 
-In this tutorial, you will use ZeroDev to send a sponsored transaction.
+In this tutorial, you will use ZeroDev to send gasless transactions and bundle transactions.
 
 ## Create a project
 
