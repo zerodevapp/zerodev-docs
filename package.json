@@ -26,7 +26,7 @@
     "@web3modal/ethereum": "^2.1.1",
     "@web3modal/react": "^2.1.1",
     "@zerodevapp/social-wallet": "1.0.1",
-    "@zerodevapp/wagmi": "1.0.16",
+    "@zerodevapp/wagmi": "1.0.17",
     "assert": "^2.0.0",
     "clsx": "^1.2.1",
     "connectkit": "^1.2.0",
