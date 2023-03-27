@@ -16,7 +16,9 @@ By default, your users pay for their own gas, but you can choose to sponsor some
 
 Since it's unsafe to sponsor all transactions (in which case your users could drain your funds), you need to configure *gas policies* to determine which transactions to sponsor.
 
-Go to the `Gas Policies` section of your dashboard.  There are two ways to specify gas policies: global policies and contract policies.
+If you want to configure gas policies programmatically, check out [the API](https://zerodev-api.readme.io/reference/addpolicytoproject).  Otherwise, go to the `Gas Policies` section of [your dashboard](https://dashboard.zerodev.app/) to follow along this tutorial.
+
+There are two ways to specify gas policies: global policies and contract policies.
 
 ## Global Policies
 

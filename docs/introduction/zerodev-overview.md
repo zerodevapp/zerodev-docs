@@ -5,16 +5,23 @@ slug: /
 
 # ZeroDev Overview
 
-ZeroDev is a developer framework for building wallets and DApps powered by account abstraction (AA).  This is accomplished through four product pillars:
+ZeroDev offers smart wallets as a service, powered by account abstraction (AA).  This is accomplished through five product pillars:
 
-- A smart contract **wallet kernel** designed for quickly building AA wallets on top.
-- An **SDK** for interacting with AA wallets and thus building powerful Web3 experiences.
-- A set of **APIs** for managing the infrastructure associated with AA wallets, such as paymasters.
-- A **meta bundler network** that spreads AA transactions across bundlers to ensure high uptime.
+- A set of **smart wallet factories** for creating smart wallets from any authentication methods, including private keys, RPC providers, OAuth/JWT, biometrics, etc.
+- A smart contract **wallet kernel** designed for quickly building AA wallets on top, along with a set of wallet plugins for enabling common smart wallet functionalities, such as session keys, subscriptions, etc.
+- Ethers and Wagmi **SDKs** for interacting with smart wallets.
+- A **gas sponsoring policy engine** for setting up fine-grained gas sponsoring policies, such as "only sponsor up to 0.01 ETH worth of gas for each user for interacting with contract X."
+- A **meta bundler network** that spreads AA transactions across multiple bundler providers to ensure high uptime.
 
-TLDR: ZeroDev is everything you need for building production-grade AA applications.
+TLDR: you use ZeroDev to offer production-grade smart wallets for your customers.
 
-If you are not sure what AA is, [read this first](/introduction/why-account-abstraction).  Otherwise, Let's dive into ZeroDev.
+If you are not sure why smart wallets are good, [read this first](/introduction/why-account-abstraction).  Otherwise, Let's dive into ZeroDev.
+
+## Smart Wallet Factories
+
+To use a smart wallet, you first have to create one.  With ZeroDev, you can create smart wallets with all kinds of authentication methods, including private keys, RPC providers (e.g. Web3Auth/Magic), OAuth/JWT/Auth0, and even biometrics.
+
+No matter how your users log into your application, there's a way to create smart wallets for them.
 
 ## Wallet Kernel
 
@@ -22,9 +29,9 @@ At the core of ZeroDev is the wallet kernel -- an implementation of a ERC-4337-c
 
 On its own, the wallet kernel is already a complete wallet (or more precisely, an on-chain "account").  It supports all the most common functionalities that people typically associate with smart contract wallets, such as bundling transactions, verifying signatures, etc.
 
-What makes the wallet a *kernel*, however, is that it can be extended.  We have designed a *wallet plugin framework* where developers can write solidity code to build app-specific wallet features, without worrying about implementing the core wallet functionalties such as sending transactions, validating signatures, etc.
+What makes the wallet a *kernel*, however, is that it can be extended.  We have designed a *wallet plugin framework* where developers can write solidity code to build app-specific wallet features.  The best part?  We've already built the most commonly used plugins such as session keys and subscriptions, so you can just use them.
 
-By building on top of ZeroDev, you can vastly shorten the time it takes to ship an AA wallet, while ensuring that the core of the wallet is highly optimized, audited, and compatible with AA standards (e.g. ERC-4337).
+By building on top of ZeroDev, you can vastly shorten the time it takes to ship a customized AA wallet, while ensuring that the core of the wallet is highly optimized, audited, and compatible with AA standards (e.g. ERC-4337).
 
 ## Account Abstraction SDK
 
@@ -32,15 +39,11 @@ AA wallets expose a set of powerful interfaces, and the DApp (or the wallet UI) 
 
 To that end, ZeroDev provides an SDK with both an Ethers and a Wagmi API for interacting with AA wallets.
 
-The SDK also integrates with MPC solutions so it supports social logins out of the box, enabling your users to create AA wallets from the comfort of OAuth.
+## Gas Sponsoring Policy Engine
 
-## Infrastructure API
+The most common use case for smart wallets is sponsoring gas for users, but you rarely want to sponsor *all* transactions.  Rather, you probably have a specific set of criteria for sponsoring transactions, whether it's based on frequency, amount, the contract being interacted with, or something else entirely.
 
-Account abstraction, as currently implemented in ERC-4337, requires a set of infrastructure, notably including bundlers and paymasters.  ZeroDev works with infrastructure providers to provide access to these services, but you may need to configure the infrastructure to your needs.
-
-As an example, you may want to use paymasters to sponsor gas for minting NFTs in your app, but you may only want to spnosor up to 10 transactions per user.
-
-ZeroDev provides an infrastructure API and dashboard for AA-related infra such as paymasters.  Through our API, you can easily set up granular rules and policies that fit the needs of your project.
+To enable all these different criteria, we have built a powerful *policy engine* for sponsoring gas, which can be accessed both programmatically (through an API) and manually (through a dashboard).
 
 ## Meta Bundler Network
 
