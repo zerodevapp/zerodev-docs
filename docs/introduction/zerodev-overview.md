@@ -8,7 +8,7 @@ slug: /
 ZeroDev offers smart wallets as a service, powered by account abstraction (AA).  This is accomplished through five product pillars:
 
 - A set of **smart wallet factories** for creating smart wallets from any authentication methods, including private keys, RPC providers, OAuth/JWT, biometrics, etc.
-- A smart contract **wallet kernel** designed for quickly building AA wallets on top, along with a set of wallet plugins for enabling common smart wallet functionalities, such as session keys, subscriptions, etc.
+- A smart contract **wallet kernel** for building custom AA wallets on top, along with a set of wallet plugins for common smart wallet features such as session keys, subscriptions, etc.
 - Ethers and Wagmi **SDKs** for interacting with smart wallets.
 - A **gas sponsoring policy engine** for setting up fine-grained gas sponsoring policies, such as "only sponsor up to 0.01 ETH worth of gas for each user for interacting with contract X."
 - A **meta bundler network** that spreads AA transactions across multiple bundler providers to ensure high uptime.
