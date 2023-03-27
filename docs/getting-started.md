@@ -1,25 +1,10 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # Getting Started
 
-In this tutorial, you will learn how to use ZeroDev to build an account abstraction (AA) application.
-
-If you are confused at any point, you can find the full code [here](https://github.com/zerodevapp/zerodev-tutorial).
-
-## Set up the boilerplate
-
-Set up a new ZeroDev project using our React template:
-
-```
-npx create-react-app zerodev-tutorial --template zerodev
-cd zerodev-tutorial
-```
-
-Run the project with `npm start` and make sure you see the "Connect Wallet" button.  Go ahead and connect with one of your social accounts to create an AA wallet.
-
-Right now the boilerplate is using a default API key.  Let's create your own API key in the next step.
+In this tutorial, you will use ZeroDev to send a sponsored transaction.
 
 ## Create a project
 
@@ -33,7 +18,7 @@ Go to the [ZeroDev dashboard](https://dashboard.zerodev.app/) and create a proje
   <img src="/img/dashboard_project_home.png" width="50%" />
 </p>
 
-Copy the project ID.  Go to `src/index.tsx` in your code and update the `projectId` to your own project ID.  Make sure you can still login with your social account.
+Note that your project has an ID.  We will be using this ID in one of the later steps.
 
 ## Set up gas policies
 
@@ -47,25 +32,39 @@ Go to the "Gas Policies" section of you dashboard and enter the following into "
 
 Make sure to click "Save".
 
-## Send transactions with Wagmi
+## Install dependencies
 
-For this tutorial, we will build an NFT drop.  We have already deployed the NFT contract on Mumbai at `0x34bE7f35132E97915633BC1fc020364EA5134863`.  The contract has a `mint()` function that anyone can call to mint and receive an NFT.
+Create an empty working directory and initialize it with `npm`:
 
-The tutorial template uses RainbowKit, which is built on [Wagmi](https://wagmi.sh/), so we will be using Wagmi to interact with the contract.  Go to `App.tsx` and replace the content with the following:
+```bash
+mkdir zerodev-tutorial
+cd zerodev-tutorial
+npm init -y
+```
 
-```tsx
-import { useCallback, useEffect, useRef, useState } from "react";
-import './App.css';
-import { Contract } from 'ethers'
-import {
-  useAccount,
-  usePrepareContractWrite,
-  useContractWrite,
-  useContractRead,
-  useSigner,
-} from "wagmi";
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { ZeroDevSigner } from '@zerodevapp/sdk'
+Then install the ZeroDev SDK and Ethers:
+
+```bash
+npm i @zerodevapp/sdk ethers
+```
+
+## Send gasless transactions
+
+We will now implement a simple script that:
+
+1. Creates an AA wallet from a private key
+2. Mints an NFT from that wallet, without paying gas
+
+To make things easier, we already deployed an NFT contract on Polygon Mumbai that allows anyone to mint NFTs.
+
+Create a file `app.js` with the following content
+
+```javascript
+const { Contract, Wallet } = require('ethers')
+const { getZeroDevSigner } = require('@zerodevapp/sdk')
+
+const projectId = process.env.PROJECT_ID
+const wallet = new Wallet(process.env.PRIVATE_KEY)
 
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 const contractABI = [
@@ -73,106 +72,91 @@ const contractABI = [
   'function balanceOf(address owner) external view returns (uint256 balance)'
 ]
 
-function App() {
-  const { address, isConnected } = useAccount();
+const main = async () => {
+  const signer = await getZeroDevSigner({
+    projectId,
+    owner: wallet,
+  })
 
-  const { config } = usePrepareContractWrite({
-    address: contractAddress,
-    abi: contractABI,
-    functionName: "mint",
-    args: [address],
-    enabled: true
-  });
-  const { write: mint, isLoading } = useContractWrite(config);
+  const address = await signer.getAddress()
+  console.log('My address:', address)
 
-  const { data: balance = 0, refetch } = useContractRead({
-    address: contractAddress,
-    abi: contractABI,
-    functionName: "balanceOf",
-    args: [address],
-  });
+  const nftContract = new Contract(contractAddress, contractABI, signer)
 
-  const interval = useRef<any>()
-
-  const handleClick = useCallback(() => {
-    if (mint) {
-      mint()
-      interval.current = setInterval(() => {
-        refetch()
-      }, 1000)
-    }
-  }, [mint, refetch])
-
-  useEffect(() => {
-    if (interval.current) {
-      clearInterval(interval.current)
-    }
-  }, [balance, interval]);
-
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '1rem' }}>
-      <ConnectButton />
-      {isConnected && (
-        <>
-          <strong style={{ fontSize: '1.5rem' }}>NFT Count</strong>
-          <div style={{ fontSize: '1.5rem' }}>{`${balance ?? 0}`}</div>
-          <button
-            onClick={handleClick}
-            disabled={isLoading}
-          >
-            {isLoading ? 'Loading...' : 'Mint NFT'}
-          </button>
-        </>
-      )}
-    </div>
-  );
+  const receipt = await nftContract.mint(address)
+  await receipt.wait()
+  console.log(`NFT balance: ${await nftContract.balanceOf(address)}`)
 }
-export default App;
+
+main().then(() => process.exit(0))
 ```
 
-Now try minting the NFT.  If your NFT balance went up -- congrats!  You've just accomplished the impossible: sending transactions without paying gas.  This is all thanks to the gas sponsoring policies you set up earlier.
+Feel free to read the script and see what it's doing.  It should be fairly straightforward to understand.
 
-## Bundle Transactions with ZeroDev SDK
+The script requires that we set a project ID and a private key.  We can generate a random private key with this command:
 
-Minting one NFT at a time is cool, but what if we wanna mint two at a time?  With a traditional wallet, you'd have to send two transactions.  With AA, we can bundle multiple transactions and send them as one -- saving the user time and gas cost.
-
-Add the following code to `App.tsx`:
-
-```tsx
-// add this to your component code
-  const { data: signer } = useSigner<ZeroDevSigner>()
-  const [isBatchMintLoading, setIsBatchMintLoading] = useState(false)
-  const batchMint = async () => {
-    setIsBatchMintLoading(true)
-    const nftContract = new Contract(contractAddress, contractABI, signer!)
-    await signer!.execBatch([
-      {
-        to: contractAddress,
-        data: nftContract.interface.encodeFunctionData("mint", [address]),
-      },
-      {
-        to: contractAddress,
-        data: nftContract.interface.encodeFunctionData("mint", [address]),
-      },
-    ])
-    interval.current = setInterval(() => {
-      refetch()
-    }, 1000)
-    setIsBatchMintLoading(false)
-  }
-
-// add a button to your JSX
-          <button
-            onClick={batchMint}
-            disabled={isBatchMintLoading}
-          >
-            {isBatchMintLoading ? 'Loading...' : 'Double Mint NFT'}
-          </button>
+```bash
+node -e "console.log(require('ethers').Wallet.createRandom().privateKey)"
 ```
 
-Now you should have a "Double Mint NFT" button.  Click that and watch your NFT balance increase by two.  Boom!  We just sent two transactions as one with ZeroDev.
+Then export the variables:
 
-Note that this example is contrived to demonstrate how to use the SDK directly.  In reality, if you are building a Wagmi app, you would use our [Wagmi API](http://localhost:3000/use-wallets/improve-transaction-experience/batch-transactions#wagmi) to implement transaction bundling.
+```
+export PROJECT_ID="your project ID"
+export PRIVATE_KEY="your private key"
+```
+
+Make sure to replace the values with your actual project ID and the private key you just generated.
+
+Now run this script:
+
+```bash
+node app.js
+```
+
+If everything goes well, you should see output like:
+
+```
+My address:  0xdc25579151367F44a99E9e92D1E4237200A32Cba
+NFT balance: 1
+```
+
+Boom!  You just sent a your first gasless AA transaction.  You can go to [the block explorer](https://mumbai.polygonscan.com/) and search for your address, and you should see a transaction under the `ERC-721 Token Txns` section, even though your wallet has no gas.  Magical!
+
+<p align="center">
+  <img src="/img/tutorial_account.png" width="70%" />
+</p>
+
+Note how our account is identified as a "contract" by the block explorer.  This is because in account abstraction, all accounts are smart contract accounts.
+
+Feel free to run the script a few more times to mint more NFTs.  It's free after all :)
+
+## Bundle transactions
+
+Minting one NFT at a time is cool, but what if we wanna mint two at a time?  With a traditional wallet, you'd have to send two transactions.  With AA, we can bundle multiple transactions and send them as one -- saving the user time and gas.
+
+To mint two NFTs at a time, simply replace this line:
+
+```javascript
+  const receipt = await nftContract.mint(address)
+```
+
+With this line:
+
+```javascript
+  const receipt = await signer.execBatch([
+    {
+      to: nftContract.address,
+      data: nftContract.interface.encodeFunctionData("mint", [address]),
+    },
+    {
+      to: nftContract.address,
+      data: nftContract.interface.encodeFunctionData("mint", [address]),
+    },
+  ])
+```
+
+Now, run `node app.js` again.  You should see that your NFT balance is now increasing two at a time!
 
 ## Next Steps
 
