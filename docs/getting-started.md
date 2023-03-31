@@ -32,8 +32,6 @@ Go to the "Gas Policies" section of you dashboard and create a new "Project Poli
 
 Here we are saying that we will sponsor up to 100 transactions per minute.
 
-Make sure to click "Save".
-
 ## Install dependencies
 
 Create an empty working directory and initialize it with `npm`:
