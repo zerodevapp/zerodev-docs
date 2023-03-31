@@ -24,11 +24,13 @@ Note that your project has an ID.  We will be using this ID in one of the later 
 
 While we are at the dashboard, let's set up "Gas Policies" -- rules that determine which transactions we will sponsor gas for.
 
-Go to the "Gas Policies" section of you dashboard and enter the following into "Global Policies":
+Go to the "Gas Policies" section of you dashboard and create a new "Project Policy":
 
 <p align="center">
-  <img src="/img/global_policies.png" width="80%" />
+  <img src="/img/project_policy.png" width="80%" />
 </p>
+
+Here we are saying that we will sponsor up to 100 transactions per minute.
 
 Make sure to click "Save".
 
