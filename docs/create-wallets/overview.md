@@ -26,3 +26,27 @@ ZeroDev wallets can be used through two interfaces:
 - [Wagmi](https://wagmi.sh/): you can create ZeroDev wallets through Wagmi connectors, and access the wallet through Wagmi hooks like `useSigner` as well as our custom AA hooks like `useContractBatchWrite`.
 
 Each of the following sections will document both the Ethers and the Wagmi API.
+
+## Options
+
+Both Ethers and Wagmi APIs support a set of options when creating AA wallets.  For brevity, we will only be showing the required options in the following pages, but you can pass additional options like:
+
+```typescript
+const signer = await getZeroDevSigner({
+  // required...
+  projectId: "<project id>",
+  owner: getPrivateKeyOwner("<private key>"),
+  // options...
+  index: 1,
+})
+```
+
+ZeroDev supports the follwing options:
+
+- `index`: with the same owner, you can create different accounts, similar to how in MetaMask you can create multiple accounts from the same seed phrase.  Each index maps to a unique account, given the same owner.
+
+- `rpcProviderUrl`: if you want to use your own RPC provider (recommended for production usage), such as Infura or Alchemy, you can specify its URL here.
+
+- `bundlerUrl`: if you want to use your own bundler, you can specify its URL here.
+
+- `hooks`: a set of callbacks invoked at different points of the transaction lifecycle.  This is useful if you want to, say, display some custom UI when a transaction is being requested.
