@@ -85,3 +85,13 @@ function WagmiGoogleExample() {
   )
 }
 ```
+
+
+## Auto-Connect
+Activating the `autoConnect` option for `wagmi` requires activating the `shimDisconnect` option on the connector:
+```typescript
+const connector = new GoogleSocialWalletConnector({options: {
+  projectId: defaultProjectId,
+  shimDisconnect: true
+}})
+```
