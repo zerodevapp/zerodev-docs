@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Integrate with RainbowKit
+# RainbowKit
 
 You can easily add social logins to [RainbowKit](https://www.rainbowkit.com/) with our helper wallets:
 

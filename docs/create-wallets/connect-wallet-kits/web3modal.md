@@ -1,9 +1,8 @@
 ---
 sidebar_position: 4
-sidebar_label: Integrate with Web3Modal
 ---
 
-# Integrate with Web3Modal
+# Web3Modal
 
 Configure the Wagmi client with ZeroDev's social connectors, and it will seamlessly work with [Web3Modal](https://web3modal.com/).
 

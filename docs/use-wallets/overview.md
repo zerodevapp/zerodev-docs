@@ -15,7 +15,7 @@ For your convenience, we have divided our AA features into the following categor
 - Improving the transaction experience
   - [Batch multiple transactions into one](/use-wallets/improve-transaction-experience/batch-transactions)
   - [Delegate call to a smart contract](/use-wallets/improve-transaction-experience/delegate-call)
-  - [Send transactions for users (in a way that can't be abused)](/use-wallets/improve-transaction-experience/send-transactions-for-users)
+  - [Send transactions automatically](/use-wallets/improve-transaction-experience/send-transactions-for-users)
   - [Set pre-conditions for transactions](/use-wallets/improve-transaction-experience/set-transaction-guards)
   - [Easily integrate with DeFi protocols](/use-wallets/improve-transaction-experience/integrate-defi)
 
