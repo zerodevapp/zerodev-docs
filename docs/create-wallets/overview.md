@@ -10,34 +10,36 @@ Broadly speaking, we divide our integrations into the following types.  Click on
 
 ### "Connect Wallet" kits
 
-- RainbowKit
-- ConnectKit
-- Web3Modal
-- Custom "Connect Wallet" UI
+- [RainbowKit](/create-wallets/connect-wallet-kits/rainbowkit)
+- [ConnectKit](/create-wallets/connect-wallet-kits/connectkit)
+- [Web3Modal](/create-wallets/connect-wallet-kits/web3modal)
+- [Custom "Connect Wallet" UI](/create-wallets/connect-wallet-kits/custom-connect-wallet)
 
 ### Embedded wallet providers
 
-- Magic
-- Web3Auth
-- Dynamic (beta)
-- Privy (beta)
-- Portal (beta)
+- [Magic](/create-wallets/embedded-wallet-providers/magic)
+- [Web3Auth](/create-wallets/embedded-wallet-providers/web3auth)
+- [Portal (beta)](/create-wallets/embedded-wallet-providers/portal)
+- [Privy (beta)](/create-wallets/embedded-wallet-providers/privy)
+- [Dynamic (beta)](/create-wallets/embedded-wallet-providers/dynamic)
 
 ### Key infrastructure
 
-- Custom private keys or signers
-- Fireblocks (beta)
-- Turnkey (beta)
+- [Custom private keys or key providers](/create-wallets/key-providers/private-keys)
+- [Turnkey (beta)](/create-wallets/key-providers/turnkey)
+- [Fireblocks (beta)](/create-wallets/key-providers/fireblocks)
 
 ### Web2 auth
 
-- OAuth
-- Email
-- Auth0
-- JWT
-- Custom auth
+- [OAuth / Email](/)
+- [Auth0](/)
+- [JWT](/)
 
-## API
+### Wallet API
+
+- If none of the solutions above fits your needs, you can [create ZeroDev AA wallets through our API](/create-wallets/api).
+
+## Use ZeroDev with Ethers and Wagmi
 
 Unless otherwise noted, all ZeroDev integrations share the same API.
 
@@ -53,3 +55,5 @@ await nftContract.mint()
 ```
 
 Of course, the beauty of ZeroDev is that it can do *more* than a regular wallet.  Check out the ["Use AA Wallets"](/use-wallets/overview) document for all smart wallet features.
+
+When using ZeroDev with Wagmi-based solutions such as RainbowKit, you can also use ZeroDev with a Wagmi API.  See the integration docs with those specific solutions for details.

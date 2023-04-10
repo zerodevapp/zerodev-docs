@@ -18,7 +18,7 @@ If exporting private keys is so insecure, you might wonder why it isn't more com
 
 With a EOA wallet, transferring assets is extremely painful: you have to send two transactions ("approve" and "transfer") *per asset type*.   So if your embedded wallet has many types of assets, the user may have to send tens of transactions to fully transfer all assets.
 
-Since AA wallets are smart contract wallets, we can perform a [batch transaction](/use-wallets/improve-transaction-experience/batch-transactions) to transfer ALL assets **in one transaction**.  This dramatically improves the UX for transferring assets.
+Since AA wallets are smart contract wallets, we can perform a [batch transaction](/use-wallets/batch-transactions) to transfer ALL assets **in one transaction**.  This dramatically improves the UX for transferring assets.
 
 ## API
 

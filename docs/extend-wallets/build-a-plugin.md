@@ -1,11 +1,11 @@
 ---
-sidebar_position: 5
+sidebar_position: 1
 ---
 
-# Build your own plugin
+# Build a Plugin
 
-:::caution
-Plugins can result in loss of funds if incorrectly implemented.  If you plan on developing a custom plugin, we highly recommend that you sign up for ZeroDev's enterprise plan.
+:::info
+Plugins can result in loss of funds if incorrectly implemented.  If you plan on developing a plugin, we highly recommend that you [join our Discord](https://discord.gg/KS9MRaTSjx) so our team can help review your design.
 :::
 
 ZeroDev plugins are smart contracts that modify *how transactions are validated*.
@@ -82,22 +82,13 @@ const pluginSigner = new SomePlugin({
 For example, for the session key plugin, it looks roughly like this:
 
 ```typescript
-import { PolicySessionKeyPlugin } from "@zerodevapp/plugins"
+import { SessionKeyPlugin } from "@zerodevapp/plugins"
 
-const pluginSigner = new PolicySessionKeyPlugin({
+const sessionKeySigner = new SessionKeyPlugin({
   // signer is a ZeroDevSigner
   from: signer,
   validUntil: Math.round(now.getTime() / 1000) + 3600 // an hour from now
-  policy: [
-    {
-      to1,
-      selector1,
-    },
-    {
-      to2,
-      selector2,
-    },
-  ],
+  whitelist: [ /* ... */ ],
 })
 ```
 
@@ -112,7 +103,7 @@ await contract.someFunction()
 
 As aforementioned, writing a plugin comes down to writing a smart contract that implements the `validateUserOp` function.  To be compatible with 4337 and our plugin framework, the function needs to perform a number of scaffolding actions.
 
-To make things simpler for you, we have implemented a [base plugin](https://github.com/zerodevapp/account-abstraction/blob/develop/contracts/zerodev/plugin/ZeroDevBasePlugin.sol) that you can inherit from.  Once inherited, you can simply implement a `_validatePluginData` function with the following signature:
+To make things simpler for you, we have implemented a [base plugin](https://github.com/zerodevapp/zerodev-wallet-kernel/blob/main/src/plugin/ZeroDevBasePlugin.sol) that you can inherit from.  Once inherited, you can simply implement a `_validatePluginData` function with the following signature:
 
 ```solidity
 function _validatePluginData(
@@ -120,9 +111,9 @@ function _validatePluginData(
     bytes32 userOpHash,
     bytes calldata data,
     bytes calldata signature
-) internal virtual returns(bool);
+) internal virtual returns (bool);
 ```
 
 This function should process the plugin-specific `data` and `signature`, and return either `true` or `false` depending on whether the transaction is valid.
 
-See the [session key plugin](https://github.com/zerodevapp/account-abstraction/blob/develop/contracts/zerodev/plugin/ZeroDevSessionKeyPlugin.sol) for a complete example.
+See [our plugins](https://github.com/zerodevapp/zerodev-wallet-kernel/tree/feat/merkle_session/src/plugin) for examples.
