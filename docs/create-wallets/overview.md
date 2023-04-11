@@ -25,9 +25,10 @@ Broadly speaking, we divide our integrations into the following types.  Click on
 
 ### Key infrastructure
 
-- [Custom private keys or key providers](/create-wallets/key-providers/private-keys)
+- [Private keys](/create-wallets/key-providers/private-keys)
 - [Turnkey](/create-wallets/key-providers/turnkey)
 - [Fireblocks](/create-wallets/key-providers/fireblocks)
+- [Custom key providers](/create-wallets/key-providers/custom-key-providers)
 
 ### Web2 auth
 
