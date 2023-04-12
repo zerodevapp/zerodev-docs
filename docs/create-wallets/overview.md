@@ -32,9 +32,9 @@ Broadly speaking, we divide our integrations into the following types.  Click on
 
 ### Web2 auth
 
-- [OAuth / Email](/)
-- [Auth0](/)
-- [JWT](/)
+- [OAuth / Email](/create-wallets/web2-auth/oauth-email)
+- [JWT](/create-wallets/web2-auth/jwt)
+- [Auth0](/create-wallets/web2-auth/auth0)
 
 ### Wallet API
 

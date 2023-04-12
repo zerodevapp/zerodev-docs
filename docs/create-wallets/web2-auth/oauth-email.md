@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # OAuth / Email
 
-To use ZeroDev with OAuth/Email, we recommend checking out the following integrations and see which one fits your needs:
+To use ZeroDev with OAuth/Email, we recommend using one of the following integrations:
 
 - [Custom "Connect Wallet" UI](/create-wallets/connect-wallet-kits/custom-connect-wallet)
 - [RainbowKit](/create-wallets/connect-wallet-kits/rainbowkit)

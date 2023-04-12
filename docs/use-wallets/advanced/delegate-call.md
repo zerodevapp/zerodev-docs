@@ -38,9 +38,13 @@ Therefore, one way to think about `delegatecall` is that it's batching on steroi
 
 ```typescript
 // signer is an instance of ZeroDevSigner
-const delegateSigner = signer.delegateCopy()
-
-// every transaction made with delegateSigner is executed as a delegate call
-const contract = new ethers.Contract(address, abi, delegateSigner)
-await contract.someFunction()
+const tx = await signer.execDelegateCall({
+  to: contract.address,
+  data: contract.interface.encodeFunctionData('functionName', [arg1, arg2]),
+})
+const receipt = await tx.wait()
 ```
+
+- `signer` is an instance of `ZeroDevSigner`
+- `contract` is an instance of Ethers `Contract`.  This is the contract you are delegating to.
+- `functionName` and `arg1`/`arg2` should be replaced with the actual function name and arguments.
