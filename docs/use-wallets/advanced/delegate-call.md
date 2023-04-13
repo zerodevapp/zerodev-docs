@@ -25,9 +25,11 @@ And then you'd `delegatecall` this contract from your wallet:
 
 ```typescript
 const signer = await getZeroDevSigner(...)
-const delegateSigner = signer.delegateCopy()
-const sellAndStakeContract = new ethers.Contract(address, abi, delegateSigner)
-await sellAndStakeContract.execute(usdcAmount)
+const sellAndStakeContract = new ethers.Contract(address, abi, signer)
+await signer.execDelegateCall({
+  to: sellAndStakeContract.address,
+  data: sellAndStakeContract.interface.encodeFunctionData('execute', [usdcAmount]),
+})
 ```
 
 Therefore, one way to think about `delegatecall` is that it's batching on steroids -- you can use the result from each step of the batch in later steps.  Unlike batching, however, `delegatecall` requires you to write and deploy the smart contract you are delegating to, so it's mostly suitable for advanced multi-step transactions, while batching would suffice for simple multi-step transactions.
