@@ -9,7 +9,7 @@ This document describes the process for updating from a ZeroDev wallet implement
 
 Updating your wallet implementation is a very dangerous action.  If your new wallet implementation is incorrectly implemented, your wallet may become "bricked" and stop functioning.
 
-If in doubt, please [join our Discord](https://discord.gg/KS9MRaTSjx) to ask questions.
+If in doubt, please [join our Discord](https://discord.gg/KS9MRaTSjx) and ask questions.
 :::
 
 ZeroDev wallets are upgradable proxies (specifically EIP-1967 "transparent proxies"), and as such the wallet owner can switch to another wallet implementation, while keeping the same wallet address.

@@ -23,4 +23,4 @@ For your convenience, we have divided our AA features into the following categor
 - Manage Wallets
   - [Transfer all assets to another wallet](/use-wallets/transfer-all-assets)
   - [Update wallet implementation](/use-wallets/advanced/update-wallet-implementation)
-  - [Update wallet owner](/use-wallets/advanced/replace-wallet-owner)
+  - [Update wallet owner](/use-wallets/advanced/update-wallet-owner)
