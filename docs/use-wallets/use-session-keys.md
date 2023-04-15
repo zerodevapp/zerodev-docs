@@ -19,7 +19,7 @@ Critically, with some careful smart contract engineering, it's even possible to 
 Create a session key from a ZeroDev signer:
 
 ```typescript
-import { createSessionKey } from '@zerodevapp/plugins'
+import { createSessionKey } from '@zerodevapp/sdk'
 
 const sessionKey = await createSessionKey(zdSigner, whitelist, validUntil)
 ```
@@ -59,7 +59,7 @@ In the example above, `contract1` and `contract2` are [Ethers Contract](https://
 Typically, you construct a session key to be used by a client.  Here's how you "reconstruct" a ZeroDev wallet using the session key:
 
 ```typescript
-import { createSessionKeySigner } from "@zerodevapp/plugins"
+import { createSessionKeySigner } from "@zerodevapp/sdk"
 
 const sessionKeySigner = await createSessionKeySigner(sessionKey)
 ```
