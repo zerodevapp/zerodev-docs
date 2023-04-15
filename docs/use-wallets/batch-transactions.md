@@ -54,8 +54,7 @@ function Component() {
   const MintButton = () => {
     const nftAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
     const { config } = usePrepareContractBatchWrite({
-        args: [
-          [
+        calls: [
             {
               address: nftAddress,
               abi: contractAbi,
@@ -67,9 +66,8 @@ function Component() {
               functionName: "mint",
               args: [address],
             }
-          ],
-        ]
-      })
+        ],
+    })
 
     const { writeAsync: batchMint, isLoading, data } = useContractBatchWrite(config) 
 
