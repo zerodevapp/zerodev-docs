@@ -36,7 +36,6 @@ import {
   AccountParams,
   usePrepareContractBatchWrite, 
   useContractBatchWrite, 
-  useBatchSendTransaction, 
   useWaitForAATransaction
 } from '@zerodevapp/wagmi'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
@@ -158,7 +157,6 @@ const ReactLiveScope = {
   web3ModalConfig,
   usePrepareContractBatchWrite, 
   useContractBatchWrite, 
-  useBatchSendTransaction, 
   useWaitForAATransaction
 };
 
