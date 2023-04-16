@@ -26,12 +26,12 @@ const connectors = connectorsForWallets([
   {
     groupName: 'Social',
     wallets: [
-    googleWallet({options: { projectId: defaultProjectId }}),
-    facebookWallet({options: { projectId: defaultProjectId }}),
-    githubWallet({options: { projectId: defaultProjectId }}),
-    discordWallet({options: { projectId: defaultProjectId }}),
-    twitchWallet({options: { projectId: defaultProjectId }}),
-    twitterWallet({options: { projectId: defaultProjectId }})
+    googleWallet({chains, options: { projectId: defaultProjectId }}),
+    facebookWallet({chains, options: { projectId: defaultProjectId }}),
+    githubWallet({chains, options: { projectId: defaultProjectId }}),
+    discordWallet({chains, options: { projectId: defaultProjectId }}),
+    twitchWallet({chains, options: { projectId: defaultProjectId }}),
+    twitterWallet({chains, options: { projectId: defaultProjectId }})
     ],
   },
 ]);
