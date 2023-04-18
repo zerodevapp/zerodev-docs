@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Create Wallets with API
+# Create Wallets with API (Beta)
 
 The most flexible way to create AA wallets is through our API.  In this case, the AA wallets are essentially custodial.  Behind the scenes, we use [Turnkey](https://www.turnkey.io/) to safeguard the keys.
 
@@ -15,16 +15,6 @@ What is a session key?  A session key is like a private key, except that when tr
 
 For example, if you are building an NFT game, you might create a session key that can only send transactions related to the game.  You can then send this session key to the client (e.g. browser), where the user can use the key to send game-related transactions, but nothing else.  This makes it safe to use the key in an unsecure environment such as the browser, since even if the key is leaked, the hacker cannot do much with it (such as draining the user's funds).
 
-## `/create-wallet`
+## API
 
-### Request
-
-### Response
-
-## `/create-session`
-
-### Request
-
-### Response
-
-## Using session key
+The wallet API is currently in beta.  Please contact hello@zerodev.app or [join our Discord](https://discord.gg/KS9MRaTSjx) to get access to the beta.
