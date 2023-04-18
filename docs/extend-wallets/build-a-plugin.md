@@ -1,0 +1,119 @@
+---
+sidebar_position: 1
+---
+
+# Build a Plugin
+
+:::info
+Plugins can result in loss of funds if incorrectly implemented.  If you plan on developing a plugin, we highly recommend that you [join our Discord](https://discord.gg/KS9MRaTSjx) so our team can help review your design.
+:::
+
+ZeroDev plugins are smart contracts that modify *how transactions are validated*.
+
+By default, a ZeroDev wallet simulates the behavior of a [EOA](https://ethereum.org/en/developers/docs/accounts/): there's a single key that's the owner of the wallet, and every valid transaction (aka "UserOperation" in ERC-4337) needs to be signed by the owner.
+
+However, some of the most powerful Web3 experiences are only possible if we change the validation logic.  Here are a few examples:
+
+- Session keys.  A Web3 game may need to send many transactions during a play session, and it can be annoying for the player to sign every transaction.  Instead, the player can create a "session key" -- a temporary key that can only perform certain in-game transactions -- and hand the key to the game.  The game can then send transactions for the user without bothering them with signing.
+
+- Subscriptions.  A true subscription experience, where the subscriber can automatically pay every once in a while, is not possible with EOA wallets, since the owner has to sign every transaction.  Rather, it would be ideal if the subscriber can authorize the seller to send a transaction for them to pay for the product every subscription period.
+
+As you can see, the key (pun intended) to enabling a seamless Web3 experience lies in the ability to program arbitrary rules for transaction validation, which is exactly what AA is about.
+
+# ZeroDev Plugin Framework
+
+## Custom validation logic
+
+We can't talk about building custom validation logic without first explaining how validation works in ERC-4337.
+
+At its core, accounts in ERC-4337 validate transactions with a function called [`validateUserOp`](https://github.com/eth-infinitism/account-abstraction/blob/7368f3d1df9227946b39ca041adaf9944e398d5d/contracts/core/BaseAccount.sol#L40-L41):
+
+```solidity
+function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash, uint256 missingAccountFunds)
+    external override virtual returns (uint256 validationData) {
+  // validation logic
+}
+```
+
+But since smart contract code is immutable, how do we go about implementing custom validation logic?
+
+ZeroDev achieves this through a *plugin framework*.  At a high level, you can imagine that our `validateUserOp` looks like this (in pseudo-solidity):
+
+```solidity
+function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash, uint256 missingAccountFunds)
+    external override virtual returns (uint256 validationData) {
+  if (isPluginRegistered()) {
+    plugin.validateUserOp(userOp, userOpHash, missingAccountFunds);
+  } else {
+    // proceed as usual
+  }
+}
+```
+
+That is, ZeroDev accounts are programmed such that it first checks if there's an active plugin, and if so, it *delegates* the validation logic to the plugin.  Otherwise it proceeds normally.  Therefore, building a ZeroDev plugin comes down to building a contract that implements the `validateUserOp` function.
+
+But how do we determine if a plugin is enabled?  Since plugins modify how transactions are validated, it's important that we only accept plugins enabled by the owner.
+
+## Using a plugin
+
+Naively, we could have an on-chain registry that records the plugins enabled by the owner.  This would however mean that a user needs to send a transaction to enable a plugin.  Can we do better?
+
+In ZeroDev, plugins are enabled off-chain by signing a message.  Then, every transaction sent through the plugin will attach the message.  The message contains a few critical pieces of information:
+
+- Which plugin is being enabled
+- How long the plugin is enbled for
+- How the plugin should be "set up" (more on this later)
+
+The signing is done through the ZeroDev SDK with the following API:
+
+```typescript
+import { SomePlugin } from "@zerodevapp/plugins"
+
+// pluginSigner is a signer that sends transactions that
+// are validated by the custom logic defined in the plugin
+const pluginSigner = new SomePlugin({
+  // signer is a ZeroDevSigner
+  from: signer,
+  validUntil: Math.round(now.getTime() / 1000) + 3600 // an hour from now
+  ... // custom data for this specific plugin
+})
+```
+
+For example, for the session key plugin, it looks roughly like this:
+
+```typescript
+import { SessionKeyPlugin } from "@zerodevapp/plugins"
+
+const sessionKeySigner = new SessionKeyPlugin({
+  // signer is a ZeroDevSigner
+  from: signer,
+  validUntil: Math.round(now.getTime() / 1000) + 3600 // an hour from now
+  whitelist: [ /* ... */ ],
+})
+```
+
+Once a plugin has been signed, we can use it the same way we'd use a `ZeroDevSigner` (which is itself a [Ethers signer](https://docs.ethers.org/v5/api/signer/)).  The difference is that the signature will be generated by the plugin, and validated through the plugin's own logic:
+
+```typescript
+const contract = new Contract(address, abi, pluginSigner)
+await contract.someFunction()
+```
+
+# Writing a Plugin
+
+As aforementioned, writing a plugin comes down to writing a smart contract that implements the `validateUserOp` function.  To be compatible with 4337 and our plugin framework, the function needs to perform a number of scaffolding actions.
+
+To make things simpler for you, we have implemented a [base plugin](https://github.com/zerodevapp/zerodev-wallet-kernel/blob/main/src/plugin/ZeroDevBasePlugin.sol) that you can inherit from.  Once inherited, you can simply implement a `_validatePluginData` function with the following signature:
+
+```solidity
+function _validatePluginData(
+    UserOperation calldata userOp,
+    bytes32 userOpHash,
+    bytes calldata data,
+    bytes calldata signature
+) internal virtual returns (bool);
+```
+
+This function should process the plugin-specific `data` and `signature`, and return either `true` or `false` depending on whether the transaction is valid.
+
+See [our plugins](https://github.com/zerodevapp/zerodev-wallet-kernel/tree/feat/merkle_session/src/plugin) for examples.

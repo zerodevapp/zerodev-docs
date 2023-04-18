@@ -4,6 +4,10 @@ sidebar_position: 7
 
 # Common Issues
 
+## Whitelist domain
+
+If you are deploying our social login integrations into production and running into `Error: could not validate redirect, please whitelist your domain: `, make sure to whitelist your domain on [our dashboard](https://dashboard.zerodev.app/).
+
 ## Polyfill issues
 
 If you are running errors like `Uncaught Reference Error: process is not defined`, it's likely that you are running into polyfill issues.  [Please check here](https://web3auth.io/docs/troubleshooting/webpack-issues) for how to fix it.
@@ -34,3 +38,15 @@ module.exports = {
 ```
 
 Here's an [example project](https://github.com/zerodevapp/zerodev-nextjs-example) of ZeroDev + NextJS.
+
+## Wagmi - AutoConnect
+
+Activating the `autoConnect` option for Wagmi requires activating the `shimDisconnect` option on the connector:
+
+```typescript
+const connector = new GoogleSocialWalletConnector({options: {
+  projectId: defaultProjectId,
+  shimDisconnect: true
+}})
+```
+

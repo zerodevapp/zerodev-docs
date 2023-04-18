@@ -127,6 +127,10 @@ Boom!  You just sent a your first gasless AA transaction.  You can go to [the bl
   <img src="/img/tutorial_account.png" width="70%" />
 </p>
 
+:::info
+You might wonder why you don't see any transactions in the block explorer.  This is because a ERC-4337 transaction is not a regular transaction.  To see your transactions, use a ERC-4337 explorer such as [JiffyScan](https://app.jiffyscan.xyz/).
+:::
+
 Note how our account is identified as a "contract" by the block explorer.  This is because in account abstraction, all accounts are smart contract accounts.
 
 Feel free to run the script a few more times to mint more NFTs.  It's free after all :)
