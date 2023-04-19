@@ -26,18 +26,18 @@ const connectors = connectorsForWallets([
   {
     groupName: 'Social',
     wallets: [
-    googleWallet({options: { projectId: defaultProjectId }}),
-    facebookWallet({options: { projectId: defaultProjectId }}),
-    githubWallet({options: { projectId: defaultProjectId }}),
-    discordWallet({options: { projectId: defaultProjectId }}),
-    twitchWallet({options: { projectId: defaultProjectId }}),
-    twitterWallet({options: { projectId: defaultProjectId }})
+    googleWallet({chains, options: { projectId: defaultProjectId }}),
+    facebookWallet({chains, options: { projectId: defaultProjectId, shimDisconnect: true }}),
+    githubWallet({chains, options: { projectId: defaultProjectId, shimDisconnect: true }}),
+    discordWallet({chains, options: { projectId: defaultProjectId }}),
+    twitchWallet({chains, options: { projectId: defaultProjectId }}),
+    twitterWallet({chains, options: { projectId: defaultProjectId }})
     ],
   },
 ]);
 
 const client = createClient({
-  autoConnect: false,
+  autoConnect: true,
   connectors,
   provider,
   webSocketProvider,

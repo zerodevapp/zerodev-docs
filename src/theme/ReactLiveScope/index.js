@@ -53,7 +53,7 @@ import {
 } from '@zerodevapp/wagmi/connectkit'
 import { web3ModalConfig } from '@zerodevapp/wagmi/web3modal'
 import { 
-  SocialWallet, 
+  // SocialWallet, 
   GoogleSocialWallet, 
   FacebookSocialWallet,
   GithubSocialWallet,
@@ -113,7 +113,7 @@ const ReactLiveScope = {
   useEffect,
   useMemo,
   useRef,
-  SocialWallet, 
+  // SocialWallet, 
   GoogleSocialWallet, 
   FacebookSocialWallet,
   GithubSocialWallet,
