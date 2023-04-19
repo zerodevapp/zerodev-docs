@@ -27,7 +27,7 @@
     "@web3modal/react": "^2.1.1",
     "@zerodevapp/web3auth": "^1.0.0-alpha.0",
     "@zerodevapp/wagmi": "^2.0.0-alpha.0",
-    "@zerodevapp/sdk": "^2.2.17",
+    "@zerodevapp/sdk": "2.2.17",
     "assert": "^2.0.0",
     "clsx": "^1.2.1",
     "connectkit": "^1.2.0",
