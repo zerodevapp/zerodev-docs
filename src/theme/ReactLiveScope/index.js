@@ -25,7 +25,7 @@ import contractAbi from "../../../static/contracts/polygon-mumbai/0x34bE7f35132E
 import { ethers } from "ethers";
 import { 
   ZeroDevConnector, 
-  SocialWalletConnector,
+  // SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
   GithubSocialWalletConnector,
@@ -52,15 +52,6 @@ import {
   supportedSocialConnectors
 } from '@zerodevapp/wagmi/connectkit'
 import { web3ModalConfig } from '@zerodevapp/wagmi/web3modal'
-import { 
-  // SocialWallet, 
-  GoogleSocialWallet, 
-  FacebookSocialWallet,
-  GithubSocialWallet,
-  DiscordSocialWallet,
-  TwitchSocialWallet,
-  TwitterSocialWallet
-} from '@zerodevapp/social-wallet';
 import {
   RainbowKitProvider,
   ConnectButton as RainbowKitConnectButton,
@@ -113,15 +104,7 @@ const ReactLiveScope = {
   useEffect,
   useMemo,
   useRef,
-  // SocialWallet, 
-  GoogleSocialWallet, 
-  FacebookSocialWallet,
-  GithubSocialWallet,
-  DiscordSocialWallet,
-  TwitchSocialWallet,
-  TwitterSocialWallet,
   ZeroDevConnector, 
-  SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
   GithubSocialWalletConnector,
