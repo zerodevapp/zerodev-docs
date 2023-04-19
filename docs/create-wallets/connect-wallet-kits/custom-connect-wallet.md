@@ -47,6 +47,9 @@ function WagmiGoogleExample() {
     provider,
     webSocketProvider,
   })
+  const googleConnector = new GoogleSocialWalletConnector({chains, options: {
+    projectId: defaultProjectId,
+  }})
 
   const ConnectButton = () => {
     const [loading, setLoading] = useState(false)
@@ -58,9 +61,7 @@ function WagmiGoogleExample() {
     const connectWallet = async () => {
       setLoading(true)
       await connect({
-        connector: new GoogleSocialWalletConnector({options: {
-          projectId: defaultProjectId,
-        }})
+        connector: googleConnector
       })
       setLoading(false)
     }
