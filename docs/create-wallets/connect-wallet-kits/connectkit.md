@@ -34,7 +34,7 @@ import { getDefaultClient } from "connectkit"
 ```jsx live
 function ConnectKitExample() {
   const chains = [polygonMumbai]
-  const options = { chains, options: { projectId: defaultProjectId } } 
+  const options = { options: { projectId: defaultProjectId } } 
 
   const client = createClient(getDefaultClient({
     chains,

@@ -25,7 +25,7 @@ import contractAbi from "../../../static/contracts/polygon-mumbai/0x34bE7f35132E
 import { ethers } from "ethers";
 import { 
   ZeroDevConnector, 
-  // SocialWalletConnector,
+  SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
   GithubSocialWalletConnector,
@@ -105,6 +105,7 @@ const ReactLiveScope = {
   useMemo,
   useRef,
   ZeroDevConnector, 
+  SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
   GithubSocialWalletConnector,

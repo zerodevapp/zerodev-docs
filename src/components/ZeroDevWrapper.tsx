@@ -5,7 +5,7 @@ import {
   createClient,
 } from "wagmi";
 import { publicProvider } from 'wagmi/providers/public'
-import { polygonMumbai } from 'wagmi/chains'
+import { polygonMumbai, mainnet } from 'wagmi/chains'
 import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { 
   googleWallet,
@@ -27,8 +27,8 @@ const connectors = connectorsForWallets([
     groupName: 'Social',
     wallets: [
     googleWallet({chains, options: { projectId: defaultProjectId }}),
-    facebookWallet({chains, options: { projectId: defaultProjectId, shimDisconnect: true }}),
-    githubWallet({chains, options: { projectId: defaultProjectId, shimDisconnect: true }}),
+    facebookWallet({chains, options: { projectId: defaultProjectId }}),
+    githubWallet({chains, options: { projectId: defaultProjectId }}),
     discordWallet({chains, options: { projectId: defaultProjectId }}),
     twitchWallet({chains, options: { projectId: defaultProjectId }}),
     twitterWallet({chains, options: { projectId: defaultProjectId }})
@@ -37,7 +37,7 @@ const connectors = connectorsForWallets([
 ]);
 
 const client = createClient({
-  autoConnect: true,
+  autoConnect: false,
   connectors,
   provider,
   webSocketProvider,

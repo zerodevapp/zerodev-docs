@@ -26,22 +26,24 @@ import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 
 ```jsx live folded
 function RainbowKitExample() {
+  const allowedChains = [polygonMumbai]
+
   const connectors = connectorsForWallets([
     {
       groupName: 'Social',
       wallets: [
-        googleWallet({options: { projectId: defaultProjectId }}),
-        facebookWallet({options: { projectId: defaultProjectId }}),
-        githubWallet({options: { projectId: defaultProjectId }}),
-        discordWallet({options: { projectId: defaultProjectId }}),
-        twitchWallet({options: { projectId: defaultProjectId }}),
-        twitterWallet({options: { projectId: defaultProjectId }})
+        googleWallet({chains: allowedChains, options: { projectId: defaultProjectId }}),
+        facebookWallet({chains: allowedChains, options: { projectId: defaultProjectId }}),
+        githubWallet({chains: allowedChains, options: { projectId: defaultProjectId }}),
+        discordWallet({chains: allowedChains, options: { projectId: defaultProjectId }}),
+        twitchWallet({chains: allowedChains, options: { projectId: defaultProjectId }}),
+        twitterWallet({chains: allowedChains, options: { projectId: defaultProjectId }})
       ],
     },
   ]);
 
   const { chains, provider, webSocketProvider } = configureChains(
-    [polygonMumbai],
+    allowedChains,
     [publicProvider()],
   )
   const client = createClient({
