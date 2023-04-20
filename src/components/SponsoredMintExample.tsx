@@ -22,7 +22,7 @@ function SponsoredMintExample({ label = undefined }) {
     abi: contractAbi,
     functionName: "mint",
     args: [address],
-    enabled: true
+    enabled: !!address
   });
   const { write: mint, isLoading } = useContractWrite(config);
 
@@ -31,6 +31,7 @@ function SponsoredMintExample({ label = undefined }) {
     abi: contractAbi,
     functionName: "balanceOf",
     args: [address],
+    enabled: !!address
   });
 
   const interval = useRef<any>()

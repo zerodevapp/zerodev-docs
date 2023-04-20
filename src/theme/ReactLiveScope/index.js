@@ -52,15 +52,6 @@ import {
   supportedSocialConnectors
 } from '@zerodevapp/wagmi/connectkit'
 import { web3ModalConfig } from '@zerodevapp/wagmi/web3modal'
-import { 
-  SocialWallet, 
-  GoogleSocialWallet, 
-  FacebookSocialWallet,
-  GithubSocialWallet,
-  DiscordSocialWallet,
-  TwitchSocialWallet,
-  TwitterSocialWallet
-} from '@zerodevapp/social-wallet';
 import {
   RainbowKitProvider,
   ConnectButton as RainbowKitConnectButton,
@@ -113,13 +104,6 @@ const ReactLiveScope = {
   useEffect,
   useMemo,
   useRef,
-  SocialWallet, 
-  GoogleSocialWallet, 
-  FacebookSocialWallet,
-  GithubSocialWallet,
-  DiscordSocialWallet,
-  TwitchSocialWallet,
-  TwitterSocialWallet,
   ZeroDevConnector, 
   SocialWalletConnector,
   GoogleSocialWalletConnector, 
