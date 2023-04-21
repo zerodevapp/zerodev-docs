@@ -61,8 +61,13 @@ Typically, you construct a session key to be used by a client.  Here's how you "
 ```typescript
 import { createSessionKeySigner } from "@zerodevapp/sdk"
 
-const sessionKeySigner = await createSessionKeySigner(sessionKey)
+const sessionKeySigner = await createSessionKeySigner({
+  projectId,
+  sessionKeyData: sessionKey,
+})
 ```
+
+Note that you need to use the same `projectId` that you used to construct the session key.
 
 Now you can use the `sessionKeySigner` just like a regular Ethers signer, except that it can only send transactions specified in the whitelist.
 
