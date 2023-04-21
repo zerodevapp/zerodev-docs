@@ -92,4 +92,79 @@ function WagmiGoogleExample() {
 
 ## Ethers
 
-UPCOMING
+Install the following package:
+
+```bash
+npm i @zerodevapp/web3auth
+```
+
+Then import the social wallets and use them with `getZeroDevSigner` from the SDK:
+
+```typescript
+import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
+import { ZeroDevWeb3AuthNoModal, ZeroDevWeb3Auth } from '@zerodevapp/web3auth';
+
+let signer: ZeroDevSigner
+
+const zeroDevWeb3AuthNoModal = new ZeroDevWeb3AuthNoModal('<project-id>')
+zeroDevWeb3AuthNoModal.init({onConnect: async () => {
+  signer = await getZeroDevSigner({
+    projectId: "<project id>",
+    owner: await getRPCProviderOwner(zeroDevWeb3AuthNoModal.provider),
+  })
+}})
+// 'google' | 'facebook' | 'twitter' | 'discord' | 'github' | 'twitch'
+zeroDevWeb3AuthNoModal.connect('google')
+```
+
+You can pick and choose the social login methods you'd like to use, or use `ZeroDevWeb3Auth` which shows a meta login modal with all login methods.  Here's an example:
+
+```jsx live folded
+function RpcProviderExample() {
+  const [address, setAddress] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const zeroDevWeb3Auth = useMemo(() => {
+    const instance = new ZeroDevWeb3Auth(defaultProjectId)
+    instance.init({onConnect: async () => {
+      setLoading(true)
+      const signer = await getZeroDevSigner({
+        projectId: defaultProjectId,
+        owner: await getRPCProviderOwner(zeroDevWeb3Auth.provider)
+      })
+      setAddress(await signer.getAddress())
+      setLoading(false)
+
+    }})
+    return instance
+  }, [])
+
+  const disconnect = async () => {
+    await zeroDevWeb3Auth.logout()
+    setAddress('')
+  }
+
+  const handleClick = async () => {
+    setLoading(true)
+    await zeroDevWeb3Auth.connect()
+    setLoading(false)
+  }
+
+  const connected = !!address
+  return (
+    <div>
+      {connected && 
+        <div>
+          <label>Wallet: {address}</label>
+        </div>
+      }
+      <div>
+        {!connected && <button onClick={handleClick} disabled={loading}>{ loading ? 'loading...' : 'Create Wallet'}</button>}
+        {connected && 
+          <button onClick={disconnect} disabled={loading}>Disconnect</button>
+        }
+      </div>
+    </div>
+  )
+}
+```

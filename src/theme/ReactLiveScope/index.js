@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useCallback, useRef } from 'react';
 import {
   WagmiConfig,
   useAccount,
@@ -38,6 +38,10 @@ import {
   useContractBatchWrite, 
   useWaitForAATransaction
 } from '@zerodevapp/wagmi'
+import {
+  ZeroDevWeb3AuthNoModal,
+  ZeroDevWeb3Auth
+} from '@zerodevapp/web3auth'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { 
   googleWallet,
@@ -67,8 +71,8 @@ import { ConnectKitProvider, ConnectKitButton, getDefaultClient, supportedConnec
 supportedConnectors.push(...supportedSocialConnectors)
 import {
   EthereumClient,
-  modalConnectors,
-  walletConnectProvider,
+  w3mConnectors,
+  w3mProvider,
 } from "@web3modal/ethereum";
 
 import { Web3Modal, Web3Button } from "@web3modal/react";
@@ -103,7 +107,10 @@ const ReactLiveScope = {
   ethers,
   useEffect,
   useMemo,
+  useCallback,
   useRef,
+  ZeroDevWeb3Auth,
+  ZeroDevWeb3AuthNoModal,
   ZeroDevConnector, 
   SocialWalletConnector,
   GoogleSocialWalletConnector, 
@@ -133,8 +140,8 @@ const ReactLiveScope = {
   walletConnectWallet,
   MetaMaskConnector,
   EthereumClient,
-  modalConnectors,
-  walletConnectProvider,
+  w3mConnectors,
+  w3mProvider,
   Web3Modal,
   Web3Button,
   defaultWalletConenctProjectId,
