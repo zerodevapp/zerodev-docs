@@ -37,7 +37,7 @@ The signer and the expiration time are fairly easy to understand.  Let's dive in
 A session key is limited to only sending transactions identified by the whitelist.  The whitelist specifies a list of contracts or transactions as such:
 
 ```typescript
-const sessionKeySigner = new SessionKeyPlugin(zdSigner, [{
+const sessionKey = await createSessionKey(zdSigner, [{
   to: contract1.address,
   selectors: [
     contract1.interface.getSighash('function1'),
