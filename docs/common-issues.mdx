@@ -46,3 +46,13 @@ const connector = new GoogleSocialWalletConnector({options: {
 }})
 ```
 
+## Cloudflare Workers
+Using ZeroDev with Cloudflare Workers requires setting the `skipFetchSetup` option to `true`.
+```typescript
+const smartContractWallet = await getZeroDevSigner({
+  projectId,
+  owner,
+  skipFetchSetup: true
+})
+```
+

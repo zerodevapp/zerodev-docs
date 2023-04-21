@@ -33,10 +33,11 @@ import { getDefaultClient } from "connectkit"
 
 ```jsx live
 function ConnectKitExample() {
+  const chains = [polygonMumbai]
   const options = { options: { projectId: defaultProjectId } } 
 
   const client = createClient(getDefaultClient({
-    chains: [polygonMumbai],
+    chains,
     connectors: [
         new GoogleSocialWalletConnector(options),
         new FacebookSocialWalletConnector(options),
