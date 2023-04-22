@@ -6,7 +6,7 @@ sidebar_position: 6
 
 ## Core Contracts
 
-ZeroDev's core contracts, namely the "wallet kernel," has been audited and is recommended for production.  You can see the audit report here.
+ZeroDev's core contracts, namely the "[wallet kernel](https://github.com/zerodevapp/zerodev-wallet-kernel)," has been audited and is recommended for production.  You can see [the audit report here](https://github.com/zerodevapp/zerodev-wallet-kernel/blob/main/audits/kalos_v1.pdf).
 
 ## Plugins
 
