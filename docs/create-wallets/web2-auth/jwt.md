@@ -2,16 +2,18 @@
 sidebar_position: 2
 ---
 
-# JWT (Beta)
+# JWT
 
-You can create wallets for your users by providing your public JWKS credentials through our Dashboard.
+If your login system uses JWTs, you can use ZeroDev to seamlessly create one smart wallet per unique user, as identified by their JWT.  Follow these steps:
 
 1. Visit the [Dashboard](https://staging-dashboard-q1xv.onrender.com/authentication-providers).
 2. Click on the top-right menu.
 3. Choose `Authentication Providers`.
 4. Enter your JWKS credentials in the `JWT Wallet` section.
 
-Upon saving your JWKS credentials, we will set up a [Web3Auth Verifier](https://web3auth.io/docs/auth-provider-setup/verifiers) within the next 24 hours, enabling you to create JWT wallets.
+JWKS stands for JSON Web Key Set. It is a standard for representing a set of cryptographic keys, specifically public keys, in a JSON format. These public keys are used to verify the signatures of JWTs in various security and identity protocols, such as OAuth 2.0 and OpenID Connect.  If you are unsure how to retrieve your JWKS endpoint, [join our Discord](https://discord.gg/KS9MRaTSjx) and ask.
+
+Currently, integrating with JWTs involves some manual setup on our side.  Upon saving your JWKS credentials, we will set up the integration within 24 business hours and email you to confirm.  If in doubt, you can get in touch with us [on Discord](https://discord.gg/KS9MRaTSjx) or email support@zerodev.app.
 
 ## Wagmi
 

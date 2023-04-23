@@ -2,16 +2,16 @@
 sidebar_position: 3
 ---
 
-# Auth0 (Beta)
+# Auth0
 
-You can create wallets for your Auth0 users by providing your public Auth0 credentials through our Dashboard.
+If you use Auth0 for your login system, you can use ZeroDev to seamlessly create one smart wallet per unique user.  Follow these steps:
 
 1. Visit the [Dashboard](https://staging-dashboard-q1xv.onrender.com/authentication-providers).
 2. Click on the top-right menu.
 3. Choose `Authentication Providers`.
 4. Enter your Auth0 credentials in the `Auth0 Wallet` section.
 
-Upon saving your Auth0 credentials, we will set up a [Web3Auth Verifier](https://web3auth.io/docs/auth-provider-setup/verifiers) within the next 24 hours, enabling you to create Auth0 wallets.
+Currently, integrating with Auth0 involves some manual setup on our side.  Upon saving your Auth0 credentials, we will set up the integration within 24 business hours and email you to confirm.  If in doubt, you can get in touch with us [on Discord](https://discord.gg/KS9MRaTSjx) or email support@zerodev.app.
 
 ## Wagmi
 
