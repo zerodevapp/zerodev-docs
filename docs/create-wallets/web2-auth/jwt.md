@@ -22,7 +22,7 @@ import { JWTWalletConnector } from '@zerodevapp/web3auth'
 
 const jwtConnector = new JWTWalletConnector({options: {
     projectId: '<your-project-id>',
-    jwt: '<your-jwt>'
+    jwt: "<your user's JWT token>"
 }})
 ```
 
