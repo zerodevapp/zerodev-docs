@@ -4,4 +4,126 @@ sidebar_position: 3
 
 # Auth0 (Beta)
 
-Auth0 integration is currently in beta.  Please contact hello@zerodev.app or [join our Discord](https://discord.gg/KS9MRaTSjx) to get access to the beta.
+## Wagmi
+
+Example:
+
+```jsx live folded
+function WagmiAuth0Example() {
+    const { chains, provider, webSocketProvider } = configureChains(
+        [polygonMumbai],
+        [publicProvider()],
+    )
+    const client = createClient({
+        autoConnect: false,
+        provider,
+        webSocketProvider,
+    })
+
+    const auth0Connector = new Auth0WalletConnector({chains, options: {
+        projectId: defaultProjectId,
+    }})
+
+    const ConnectButton = () => {
+        const [loading, setLoading] = useState(false)
+        const { connect, error, isLoading, pendingConnector } = useConnect()
+        const { address, connector, isConnected } = useAccount()
+        const { disconnect } = useDisconnect()
+        const { chain } = useNetwork()
+
+        const connectWallet = async () => {
+            setLoading(true)
+            await connect({
+                connector: auth0Connector
+            })
+            setLoading(false)
+        }
+
+
+        if (isConnected) {
+            return (
+                <div>
+                    <div>{address}</div>
+                    <div>Connected to {connector.name}</div>
+                    <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a><br />
+                    <button onClick={disconnect}>Disconnect</button>
+                </div>
+            )
+        }
+        return (
+            <button disabled={isLoading || loading} onClick={connectWallet}>
+                {isLoading || loading ? 'loading...' : 'Connect to Auth0'}
+            </button>
+        )
+  }
+  return (
+    <WagmiConfig client={client}>
+      <ConnectButton />
+    </WagmiConfig>
+  )
+}
+```
+
+## Ethers
+
+Install the following package:
+
+```bash
+npm i @zerodevapp/web3auth
+```
+
+```jsx live folded
+function RpcProviderExample() {
+    const [address, setAddress] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const setWallet = async (provider) => {
+        const signer = await getZeroDevSigner({
+            projectId: defaultProjectId,
+            owner: await getRPCProviderOwner(provider)
+        })
+        setAddress(await signer.getAddress())
+    }
+
+    const zeroDevWeb3Auth = useMemo(() => {
+        const instance = new ZeroDevWeb3Auth(defaultProjectId)
+        instance.init({onConnect: async () => {
+            setLoading(true)
+            setWallet(zeroDevWeb3Auth.provider)
+            setLoading(false)
+        }})
+        return instance
+    }, [])
+
+  const disconnect = async () => {
+    await zeroDevWeb3Auth.logout()
+    setAddress('')
+  }
+
+  const handleClick = async () => {
+    setLoading(true)
+    zeroDevWeb3Auth.connect('auth0').then(provider => {
+      setWallet(provider)
+    }).finally(() => {
+      setLoading(false)
+    })
+  }
+
+  const connected = !!address
+  return (
+    <div>
+      {connected && 
+        <div>
+          <label>Wallet: {address}</label>
+        </div>
+      }
+      <div>
+        {!connected && <button onClick={handleClick} disabled={loading}>{ loading ? 'loading...' : 'Create Wallet'}</button>}
+        {connected && 
+          <button onClick={disconnect} disabled={loading}>Disconnect</button>
+        }
+      </div>
+    </div>
+  )
+}
+```

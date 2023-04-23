@@ -36,7 +36,7 @@ const connector = new GoogleSocialWalletConnector({options: {
 Example:
 
 ```jsx live folded
-function WagmiGoogleExample() {
+function WagmiSocialExample() {
 
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
@@ -47,7 +47,7 @@ function WagmiGoogleExample() {
     provider,
     webSocketProvider,
   })
-  const googleConnector = new GoogleSocialWalletConnector({chains, options: {
+  const socialConnector = new SocialWalletConnector({chains, options: {
     projectId: defaultProjectId,
   }})
 
@@ -61,7 +61,7 @@ function WagmiGoogleExample() {
     const connectWallet = async () => {
       setLoading(true)
       await connect({
-        connector: googleConnector
+        connector: socialConnector
       })
       setLoading(false)
     }
@@ -78,7 +78,7 @@ function WagmiGoogleExample() {
     }
     return (
       <button disabled={isLoading || loading} onClick={connectWallet}>
-        {isLoading || loading ? 'loading...' : 'Connect to Google'}
+        {isLoading || loading ? 'loading...' : 'Connect to Social'}
       </button>
     )
   }
@@ -124,17 +124,20 @@ function RpcProviderExample() {
   const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const setWallet = async (provider) => {
+    const signer = await getZeroDevSigner({
+      projectId: defaultProjectId,
+      owner: await getRPCProviderOwner(provider)
+    })
+    setAddress(await signer.getAddress())
+  }
+
   const zeroDevWeb3Auth = useMemo(() => {
-    const instance = new ZeroDevWeb3Auth(defaultProjectId)
+    const instance = new ZeroDevWeb3AuthWithModal(defaultProjectId)
     instance.init({onConnect: async () => {
       setLoading(true)
-      const signer = await getZeroDevSigner({
-        projectId: defaultProjectId,
-        owner: await getRPCProviderOwner(zeroDevWeb3Auth.provider)
-      })
-      setAddress(await signer.getAddress())
+      setWallet(zeroDevWeb3Auth.provider)
       setLoading(false)
-
     }})
     return instance
   }, [])
@@ -146,8 +149,11 @@ function RpcProviderExample() {
 
   const handleClick = async () => {
     setLoading(true)
-    await zeroDevWeb3Auth.connect()
-    setLoading(false)
+    zeroDevWeb3Auth.connect('social').then(provider => {
+      setWallet(provider)
+    }).finally(() => {
+      setLoading(false)
+    })
   }
 
   const connected = !!address

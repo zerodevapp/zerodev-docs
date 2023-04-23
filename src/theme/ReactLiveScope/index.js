@@ -25,6 +25,8 @@ import contractAbi from "../../../static/contracts/polygon-mumbai/0x34bE7f35132E
 import { ethers } from "ethers";
 import { 
   ZeroDevConnector, 
+  Auth0WalletConnector,
+  JWTWalletConnector,
   SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
@@ -39,7 +41,7 @@ import {
   useWaitForAATransaction
 } from '@zerodevapp/wagmi'
 import {
-  ZeroDevWeb3AuthNoModal,
+  ZeroDevWeb3AuthWithModal,
   ZeroDevWeb3Auth
 } from '@zerodevapp/web3auth'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
@@ -110,8 +112,10 @@ const ReactLiveScope = {
   useCallback,
   useRef,
   ZeroDevWeb3Auth,
-  ZeroDevWeb3AuthNoModal,
+  ZeroDevWeb3AuthWithModal,
   ZeroDevConnector, 
+  Auth0WalletConnector,
+  JWTWalletConnector,
   SocialWalletConnector,
   GoogleSocialWalletConnector, 
   FacebookSocialWalletConnector, 
