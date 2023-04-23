@@ -4,6 +4,15 @@ sidebar_position: 2
 
 # JWT (Beta)
 
+You can create wallets for your users by providing your public JWKS credentials through our Dashboard.
+
+1. Visit the [Dashboard](https://staging-dashboard-q1xv.onrender.com/authentication-providers).
+2. Click on the top-right menu.
+3. Choose `Authentication Providers`.
+4. Enter your JWKS credentials in the `JWT Wallet` section.
+
+Upon saving your JWKS credentials, we will set up a [Web3Auth Verifier](https://web3auth.io/docs/auth-provider-setup/verifiers) within the next 24 hours, enabling you to create JWT wallets.
+
 ## Wagmi
 
 Example:
