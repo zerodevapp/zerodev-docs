@@ -15,6 +15,15 @@ Upon saving your JWKS credentials, we will set up a [Web3Auth Verifier](https://
 
 ## Wagmi
 
+```typescript
+import { JWTWalletConnector } from '@zerodevapp/web3auth'
+
+const jwtConnector = new JWTWalletConnector({options: {
+    projectId: '<your-project-id>',
+    jwt: '<your-jwt>'
+}})
+```
+
 Example:
 
 ```jsx live folded
@@ -90,11 +99,22 @@ function WagmiJWTExample() {
 
 ## Ethers
 
-Install the following package:
+```typescript
+import { ZeroDevWeb3Auth } from '@zerodevapp/web3auth'
 
-```bash
-npm i @zerodevapp/web3auth
+let signer: ZeroDevSigner
+const instance = new ZeroDevWeb3Auth(defaultProjectId)
+instance.init({onConnect: async () => {
+    signer = await getZeroDevSigner({
+        projectId: defaultProjectId,
+        owner: await getRPCProviderOwner(provider)
+    })
+}})
+
+zeroDevWeb3Auth.connect('jwt', {jwt: '<your-jwt>'})
 ```
+
+Example:
 
 ```jsx live folded
 function RpcProviderExample() {
