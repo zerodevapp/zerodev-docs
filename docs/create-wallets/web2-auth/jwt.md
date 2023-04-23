@@ -34,7 +34,6 @@ function WagmiJWTExample() {
         fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
             response.text().then(setJWT)
         })
-
     }
 
     useEffect(() => {
@@ -79,7 +78,10 @@ function WagmiJWTExample() {
                     <div>{address}</div>
                     <div>Connected to {connector.name}</div>
                     <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a><br />
-                    <button onClick={disconnect}>Disconnect</button>
+                    <button onClick={() => {
+                      disconnect()
+                      resetJWT()
+                    }}>Disconnect</button>
                 </div>
             )
         }
@@ -122,11 +124,15 @@ function RpcProviderExample() {
     const [address, setAddress] = useState('')
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        // THIS IS DEMO CODE TO CREATE A JWT, YOU WOULD HAVE YOUR OWN WAY TO GET YOUR JWT
+    resetJWT = () => {
         fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
             response.text().then(setJWT)
         })
+    }
+
+    useEffect(() => {
+        // THIS IS DEMO CODE TO CREATE A JWT, YOU WOULD HAVE YOUR OWN WAY TO GET YOUR JWT
+        resetJWT()
     }, [])
 
     const setWallet = async (provider) => {
@@ -150,6 +156,7 @@ function RpcProviderExample() {
   const disconnect = async () => {
     await zeroDevWeb3Auth.logout()
     setAddress('')
+    resetJWT()
   }
 
   const handleClick = async () => {
