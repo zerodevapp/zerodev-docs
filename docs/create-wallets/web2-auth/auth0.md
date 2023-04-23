@@ -15,6 +15,14 @@ Currently, integrating with Auth0 involves some manual setup on our side.  Upon 
 
 ## Wagmi
 
+```typescript
+import { Auth0WalletConnector } from '@zerodevapp/web3auth'
+
+const auth0Connector = new Auth0WalletConnector({options: {
+    projectId: '<your-project-id>',
+}})
+```
+
 Example:
 
 ```jsx live folded
@@ -75,11 +83,22 @@ function WagmiAuth0Example() {
 
 ## Ethers
 
-Install the following package:
+```typescript
+import { ZeroDevWeb3Auth } from '@zerodevapp/web3auth'
 
-```bash
-npm i @zerodevapp/web3auth
+let signer: ZeroDevSigner
+const instance = new ZeroDevWeb3Auth(defaultProjectId)
+instance.init({onConnect: async () => {
+    signer = await getZeroDevSigner({
+        projectId: defaultProjectId,
+        owner: await getRPCProviderOwner(provider)
+    })
+}})
+
+zeroDevWeb3Auth.connect('auth0')
 ```
+
+Example:
 
 ```jsx live folded
 function RpcProviderExample() {

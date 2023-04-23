@@ -17,6 +17,15 @@ Currently, integrating with JWTs involves some manual setup on our side.  Upon s
 
 ## Wagmi
 
+```typescript
+import { JWTWalletConnector } from '@zerodevapp/web3auth'
+
+const jwtConnector = new JWTWalletConnector({options: {
+    projectId: '<your-project-id>',
+    jwt: '<your-jwt>'
+}})
+```
+
 Example:
 
 ```jsx live folded
@@ -27,7 +36,6 @@ function WagmiJWTExample() {
         fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
             response.text().then(setJWT)
         })
-
     }
 
     useEffect(() => {
@@ -72,7 +80,10 @@ function WagmiJWTExample() {
                     <div>{address}</div>
                     <div>Connected to {connector.name}</div>
                     <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a><br />
-                    <button onClick={disconnect}>Disconnect</button>
+                    <button onClick={() => {
+                      disconnect()
+                      resetJWT()
+                    }}>Disconnect</button>
                 </div>
             )
         }
@@ -92,11 +103,22 @@ function WagmiJWTExample() {
 
 ## Ethers
 
-Install the following package:
+```typescript
+import { ZeroDevWeb3Auth } from '@zerodevapp/web3auth'
 
-```bash
-npm i @zerodevapp/web3auth
+let signer: ZeroDevSigner
+const instance = new ZeroDevWeb3Auth(defaultProjectId)
+instance.init({onConnect: async () => {
+    signer = await getZeroDevSigner({
+        projectId: defaultProjectId,
+        owner: await getRPCProviderOwner(provider)
+    })
+}})
+
+zeroDevWeb3Auth.connect('jwt', {jwt: '<your-jwt>'})
 ```
+
+Example:
 
 ```jsx live folded
 function RpcProviderExample() {
@@ -104,11 +126,15 @@ function RpcProviderExample() {
     const [address, setAddress] = useState('')
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        // THIS IS DEMO CODE TO CREATE A JWT, YOU WOULD HAVE YOUR OWN WAY TO GET YOUR JWT
+    resetJWT = () => {
         fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
             response.text().then(setJWT)
         })
+    }
+
+    useEffect(() => {
+        // THIS IS DEMO CODE TO CREATE A JWT, YOU WOULD HAVE YOUR OWN WAY TO GET YOUR JWT
+        resetJWT()
     }, [])
 
     const setWallet = async (provider) => {
@@ -132,6 +158,7 @@ function RpcProviderExample() {
   const disconnect = async () => {
     await zeroDevWeb3Auth.logout()
     setAddress('')
+    resetJWT()
   }
 
   const handleClick = async () => {
