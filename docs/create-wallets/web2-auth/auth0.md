@@ -18,7 +18,7 @@ Upon saving your Auth0 credentials, we will set up a [Web3Auth Verifier](https:/
 ```typescript
 import { Auth0WalletConnector } from '@zerodevapp/web3auth'
 
-const jwtConnector = new Auth0WalletConnector({options: {
+const auth0Connector = new Auth0WalletConnector({options: {
     projectId: '<your-project-id>',
 }})
 ```
