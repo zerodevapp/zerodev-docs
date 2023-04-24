@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # JWT
 
-If your login system uses JWTs, you can use ZeroDev to seamlessly create one smart wallet per unique user, as identified by their JWT.  Follow these steps:
+If your app uses JWTs for authentication, you can use ZeroDev to seamlessly create a smart wallet for each user.  Follow these steps:
 
 1. Visit the [Dashboard](https://dashboard.zerodev.app/).
 2. Click on the top-right menu.

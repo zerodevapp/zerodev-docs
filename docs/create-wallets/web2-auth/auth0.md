@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Auth0
 
-If you use Auth0 for your login system, you can use ZeroDev to seamlessly create one smart wallet per unique user.  Follow these steps:
+If your app uses Auth0 for authentication, you can use ZeroDev to seamlessly create a smart wallet for each user.  Follow these steps:
 
 1. Visit the [Dashboard](https://dashboard.zerodev.app/).
 2. Click on the top-right menu.
