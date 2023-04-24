@@ -6,7 +6,7 @@ sidebar_position: 3
 
 If you use Auth0 for your login system, you can use ZeroDev to seamlessly create one smart wallet per unique user.  Follow these steps:
 
-1. Visit the [Dashboard](https://staging-dashboard-q1xv.onrender.com/authentication-providers).
+1. Visit the [Dashboard](https://dashboard.zerodev.app/).
 2. Click on the top-right menu.
 3. Choose `Authentication Providers`.
 4. Enter your Auth0 credentials in the `Auth0 Wallet` section.

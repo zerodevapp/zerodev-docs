@@ -6,7 +6,7 @@ sidebar_position: 2
 
 If your login system uses JWTs, you can use ZeroDev to seamlessly create one smart wallet per unique user, as identified by their JWT.  Follow these steps:
 
-1. Visit the [Dashboard](https://staging-dashboard-q1xv.onrender.com/authentication-providers).
+1. Visit the [Dashboard](https://dashboard.zerodev.app/).
 2. Click on the top-right menu.
 3. Choose `Authentication Providers`.
 4. Enter your JWKS credentials in the `JWT Wallet` section.
