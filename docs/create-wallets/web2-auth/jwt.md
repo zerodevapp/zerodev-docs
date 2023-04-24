@@ -89,7 +89,7 @@ function WagmiJWTExample() {
         }
         return (
             <button disabled={isLoading || !jwt} onClick={connectWallet}>
-                {isLoading || loading ? 'loading...' : 'Connect to JWT'}
+                {isLoading || loading ? 'loading...' : 'Connect Wallet with JWT'}
             </button>
         )
   }
@@ -179,7 +179,7 @@ function RpcProviderExample() {
         </div>
       }
       <div>
-        {!connected && <button onClick={handleClick} disabled={loading || !jwt}>{ loading ? 'loading...' : 'Create Wallet'}</button>}
+        {!connected && <button onClick={handleClick} disabled={loading || !jwt}>{ loading ? 'loading...' : 'Create Wallet with JWT'}</button>}
         {connected && 
           <button onClick={disconnect} disabled={loading}>Disconnect</button>
         }
