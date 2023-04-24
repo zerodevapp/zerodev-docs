@@ -32,15 +32,10 @@ Example:
 function WagmiJWTExample() {
     const [jwt, setJWT] = useState('')
 
-    resetJWT = () => {
+    useEffect(() => {
         fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
             response.text().then(setJWT)
         })
-    }
-
-    useEffect(() => {
-        // THIS IS DEMO CODE TO CREATE A JWT, YOU WOULD HAVE YOUR OWN WAY TO GET YOUR JWT
-        resetJWT()
     }, [])
 
     const { chains, provider, webSocketProvider } = configureChains(
@@ -59,6 +54,7 @@ function WagmiJWTExample() {
     }})
 
     const ConnectButton = () => {
+
         const [loading, setLoading] = useState(false)
         const { connect, error, isLoading, pendingConnector } = useConnect()
         const { address, connector, isConnected } = useAccount()
@@ -82,17 +78,20 @@ function WagmiJWTExample() {
                     <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a><br />
                     <button onClick={() => {
                       disconnect()
-                      resetJWT()
+                      fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
+                          response.text().then(setJWT)
+                      })
                     }}>Disconnect</button>
                 </div>
             )
         }
         return (
-            <button disabled={isLoading || !jwt} onClick={connectWallet}>
-                {isLoading || loading ? 'loading...' : 'Connect Wallet with JWT'}
+            <button disabled={isLoading || loading || !jwt} onClick={connectWallet}>
+                {isLoading || loading ? 'loading...' : 'Connect to JWT'}
             </button>
         )
   }
+
   return (
     <WagmiConfig client={client}>
       <ConnectButton />
