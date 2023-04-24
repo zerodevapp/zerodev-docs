@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   useAccount,
   usePrepareContractWrite,
@@ -16,6 +16,8 @@ import ZeroDevWrapper from "./ZeroDevWrapper";
 function SponsoredMintExample({ label = undefined }) {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork()
+  const [balanceChanging, setBalanceChanging] = useState(false)
+
 
   const { config } = usePrepareContractWrite({
     address: "0x34bE7f35132E97915633BC1fc020364EA5134863",
@@ -34,10 +36,15 @@ function SponsoredMintExample({ label = undefined }) {
     enabled: !!address
   });
 
+  useEffect(() => {
+    setBalanceChanging(false)
+  }, [balance])
+
   const interval = useRef<any>()
 
   const handleClick = useCallback(() => {
     if (mint) {
+      setBalanceChanging(true)
       mint()
       interval.current = setInterval(() => {
         refetch()
@@ -64,7 +71,7 @@ function SponsoredMintExample({ label = undefined }) {
           <strong style={{ fontSize: '1.5rem' }}>NFT Count</strong>
           <div style={{ fontSize: "2rem", fontWeight: 'medium', width: 100, height: 100, borderRadius: 50, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', border: '10px solid #2B8DE3' }}>{`${balance ?? 0}`}</div>
           <Button
-            loading={isLoading}
+            loading={balanceChanging}
             size={'lg'}
             onClick={handleClick}
           >
