@@ -88,7 +88,7 @@ function WagmiJWTExample() {
             )
         }
         return (
-            <button disabled={isLoading || loading || !jwt} onClick={connectWallet}>
+            <button disabled={isLoading || !jwt} onClick={connectWallet}>
                 {isLoading || loading ? 'loading...' : 'Connect to JWT'}
             </button>
         )
