@@ -86,7 +86,7 @@ In fact, ZeroDev *started* with Safe.  We contributed heavily to the [reference 
 - Safe is complex.  By all accounts, Safe is one of the largest smart contract codebases ever.  Many features have been added over the years to satisfy a variety of organizational needs, and truthfully most of them are completely irrelevant for the kind of single-user AA use case that ZeroDev sets out to address.
 - Safe is inefficient as an ERC-4337 wallet.  As the reference implementation shows, the only way to make Safe compatible with ERC-4337 was to do it through Safe’s “fallbacks” and “modules” mechanisms.  This leads to a large amount of context switching and therefore high gas costs for even the most simple operations.
 
-Ultimately, Safe was designed for a different use case — organizational multisig.  This is about as far from the single-user, single-sig use case that ZeroDev is designed for.  Therefore, we ultimate decided to bite the bullet and implement a smart contract account optimized for retail AA users.
+Ultimately, Safe was designed for a different use case — organizational multisig.  This is about as far from the single-user, single-sig use case that ZeroDev is designed for.  Therefore, we ultimately decided to bite the bullet and implement a smart contract account optimized for retail AA users.
 
 With Kernel, we now have a much simpler, much more efficient, and highly extensible smart contract account, and our users couldn’t be happier.
 
