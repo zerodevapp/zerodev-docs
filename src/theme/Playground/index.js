@@ -19,7 +19,7 @@ function LivePreviewLoader() {
   return <div>Loading...</div>;
 }
 
-function ResultWithHeader(zerodev = false) {
+function ResultWithHeader({zerodev = false}) {
   const Wrapper = zerodev ? ZeroDevWrapper : React.Fragment
   return (
     <Wrapper>
