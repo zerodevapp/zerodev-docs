@@ -81,3 +81,37 @@ await nftContract.mint()
 ```
 
 Note that whoever owns the session key will be able to send transactions with the session key, so it's important to keep the session key secure.  Of course, the point of session keys is that, since what they can do is limited by the whitelist and they expire after a while, even if some malicious party gains control of the session key, the damage is hopefully limited.
+
+### Constructing private session key on the client side
+
+In the example above, the "private" part of the session key was generated on the server side, then sent to the client.  This may be a security issue depending on your setup.  For example, if the server cannot be trusted to NOT leak the session key, you may want to generate the session key on the client side instead.
+
+In this scenario, construct the session key as follows.  For the prupose of illustration, let's say that the client constructs a keypair using Ethers:
+
+```typescript
+import { Wallet } from 'ethers'
+
+const sessionKeyPair = Wallet.createRandom()
+const sessionPublicKey = await sessionKeyPair.getAddress()
+const sessionPrivateKey = sessionKeyPair.privateKey
+```
+
+Then, the client would send `sessionPublicKey` to the server, and the server would construct the full session key as such:
+
+```typescript
+import { createSessionKey } from '@zerodevapp/sdk'
+
+const sessionKey = await createSessionKey(zdSigner, whitelist, validUntil, sessionPublicKey)
+```
+
+The server would then return `sessionKey` to the client.
+
+When the client needs to use the session key, it would then instantiate the signer using both the session key and its own private key:
+
+```typescript
+const sessionKeySigner = await createSessionKeySigner({
+  projectId,
+  sessionKeyData: sessionKey,
+  sessionPrivateKey: sessionPrivateKey,
+})
+```
