@@ -11,7 +11,7 @@ import {
   createClient,
   useDisconnect,
 } from "wagmi";
-import { polygonMumbai } from 'wagmi/chains'
+import { polygonMumbai, goerli } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 import {
   getZeroDevSigner,
@@ -101,10 +101,12 @@ const ReactLiveScope = {
   getSocialWalletOwner,
   ZeroDevSigner,
   defaultProjectId: 'b5486fa4-e3d9-450b-8428-646e757c10f6',
+  goerliProjectId: '68bc6515-8a0e-4346-b3c4-8f4aa3f780a5',
   WagmiConfig,
   configureChains,
   createClient,
   polygonMumbai,
+  goerli,
   publicProvider,
   ethers,
   useEffect,
