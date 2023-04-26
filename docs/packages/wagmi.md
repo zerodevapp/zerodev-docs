@@ -38,12 +38,12 @@ const socialConnector = new GoogleWalletConnector({
 ```
 ```jsx live folded
 function RainbowKitExample() {
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, provider, webSocketProvider } = useMemo(() => configureChains(
     [polygonMumbai, goerli],
     [publicProvider()],
-  )
+  ), [])
 
-  const connectors = connectorsForWallets([
+  const connectors = useMemo(() => connectorsForWallets([
     {
       groupName: 'Social',
       wallets: [
@@ -55,14 +55,14 @@ function RainbowKitExample() {
         twitterWallet({chains, options: { projectIds: [defaultProjectId, goerliProjectId] }})
       ],
     },
-  ]);
+  ]), []);
 
-  const client = createClient({
+  const client = useMemo(() => createClient({
     autoConnect: false,
     connectors,
     provider,
     webSocketProvider,
-  })
+  }), [])
 
   return (
     <WagmiConfig client={client}>
