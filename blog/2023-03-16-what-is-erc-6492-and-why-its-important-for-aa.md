@@ -44,7 +44,7 @@ This is very bad because users who are new to Web3 want to sign into DApps and l
 
 ZeroDev first encountered this problem when we were developing our WalletConnect integration and realized that we couldn’t sign into OpenSea until we deployed the wallet, which led to [a lengthy discussion](https://github.com/eth-infinitism/account-abstraction/issues/188) with many smart people in the 4337 ecosystem.  Eventually, [Ivo from Ambire](https://twitter.com/Ivshti) came up with a great solution that turned into ERC-6492.
 
-On a high level, ERC-6492 works by using a `[UniversalSigValidator` contract](https://eips.ethereum.org/EIPS/eip-6492#reference-implementation) that validates a signature as such:
+On a high level, ERC-6492 works by using a [`UniversalSigValidator` contract](https://eips.ethereum.org/EIPS/eip-6492#reference-implementation) that validates a signature as such:
 
 - Check if the signature ends with a sequence of *magic bytes*, which indicate that the signature is for a not-yet-deployed contract.
     - If so, the signature itself contains all the data necessary for deploying the contract, which comes down to an *account factory* address and the *calldata* for the factory.
