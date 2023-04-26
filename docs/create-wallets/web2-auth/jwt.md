@@ -28,12 +28,17 @@ const jwtConnector = new JWTWalletConnector({options: {
 
 Example:
 
+:::info
+For each connection, we assign a new userID, which in turn creates a new wallet or address. In a real-life scenario, the userID would remain constant, ensuring that the wallet and address also remain constant.
+:::
+
 ```jsx live folded
 function WagmiJWTExample() {
     const [jwt, setJWT] = useState('')
+    const userId = window.crypto.getRandomValues(new Uint32Array(4)).join('-')
 
     useEffect(() => {
-        fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
+        fetch(`https://jwt-issuer.onrender.com/create-jwt/${userId}`).then(response => {
             response.text().then(setJWT)
         })
     }, [])
@@ -78,7 +83,7 @@ function WagmiJWTExample() {
                     <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a><br />
                     <button onClick={() => {
                       disconnect()
-                      fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
+                      fetch(`https://jwt-issuer.onrender.com/create-jwt/${userId}`).then(response => {
                           response.text().then(setJWT)
                       })
                     }}>Disconnect</button>
@@ -119,14 +124,19 @@ zeroDevWeb3Auth.connect('jwt', {jwt: '<your-jwt>'})
 
 Example:
 
+:::info
+For each connection, we assign a new userID, which in turn creates a new wallet or address. In a real-life scenario, the userID would remain constant, ensuring that the wallet and address also remain constant.
+:::
+
 ```jsx live folded
 function RpcProviderExample() {
     const [jwt, setJWT] = useState('')
     const [address, setAddress] = useState('')
     const [loading, setLoading] = useState(false)
+    const userId = window.crypto.getRandomValues(new Uint32Array(4)).join('-')
 
     resetJWT = () => {
-        fetch('https://jwt-issuer.onrender.com/create-jwt/1').then(response => {
+        fetch(`https://jwt-issuer.onrender.com/create-jwt/${userId}`).then(response => {
             response.text().then(setJWT)
         })
     }

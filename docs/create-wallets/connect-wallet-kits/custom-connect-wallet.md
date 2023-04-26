@@ -106,7 +106,7 @@ import { ZeroDevWeb3AuthNoModal, ZeroDevWeb3Auth } from '@zerodevapp/web3auth';
 
 let signer: ZeroDevSigner
 
-const zeroDevWeb3AuthNoModal = new ZeroDevWeb3AuthNoModal('<project-id>')
+const zeroDevWeb3AuthNoModal = new ZeroDevWeb3AuthNoModal(['<project-id>'])
 zeroDevWeb3AuthNoModal.init({onConnect: async () => {
   signer = await getZeroDevSigner({
     projectId: "<project id>",
@@ -133,7 +133,7 @@ function RpcProviderExample() {
   }
 
   const zeroDevWeb3Auth = useMemo(() => {
-    const instance = new ZeroDevWeb3AuthWithModal(defaultProjectId)
+    const instance = new ZeroDevWeb3AuthWithModal([defaultProjectId])
     instance.init({onConnect: async () => {
       setLoading(true)
       setWallet(zeroDevWeb3Auth.provider)

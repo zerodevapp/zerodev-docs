@@ -11,7 +11,7 @@ import {
   createClient,
   useDisconnect,
 } from "wagmi";
-import { polygonMumbai } from 'wagmi/chains'
+import { polygonMumbai, goerli } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 import {
   getZeroDevSigner,
@@ -80,7 +80,7 @@ import {
 import { Web3Modal, Web3Button } from "@web3modal/react";
 const defaultWalletConenctProjectId = 'df7cda28d80ccef14260ff3e2bfb1388'
 
-initiateProject('b5486fa4-e3d9-450b-8428-646e757c10f6')
+initiateProject(['b5486fa4-e3d9-450b-8428-646e757c10f6'])
 
 
 // Add react-live imports you need here
@@ -101,10 +101,12 @@ const ReactLiveScope = {
   getSocialWalletOwner,
   ZeroDevSigner,
   defaultProjectId: 'b5486fa4-e3d9-450b-8428-646e757c10f6',
+  goerliProjectId: '68bc6515-8a0e-4346-b3c4-8f4aa3f780a5',
   WagmiConfig,
   configureChains,
   createClient,
   polygonMumbai,
+  goerli,
   publicProvider,
   ethers,
   useEffect,
