@@ -26,7 +26,7 @@
     "@web3modal/ethereum": "2.3.4",
     "@web3modal/react": "2.3.4",
     "@zerodevapp/sdk": "3.0.9",
-    "@zerodevapp/wagmi": "3.0.7",
+    "@zerodevapp/wagmi": "3.0.8",
     "@zerodevapp/web3auth": "3.0.7",
     "assert": "^2.0.0",
     "clsx": "^1.2.1",
