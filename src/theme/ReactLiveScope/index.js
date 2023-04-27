@@ -13,6 +13,7 @@ import {
 } from "wagmi";
 import { polygonMumbai, goerli } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
+import { infuraProvider } from 'wagmi/providers/infura'
 import {
   getZeroDevSigner,
   getPrivateKeyOwner,
@@ -79,6 +80,7 @@ import {
 
 import { Web3Modal, Web3Button } from "@web3modal/react";
 const defaultWalletConenctProjectId = 'df7cda28d80ccef14260ff3e2bfb1388'
+const infuraApiKey = 'f36f7f706a58477884ce6fe89165666c'
 
 // Add react-live imports you need here
 const ReactLiveScope = {
@@ -105,6 +107,8 @@ const ReactLiveScope = {
   polygonMumbai,
   goerli,
   publicProvider,
+  infuraProvider,
+  infuraApiKey,
   ethers,
   useEffect,
   useMemo,

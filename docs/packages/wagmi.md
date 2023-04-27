@@ -40,7 +40,7 @@ const socialConnector = new GoogleWalletConnector({
 function RainbowKitExample() {
   const { chains, provider, webSocketProvider } = useMemo(() => configureChains(
     [polygonMumbai, goerli],
-    [publicProvider()],
+    [infuraProvider({apiKey: infuraApiKey})],
   ), [])
 
   const connectors = useMemo(() => connectorsForWallets([
