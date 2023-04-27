@@ -4,8 +4,7 @@ import {
   configureChains,
   createClient,
 } from "wagmi";
-// import { publicProvider } from 'wagmi/providers/public'
-import { infuraProvider } from 'wagmi/providers/infura'
+import { publicProvider } from 'wagmi/providers/public'
 import { polygonMumbai, mainnet } from 'wagmi/chains'
 import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { 
@@ -21,7 +20,7 @@ const defaultProjectId = 'b5486fa4-e3d9-450b-8428-646e757c10f6'
 
 const { chains, provider, webSocketProvider } = configureChains(
   [polygonMumbai],
-  [infuraProvider({apiKey: 'f36f7f706a58477884ce6fe89165666c'})],
+  [publicProvider()],
 )
 const connectors = connectorsForWallets([
   {
