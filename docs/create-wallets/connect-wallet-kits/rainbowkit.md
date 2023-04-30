@@ -44,7 +44,7 @@ function RainbowKitExample() {
 
   const { chains, provider, webSocketProvider } = configureChains(
     allowedChains,
-    [publicProvider()],
+    [infuraProvider({apiKey: infuraApiKey})],
   )
   const client = createClient({
     autoConnect: false,
@@ -70,7 +70,7 @@ For Web3 wallets like MetaMask, you can use them as they are (as EOA), or "wrap"
 function RainbowKitExample() {
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
-    [publicProvider()],
+    [infuraProvider({apiKey: infuraApiKey})],
   )
 
   const connectors = connectorsForWallets([

@@ -122,7 +122,7 @@ Example:
 function WagmiRPCProviderExample() {
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
-    [publicProvider()],
+    [infuraProvider({apiKey: infuraApiKey})],
   )
   const client = createClient({
     autoConnect: false,
@@ -190,7 +190,7 @@ const client = createClient({
 function WagmiWrappedRPCProviderExample() {
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
-    [publicProvider()],
+    [infuraProvider({apiKey: infuraApiKey})],
   )
   const client = createClient({
     autoConnect: false,

@@ -40,7 +40,7 @@ function WagmiSocialExample() {
 
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
-    [publicProvider()],
+    [infuraProvider({apiKey: infuraApiKey})],
   )
   const client = createClient({
     autoConnect: false,
