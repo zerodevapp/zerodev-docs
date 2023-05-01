@@ -17,11 +17,11 @@ import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
 
 ZeroDev is a developer framework for creating, using, and extending **smart wallets** powered by account abstraction (ERC-4337).
 
-- Create: ZeroDev integrates with all popular onboarding and authentication solutions, so that after signing in, your user wounds up with a *smart wallet* instead of a regular wallet.
+- Create: ZeroDev integrates with all popular onboarding and authentication solutions, so that you can easily create *smart wallets* for your users, no matter they are Web2 or Web3.
 
-- Use: ZeroDev provides SDKs and APIs for the most popular smart wallet features, including gas sponsoring, transaction batching, session keys, subscriptions, and more.
+- Use: ZeroDev provides SDKs and APIs for the most popular smart wallet *features*, including gas sponsoring, transaction batching, automated transactions, session keys, and more.
 
-- Extend: if our pre-built AA modules don't cover your needs, you can easily build custom AA wallet features using our *plugin framework*.
+- Extend: if our smart wallet features don't cover your needs, you can easily build custom smart wallet *plugins* using our plugin framework.
 
 No matter if you are building a wallet or a DApp, you can use ZeroDev to dramatically improve Web3 UX for your users.
 
@@ -29,7 +29,7 @@ No matter if you are building a wallet or a DApp, you can use ZeroDev to dramati
 
 - ZeroDev is NOT a fully-featured wallet.  Rather, it's a *headless* wallet that you can embed into your application or build a wallet UI on top of.
 
-- ZeroDev is NOT a fully-featured onboarding solution.  Rather, it's supposed to be integrated with your existing onboarding/authentication flow, so that your users wound up with a *smart wallet* after signing in.
+- ZeroDev is NOT a fully-featured onboarding solution.  Rather, it's designed to be integrated with your existing onboarding/authentication flow, so that your users wound up with a *smart wallet* after signing in.
 
 ## What are smart wallets?
 

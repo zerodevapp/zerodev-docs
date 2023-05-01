@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Private Keys
+# Raw Private Keys
 
 If you already manage private keys for your users, and you simply want to use ZeroDev for AA, you can easily integrate ZeroDev with your existing key infrastructure.
 

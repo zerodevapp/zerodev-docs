@@ -4,41 +4,36 @@ sidebar_position: 1
 
 # Overview
 
-ZeroDev integrates with most popular onboarding/authentication solutions, so that no matter how you handle authentication, you can create smart wallets for your users.
+To create a smart wallet, you need a **signer**.  A signer is anything that can cryptographically sign messages and transactions, and it's typically (but not always) backed by a ECDSA private key.
 
-Broadly speaking, we divide our integrations into the following types.  Click on the onboarding solution that you are using or planning to use.
+Keep in mind that **whoever owns the signer owns the smart wallet.**  The security of your signer is therefore of paramount importance.
 
-### "Connect Wallet" kits
+Generally speaking, signers can be grouped into the following catogories:
 
-- [RainbowKit](/create-wallets/connect-wallet-kits/rainbowkit)
-- [ConnectKit](/create-wallets/connect-wallet-kits/connectkit)
-- [Web3Modal](/create-wallets/connect-wallet-kits/web3modal)
-- [Custom "Connect Wallet" UI](/create-wallets/connect-wallet-kits/custom-connect-wallet)
+- **Web2 Auth**: for Web2.5 applications, your users might want to login with their Web2/social accounts.  ZeroDev leverages MPC solutions such as Web3Auth to enable signins with OAuth, JWT, Auth0, and more.
+  - [OAuth](/create-wallets/web2-auth/oauth/rainbowkit)
+  - [JWT](/create-wallets/web2-auth/jwt)
+  - [Auth0](/create-wallets/web2-auth/auth0)
 
-### Embedded wallet providers
+- **Wallets-as-a-Service**: there are many "wallets-as-a-service" (WaaS) solutions out there that can act as signers for ZeroDev.  By combining ZeroDev with such a service, you are using these services to handle the onboarding flow, while using ZeroDev as the wallet, getting the best of both worlds.
+  - [Magic](/create-wallets/wallets-as-a-service/magic)
+  - [Web3Auth](/create-wallets/wallets-as-a-service/web3auth)
+  - [Portal](/create-wallets/wallets-as-a-service/portal)
+  - [Privy](/create-wallets/wallets-as-a-service/privy)
+  - [Rollup](/create-wallets/wallets-as-a-service/rollup)
+  - [Dynamic](/create-wallets/wallets-as-a-service/dynamic)
 
-- [Magic](/create-wallets/embedded-wallet-providers/magic)
-- [Web3Auth](/create-wallets/embedded-wallet-providers/web3auth)
-- [Portal (beta)](/create-wallets/embedded-wallet-providers/portal)
-- [Privy (beta)](/create-wallets/embedded-wallet-providers/privy)
-- [Dynamic (beta)](/create-wallets/embedded-wallet-providers/dynamic)
+- **Custodial Wallet APIs**: custodial wallet providers like Fireblocks and Turnkey are also wallets-as-a-service, but we put them in a different category since they are typically used as APIs.  By using them with ZeroDev, you essentially get a custodial AA wallet API.
+  - [Turnkey](/create-wallets/custodial-wallet-apis/turnkey)
+  - [Fireblocks](/create-wallets/custodial-wallet-apis/fireblocks)
 
-### Key infrastructure
+- **Custom Keys**: if you already have your own key infrastructure, you can create ZeroDev wallets from private keys directly.
+  - [Raw private keys](/create-wallets/custom-keys/raw-private-keys)
+  - [Custom signers](/create-wallets/custom-keys/custom-key-providers)
 
-- [Private keys](/create-wallets/key-providers/private-keys)
-- [Turnkey](/create-wallets/key-providers/turnkey)
-- [Fireblocks](/create-wallets/key-providers/fireblocks)
-- [Custom key providers](/create-wallets/key-providers/custom-key-providers)
+- **Wallet signers**: your users can use their existing EOA wallets as signers.  In this case, every transaction will trigger the EOA wallet to sign a message.
 
-### Web2 auth
-
-- [OAuth / Email](/create-wallets/web2-auth/oauth-email)
-- [JWT](/create-wallets/web2-auth/jwt)
-- [Auth0](/create-wallets/web2-auth/auth0)
-
-### Wallet API
-
-- If none of the solutions above fits your needs, you can [create ZeroDev AA wallets through our API](/create-wallets/api).
+- If none of these works for you, you can create AA wallets using [our API](/create-wallets/api).
 
 ## Use ZeroDev with Ethers and Wagmi
 

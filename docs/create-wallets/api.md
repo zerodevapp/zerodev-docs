@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Create Wallets with API (Beta)
+# ZeroDev Wallet API (Beta)
 
 The most flexible way to create AA wallets is through our API.  In this case, the AA wallets are essentially custodial.  Behind the scenes, we use [Turnkey](https://www.turnkey.io/) to safeguard the keys.
 

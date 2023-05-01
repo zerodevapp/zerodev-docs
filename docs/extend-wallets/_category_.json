@@ -1,5 +1,5 @@
 {
-  "label": "Extend AA Wallets",
+  "label": "Extend Smart Wallets",
   "position": 5,
-  "collapsible": true
+  "collapsible": false
 }

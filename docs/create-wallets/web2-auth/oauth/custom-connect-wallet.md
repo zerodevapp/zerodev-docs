@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Custom "Connect Wallet" UI
+# Custom UI
 
 ZeroDev provides a number of "social connectors" for creating smart wallets with social accounts.  Under the hood, we use Web3Auth to generate a private key from a social account, then set the private key as the owner of the smart wallet.  From the perspective of the end user, they are just signing in with a social account, and getting a smart wallet at the end.
 
