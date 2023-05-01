@@ -26,7 +26,7 @@ import {
 import { Web3Modal, Web3Button } from "@web3modal/react";
 ```
 
-```jsx live folded
+```jsx live
 function Web3ModalExample() {
   const { chains, provider, webSocketProvider } = configureChains(
     [polygonMumbai],
@@ -37,9 +37,6 @@ function Web3ModalExample() {
   const client = createClient({
     autoConnect: false,
     connectors: [
-      // new SocialWalletConnector({options: {
-      //   projectId: defaultProjectId,
-      // }}),
       new GoogleSocialWalletConnector({options: {
         projectId: defaultProjectId,
       }}),

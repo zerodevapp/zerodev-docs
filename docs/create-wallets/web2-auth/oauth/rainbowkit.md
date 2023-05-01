@@ -4,9 +4,9 @@ sidebar_position: 2
 
 # RainbowKit
 
-[Take a look into our Demo example](https://github.com/zerodevapp/zerodev-demo)
+You can easily add social logins to [RainbowKit](https://www.rainbowkit.com/) with our helper wallets.  Here is a [complete example](https://github.com/zerodevapp/zerodev-demo).
 
-You can easily add social logins to [RainbowKit](https://www.rainbowkit.com/) with our helper wallets:
+To import the helper wallets:
 
 ```typescript
 import { 
@@ -26,7 +26,7 @@ These can be used with RainbowKit's `connectorsForWallets` function to customize
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 ```
 
-```jsx live folded
+```jsx live
 function RainbowKitExample() {
   const allowedChains = [polygonMumbai]
 
