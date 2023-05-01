@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # RainbowKit
 
+[Take a look into our Demo example](https://github.com/zerodevapp/zerodev-demo)
+
 You can easily add social logins to [RainbowKit](https://www.rainbowkit.com/) with our helper wallets:
 
 ```typescript
