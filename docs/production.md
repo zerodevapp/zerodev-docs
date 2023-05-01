@@ -6,7 +6,7 @@ sidebar_position: 8
 
 ## Pinning a smart contract wallet version
 
-ZeroDev may update its smart contract wallet implementation from time to time.  We advise product apps to "pin" their smart contract wallet version, so that your new users don't wound up with a different version of the wallet than your old users within the same app.
+ZeroDev may update its smart contract wallet implementation from time to time.  We advise product apps to "pin" their smart contract wallet version, so that your new users don't wind up with a different version of the wallet than your old users within the same app.
 
 To pin a smart contract wallet version, specify the `implementation` parameter when you construct a ZeroDev wallet, like this:
 

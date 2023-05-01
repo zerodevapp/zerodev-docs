@@ -29,7 +29,7 @@ No matter if you are building a wallet or a DApp, you can use ZeroDev to dramati
 
 - ZeroDev is NOT a fully-featured wallet.  Rather, it's a *headless* wallet that you can embed into your application or build a wallet UI on top of.
 
-- ZeroDev is NOT a fully-featured onboarding solution.  Rather, it's designed to be integrated with your existing onboarding/authentication flow, so that your users wound up with a *smart wallet* after signing in.
+- ZeroDev is NOT a fully-featured onboarding solution.  Rather, it's designed to be integrated with your existing onboarding/authentication flow, so that your users get a *smart wallet* after signing in.
 
 ## What are smart wallets?
 
