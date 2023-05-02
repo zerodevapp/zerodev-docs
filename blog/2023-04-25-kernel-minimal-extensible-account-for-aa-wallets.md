@@ -4,8 +4,6 @@ title: Introducing Kernel — Minimal & Extensible Smart Contract Account for ER
 authors: derek
 ---
 
-# Introducing *Kernel* — Minimal & Extensible Smart Contract Account for ERC-4337 Wallets
-
 With the launch of ERC-4337, we are seeing tremendous excitement from Web3 developers to build the next generation of crypto wallets using account abstraction.
 
 Whereas traditional wallets like MetaMask are powered by *externally owned accounts* (EOA), account abstraction wallets are powered by *smart contract accounts* (CA).  These wallets will be able to sponsor gas for users, batch transactions, support automatic payments (subscriptions)… overall enabling a Web3 experience hitherto unimaginable.
