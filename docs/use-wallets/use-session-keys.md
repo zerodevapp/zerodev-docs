@@ -91,9 +91,8 @@ In this scenario, construct the session key as follows.  For the prupose of illu
 ```typescript
 import { Wallet } from 'ethers'
 
-const sessionKeyPair = Wallet.createRandom()
-const sessionPublicKey = await sessionKeyPair.getAddress()
-const sessionPrivateKey = sessionKeyPair.privateKey
+const privateSigner = Wallet.createRandom()
+const sessionPublicKey = await privateSigner.getAddress()
 ```
 
 Then, the client would send `sessionPublicKey` to the server, and the server would construct the full session key as such:
@@ -106,12 +105,12 @@ const sessionKey = await createSessionKey(zdSigner, whitelist, validUntil, sessi
 
 The server would then return `sessionKey` to the client.
 
-When the client needs to use the session key, it would then instantiate the signer using both the session key and its own private key:
+When the client needs to use the session key, it would then instantiate the session key signer using both the session key and its own private key (in the form of a signer):
 
 ```typescript
 const sessionKeySigner = await createSessionKeySigner({
   projectId,
   sessionKeyData: sessionKey,
-  sessionPrivateKey: sessionPrivateKey,
+  privateSigner: privateSigner,
 })
 ```
