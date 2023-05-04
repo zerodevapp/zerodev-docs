@@ -43,7 +43,7 @@ And these are just some of the most popular use cases of smart wallets.  Under t
 
 ## How to use ZeroDev
 
-If you are completely new to ZeroDev, we recommend to start with [the tutorial](/getting-started).
+If you are completely new to ZeroDev, we recommend starting with [the tutorial](/getting-started).
 
 After that, [integrate ZeroDev](/create-wallets/overview) with the onboarding/authentication solution of your choice.
 
