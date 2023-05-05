@@ -39,9 +39,11 @@ Generally speaking, signers can be grouped into the following catogories:
 
 Unless otherwise noted, all ZeroDev integrations share the same API.
 
-All integrations return a `ZeroDevSigner` object, which is an implementation of [Ethers signer](https://docs.ethers.org/v5/api/signer/).  With a signer, you can do anything that you would expect a wallet to do, such as sending transactions, signing messages, getting the address, etc.
+All integrations return a `ZeroDevSigner` object, which is an implementation of [Ethers Signer](https://docs.ethers.org/v5/api/signer/).  Note that this is not to be confused with the signers we talked about earlier -- here we are talking about Ethers's `Signer` interface specifically.
 
-For example, here's how you would use a ZeroDev signer to interact with a smart contract (which is exactly the same as how you would use a regular Ethers signer):
+With a Signer object, you can do anything that you would expect a wallet to do, such as sending transactions, signing messages, getting the address, etc.
+
+For example, here's how you would use a `ZeroDevSigner` to interact with a smart contract (which is exactly the same as how you would use a regular Ethers Signer):
 
 ```typescript
 import { Contract } from "ethers"
