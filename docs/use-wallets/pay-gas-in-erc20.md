@@ -8,7 +8,7 @@ One superpower of AA wallets like ZeroDev is the ability to pay gas in ERC20 tok
 
 To pay gas in ERC20s, simply pass the `gasToken` option when you create a `ZeroDevSigner`.  For example, to pay gas in USDC:
 
-```
+```typescript
 const signer = await getZeroDevSigner({
   // ...other options
   gasToken: 'USDC',
