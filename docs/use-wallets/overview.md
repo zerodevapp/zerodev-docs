@@ -10,7 +10,7 @@ For your convenience, we have divided our AA features into the following categor
 
 - Improving the gas experience
   - [Pay gas for users](/use-wallets/pay-gas-for-users)
-  - [Let users pay gas in ERC20 tokens](/use-wallets/advanced/pay-gas-in-erc20)
+  - [Let users pay gas in ERC20 tokens](/use-wallets/pay-gas-in-erc20)
 
 - Improving the transaction experience
   - [Send transactions in batches](/use-wallets/batch-transactions)
