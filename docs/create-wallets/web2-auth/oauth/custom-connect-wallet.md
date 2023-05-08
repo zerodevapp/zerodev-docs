@@ -102,19 +102,19 @@ Then import the social wallets and use them with `getZeroDevSigner` from the SDK
 
 ```typescript
 import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
-import { ZeroDevWeb3AuthNoModal, ZeroDevWeb3Auth } from '@zerodevapp/web3auth';
+import { ZeroDevWeb3Auth, ZeroDevWeb3AuthWithModal } from '@zerodevapp/web3auth';
 
 let signer: ZeroDevSigner
 
-const zeroDevWeb3AuthNoModal = new ZeroDevWeb3AuthNoModal(['<project-id>'])
+const zeroDevWeb3AuthNoModal = new ZeroDevWeb3Auth(['<project-id>'])
 zeroDevWeb3AuthNoModal.init({onConnect: async () => {
   signer = await getZeroDevSigner({
     projectId: "<project id>",
-    owner: await getRPCProviderOwner(zeroDevWeb3AuthNoModal.provider),
+    owner: await getRPCProviderOwner(ZeroDevWeb3Auth.provider),
   })
 }})
 // 'google' | 'facebook' | 'twitter' | 'discord' | 'github' | 'twitch'
-zeroDevWeb3AuthNoModal.connect('google')
+ZeroDevWeb3Auth.connect('google')
 ```
 
 You can pick and choose the social login methods you'd like to use, or use `ZeroDevWeb3Auth` which shows a meta login modal with all login methods.  Here's an example:
