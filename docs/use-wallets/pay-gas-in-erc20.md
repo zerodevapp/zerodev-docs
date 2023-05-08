@@ -15,6 +15,15 @@ const signer = await getZeroDevSigner({
 })
 ```
 
+Or if you are using the Wagmi social packages:
+
+```typescript
+googleWallet({chains, options: {
+  // ...other options
+  gasToken: 'USDC',
+}})
+```
+
 Note that the `gasToken` setting overrides all your gas sponsoring policies -- meaning that transactions sent from this `ZeroDevSigner` won't be sponsored.  Rather, the AA wallet owner will be paying for their own gas, in the ERC20 tokens that they specify.
 
 ZeroDev currently supports:
