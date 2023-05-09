@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # @zerodevapp/web3auth
 
-## Customization
+## Use Your Own API Keys
 
 You can use ZeroDev with your own Web3Auth crendentials.
 

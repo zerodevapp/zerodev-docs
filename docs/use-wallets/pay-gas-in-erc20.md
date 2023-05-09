@@ -18,7 +18,7 @@ const signer = await getZeroDevSigner({
 Or if you are using the Wagmi social packages:
 
 ```typescript
-googleWallet({chains, options: {
+new GoogleSocialWalletConnector({chains, options: {
   // ...other options
   gasToken: 'USDC',
 }})
@@ -29,5 +29,5 @@ Note that the `gasToken` setting overrides all your gas sponsoring policies -- m
 ZeroDev currently supports:
 
 - USDC
+- PEPE (mainnet only)
 - DAI (upcoming)
-- PEPE (upcoming)
