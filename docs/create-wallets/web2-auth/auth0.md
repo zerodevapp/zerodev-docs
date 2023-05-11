@@ -16,7 +16,7 @@ Currently, integrating with Auth0 involves some manual setup on our side.  Upon 
 ## Wagmi
 
 ```typescript
-import { Auth0WalletConnector } from '@zerodevapp/web3auth'
+import { Auth0WalletConnector } from '@zerodevapp/wagmi'
 
 const auth0Connector = new Auth0WalletConnector({options: {
     projectId: '<your-project-id>',

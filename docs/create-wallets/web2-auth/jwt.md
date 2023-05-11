@@ -18,7 +18,7 @@ Currently, integrating with JWTs involves some manual setup on our side.  Upon s
 ## Wagmi
 
 ```typescript
-import { JWTWalletConnector } from '@zerodevapp/web3auth'
+import { JWTWalletConnector } from '@zerodevapp/wagmi'
 
 const jwtConnector = new JWTWalletConnector({options: {
     projectId: '<your-project-id>',
