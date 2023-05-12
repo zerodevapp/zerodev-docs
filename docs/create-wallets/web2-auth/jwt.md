@@ -155,7 +155,7 @@ function RpcProviderExample() {
     }
 
     const zeroDevWeb3Auth = useMemo(() => {
-        const instance = new ZeroDevWeb3Auth(defaultProjectId)
+        const instance = new ZeroDevWeb3Auth([defaultProjectId])
         instance.init({onConnect: async () => {
             setLoading(true)
             setWallet(zeroDevWeb3Auth.provider)
