@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Fireblocks
 
-[Fireblocks](http://fireblocks.com/) is a widely used custodial key provider.  By combining ZeroDev with Fireblocks, you can create **custodial AA wallets** whose security is provided by Fireblocks, with powerful functionalities such as sponsoring gas, batching transactions, etc.
+[Fireblocks](http://fireblocks.com/) is a widely used key infrastructure provider.  By combining ZeroDev with Fireblocks, you can create **custodial AA wallets** whose security is provided by Fireblocks, with powerful functionalities such as sponsoring gas, batching transactions, etc.
 
 ## Integration
 

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Turnkey
 
-[Turnkey](https://www.turnkey.io/) is a custodial key provider with a great developer API and a powerful security policy engine.
+[Turnkey](https://www.turnkey.io/) is a key infrastructure provider with a great developer API and a powerful security policy engine.
 
 By combining ZeroDev with Turnkey, you can create **custodial AA wallets** whose security is provided by Turnkey, with powerful functionalities such as sponsoring gas, batching transactions, etc.
 

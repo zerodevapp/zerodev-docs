@@ -14,6 +14,10 @@ With an account abstraction wallet such as ZeroDev, however, the wallet is decou
 
 Critically, with some careful smart contract engineering, it's even possible to limit the *permissions* and *duration* of a key.  For example, the wallet owner may create a key that's only valid for one hour, and can only interact with a specific contract.  Such a key is known as a "session key."
 
+## What can you use session keys for?
+
+At their core, session keys can be used to enable "automatic" transactions -- your users can delegate to your application to perform transactions on their behalf.  The beauty is that it can't be abused -- your application can ONLY perform the transactions that your users explicitly allowed you to perform, within the limits that your users specified.
+
 ## Using session keys
 
 Create a session key from a ZeroDev signer:
