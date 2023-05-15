@@ -24,7 +24,10 @@ new GoogleSocialWalletConnector({chains, options: {
 }})
 ```
 
-Note that the `gasToken` setting overrides all your gas sponsoring policies -- meaning that transactions sent from this `ZeroDevSigner` won't be sponsored.  Rather, the AA wallet owner will be paying for their own gas, in the ERC20 tokens that they specify.
+Three distinct situations may arise when utilizing paying gas in ERC20 in tandem with gas sponsoring policies:
+1. If your project does not specify any gas sponsoring policy, then the AA wallet owner pays the gas with their ERC20 tokens.
+2. If your project specifies gas sponsoring policies and the transaction is non-compliant, then the AA wallet owner pays the gas with their ERC20 tokens.
+3. If your project specifies gas sponsoring policies and the transaction is compliant, then you are paying (sponsoring) the gas.
 
 ZeroDev currently supports:
 
