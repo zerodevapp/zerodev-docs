@@ -79,6 +79,7 @@ import {
 } from "@web3modal/ethereum";
 
 import { Web3Modal, Web3Button } from "@web3modal/react";
+import { SponsoredMintExample } from '@site/src/components/SponsoredMintExample';
 const defaultWalletConenctProjectId = 'df7cda28d80ccef14260ff3e2bfb1388'
 const infuraApiKey = 'f36f7f706a58477884ce6fe89165666c'
 
@@ -155,7 +156,8 @@ const ReactLiveScope = {
   web3ModalConfig,
   usePrepareContractBatchWrite, 
   useContractBatchWrite, 
-  useWaitForAATransaction
+  useWaitForAATransaction,
+  SponsoredMintExample
 };
 
 

@@ -13,7 +13,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ZeroDevWrapper from "./ZeroDevWrapper";
 
 
-function SponsoredMintExample({ label = undefined }) {
+export function SponsoredMintExample({ label = undefined }) {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork()
   const [balanceChanging, setBalanceChanging] = useState(false)

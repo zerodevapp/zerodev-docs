@@ -109,7 +109,7 @@ function RainbowKitExample() {
   return (
     <WagmiConfig client={client}>
         <RainbowKitProvider chains={chains} modalSize={'compact'}>
-            <RainbowKitConnectButton />
+            <SponsoredMintExample />
         </RainbowKitProvider>
     </WagmiConfig>
   )
