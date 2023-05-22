@@ -45,3 +45,12 @@ const smartContractWallet = await getZeroDevSigner({
 })
 ```
 
+## WalletConnect Issues
+
+If you are having issues connecting a ZeroDev wallet through WalletConnect, refer to [this working example](https://github.com/zerodevapp/zerodev-walletconnect-example).
+
+## Sign in with Ethereum (SIWE) issues
+
+If you are having issues using SIWE with a ZeroDev wallet, refer to [this working example](https://github.com/zerodevapp/nextjs-siwe).
+
+Note that an undeployed ZeroDev wallet cannot sign into SIWE until it supports [ERC-6492](https://eips.ethereum.org/EIPS/eip-6492).  This is an [ongoing effort](https://github.com/spruceid/siwe/pull/153).  Long story short, currently you need to make sure that your ZeroDev wallet is actually deployed (meaning that it must have sent at least one transaction) before SIWE can work.
