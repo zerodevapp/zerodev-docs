@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
-# Overview
+# Using Smart Wallets
 
 With ZeroDev wallets, you can build powerful and easy-to-use Web3 applications that are only possible with account abstraction (AA).
 

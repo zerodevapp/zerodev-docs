@@ -1,8 +1,9 @@
 ---
 sidebar_position: 1
+sidebar_label: Overview
 ---
 
-# Overview
+# Creating Smart Wallets
 
 To create a smart wallet, you need a **signer**.  A signer is anything that can cryptographically sign messages and transactions, and it's typically (but not always) backed by a ECDSA private key.
 

@@ -1,11 +1,11 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Build a Plugin
 
 :::info
-Plugins can result in loss of funds if incorrectly implemented.  If you plan on developing a plugin, we highly recommend that you [join our Discord](https://discord.gg/KS9MRaTSjx) so our team can help review your design.
+This document was written for Kernel v1 and is outdated.  We are working on documentation for Kernel v2.
 :::
 
 ZeroDev plugins are smart contracts that modify *how transactions are validated*.
