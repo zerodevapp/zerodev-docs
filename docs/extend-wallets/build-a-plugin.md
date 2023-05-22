@@ -5,115 +5,97 @@ sidebar_position: 2
 # Build a Plugin
 
 :::info
-This document was written for Kernel v1 and is outdated.  We are working on documentation for Kernel v2.
+Incorrectly implemented plugins can brick your wallet or otherwise result in loss of funds.  If you are building a plugin, we strongly encourage that you get in touch with our team on [Discord](https://discord.gg/KS9MRaTSjx) so we can provide a review.
 :::
 
-ZeroDev plugins are smart contracts that modify *how transactions are validated*.
+If you haven't already, make sure you read [the overview](/extend-wallets/overview) so you understand how Kernel works from a high level.  This document will dive into the details of writing a plugin.
 
-By default, a ZeroDev wallet simulates the behavior of a [EOA](https://ethereum.org/en/developers/docs/accounts/): there's a single key that's the owner of the wallet, and every valid transaction (aka "UserOperation" in ERC-4337) needs to be signed by the owner.
+As mentioned in the overview, there are two kinds of plugins: validators and executors.
 
-However, some of the most powerful Web3 experiences are only possible if we change the validation logic.  Here are a few examples:
+## Writing a Validator
 
-- Session keys.  A Web3 game may need to send many transactions during a play session, and it can be annoying for the player to sign every transaction.  Instead, the player can create a "session key" -- a temporary key that can only perform certain in-game transactions -- and hand the key to the game.  The game can then send transactions for the user without bothering them with signing.
-
-- Subscriptions.  A true subscription experience, where the subscriber can automatically pay every once in a while, is not possible with EOA wallets, since the owner has to sign every transaction.  Rather, it would be ideal if the subscriber can authorize the seller to send a transaction for them to pay for the product every subscription period.
-
-As you can see, the key (pun intended) to enabling a seamless Web3 experience lies in the ability to program arbitrary rules for transaction validation, which is exactly what AA is about.
-
-# ZeroDev Plugin Framework
-
-## Custom validation logic
-
-We can't talk about building custom validation logic without first explaining how validation works in ERC-4337.
-
-At its core, accounts in ERC-4337 validate transactions with a function called [`validateUserOp`](https://github.com/eth-infinitism/account-abstraction/blob/7368f3d1df9227946b39ca041adaf9944e398d5d/contracts/core/BaseAccount.sol#L40-L41):
+A validator modifies how transactions are validated.  Validators must implement the [`IKernelValidator` interface](https://github.com/zerodevapp/kernel/blob/main/src/validator/IValidator.sol):
 
 ```solidity
-function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash, uint256 missingAccountFunds)
-    external override virtual returns (uint256 validationData) {
-  // validation logic
+interface IKernelValidator {
+    function enable(bytes calldata _data) external;
+
+    function disable(bytes calldata _data) external;
+
+    function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash, uint256 missingFunds)
+        external
+        returns (uint256);
+
+    function validateSignature(bytes32 hash, bytes calldata signature) external view returns (uint256);
 }
 ```
 
-But since smart contract code is immutable, how do we go about implementing custom validation logic?
+Here's an explanation of each function:
 
-ZeroDev achieves this through a *plugin framework*.  At a high level, you can imagine that our `validateUserOp` looks like this (in pseudo-solidity):
+- `enable`: used in "enable mode" (see the overview) to enable the validator.  The `_data` should be whatever data you need to initialize the plugin.  For example, in the [ECDSA plugin](https://github.com/zerodevapp/kernel/blob/main/src/validator/ECDSAValidator.sol), the data is simply the owner address.
+
+- `disable`: used to disable the validator.  To use this function, the user calls it directly on the validator contract.
+
+- `validateUserOp`: implements custom validation logic for this plugin.  The difference between this `validateUserOp` and the Kernel's `validateUserOp` is that the Kernel will "strip" the extra data (e.g. the "mode") from `userOp.signature` before passing it to this `validateUserOp`.
+
+- `validateSignature`: validates signatures dynamically.  Only relevant if you want to use this validator as a "default validator," which we will explain later
+
+### Default Validator
+
+Each Kernel account must have one "default validator."  A default validator is special in a few ways:
+
+- It's the validator used in "sudo mode" (see overview).  In other words, when other validators are not used, the default validator is used by default (duh).
+- It's the validator used in "enable mode" to check if it approves of the enabling of another validator.
+- It's the validator used for checking signatures for ERC-1271.
+
+The second and third points are the reasons why a default validator must implement a `validateSignature` method.
+
+### Validator Storage
+
+Since validators are invoked with `call`, it has its own storage and doesn't share storage with Kernel.
+
+However, since validator storage is accessed during the validation phase, ERC-4337's "[storage rules](https://github.com/eth-infinitism/account-abstraction/blob/abff2aca61a8f0934e533d0d352978055fddbd96/eip/EIPS/eip-4337.md#storage-associated-with-an-address)" apply.  In particular, it means that you need to index storage by `msg.sender`.
+
+For example, you cannot do this:
 
 ```solidity
-function validateUserOp(UserOperation calldata userOp, bytes32 userOpHash, uint256 missingAccountFunds)
-    external override virtual returns (uint256 validationData) {
-  if (isPluginRegistered()) {
-    plugin.validateUserOp(userOp, userOpHash, missingAccountFunds);
-  } else {
-    // proceed as usual
-  }
+bool enabled;
+function validateUserOp(UserOperation calldata _op, ...) external {
+    require(enabled);
 }
 ```
 
-That is, ZeroDev accounts are programmed such that it first checks if there's an active plugin, and if so, it *delegates* the validation logic to the plugin.  Otherwise it proceeds normally.  Therefore, building a ZeroDev plugin comes down to building a contract that implements the `validateUserOp` function.
-
-But how do we determine if a plugin is enabled?  Since plugins modify how transactions are validated, it's important that we only accept plugins enabled by the owner.
-
-## Using a plugin
-
-Naively, we could have an on-chain registry that records the plugins enabled by the owner.  This would however mean that a user needs to send a transaction to enable a plugin.  Can we do better?
-
-In ZeroDev, plugins are enabled off-chain by signing a message.  Then, every transaction sent through the plugin will attach the message.  The message contains a few critical pieces of information:
-
-- Which plugin is being enabled
-- How long the plugin is enbled for
-- How the plugin should be "set up" (more on this later)
-
-The signing is done through the ZeroDev SDK with the following API:
-
-```typescript
-import { SomePlugin } from "@zerodevapp/plugins"
-
-// pluginSigner is a signer that sends transactions that
-// are validated by the custom logic defined in the plugin
-const pluginSigner = new SomePlugin({
-  // signer is a ZeroDevSigner
-  from: signer,
-  validUntil: Math.round(now.getTime() / 1000) + 3600 // an hour from now
-  ... // custom data for this specific plugin
-})
-```
-
-For example, for the session key plugin, it looks roughly like this:
-
-```typescript
-import { SessionKeyPlugin } from "@zerodevapp/plugins"
-
-const sessionKeySigner = new SessionKeyPlugin({
-  // signer is a ZeroDevSigner
-  from: signer,
-  validUntil: Math.round(now.getTime() / 1000) + 3600 // an hour from now
-  whitelist: [ /* ... */ ],
-})
-```
-
-Once a plugin has been signed, we can use it the same way we'd use a `ZeroDevSigner` (which is itself a [Ethers signer](https://docs.ethers.org/v5/api/signer/)).  The difference is that the signature will be generated by the plugin, and validated through the plugin's own logic:
-
-```typescript
-const contract = new Contract(address, abi, pluginSigner)
-await contract.someFunction()
-```
-
-# Writing a Plugin
-
-As aforementioned, writing a plugin comes down to writing a smart contract that implements the `validateUserOp` function.  To be compatible with 4337 and our plugin framework, the function needs to perform a number of scaffolding actions.
-
-To make things simpler for you, we have implemented a [base plugin](https://github.com/zerodevapp/zerodev-wallet-kernel/blob/main/src/plugin/ZeroDevBasePlugin.sol) that you can inherit from.  Once inherited, you can simply implement a `_validatePluginData` function with the following signature:
+But you can do this:
 
 ```solidity
-function _validatePluginData(
-    UserOperation calldata userOp,
-    bytes32 userOpHash,
-    bytes calldata data,
-    bytes calldata signature
-) internal virtual returns (bool);
+mapping(address => bool) enabled;
+function validateUserOp(UserOperation calldata _op, ...) external {
+    require(enabled[_op.sender]);
+}
 ```
 
-This function should process the plugin-specific `data` and `signature`, and return either `true` or `false` depending on whether the transaction is valid.
+### Validator Opcodes
 
-See [our plugins](https://github.com/zerodevapp/zerodev-wallet-kernel/tree/feat/merkle_session/src/plugin) for examples.
+Since validators are used during the validation phase, they cannot use any [forbidden opcodes](https://github.com/eth-infinitism/account-abstraction/blob/abff2aca61a8f0934e533d0d352978055fddbd96/eip/EIPS/eip-4337.md#forbidden-opcodes) defined in ERC-4337.
+
+### Validator Examples
+
+We strongly recommend that you read some of the following examples and make sure you understand how and why they work.
+
+- [ECDSA validator](https://github.com/zerodevapp/kernel/blob/main/src/validator/ECDSAValidator.sol): the default "default validator" for ZeroDev accounts.  Mimics the behavior of an EOA -- simply checking that the account owner is signing correctly using ECDSA.
+
+- [Kill switch validator](https://github.com/zerodevapp/kernel/blob/main/src/validator/KillSwitchValidator.sol): just like the ECDSA validator except that it allows for a "kill switch" -- a designated guardian can "turn off" the account and set a new owner, presumably because the original owner's key was compromised.
+
+- [ERC165 session key validator](https://github.com/zerodevapp/kernel/blob/main/src/validator/ERC165SessionKeyValidator.sol): designed to work with a specific executor (explained later) that transfers NFTs.  This validator verifies that the executor is indeed interacting with a contract that implements the ERC721 interface.
+
+## Writing an Executor
+
+You have significantly more freedom when writing an executor than writing a validator, since they are just custom functions that you want to add "on top" of what Kernel already defines.  Furthermore, since executors are used during the execution phase, there are no opcode restrictions.
+
+### Executor Storage
+
+Executors are invoked with `delegatecall`, which means executors need to be extra careful to not touch any storage area used by Kernel.  Therefore, it's strongly encouraged that you use ["unstructured stroage" (aka "diamond storage")](https://dev.to/mudgen/how-diamond-storage-works-90e).
+
+### Executor Examples
+
+- [ERC721 transfer](https://github.com/zerodevapp/kernel/blob/main/src/actions/ERC721Actions.sol): a simple example of a custom function that transfers NFTs.  This executor is designed to work with the [ERC165 session key validator](https://github.com/zerodevapp/kernel/blob/main/src/validator/ERC165SessionKeyValidator.sol).
