@@ -38,7 +38,7 @@ Here's an explanation of each function:
 
 - `validateUserOp`: implements custom validation logic for this plugin.  The difference between this `validateUserOp` and the Kernel's `validateUserOp` is that the Kernel will "strip" the extra data (e.g. the "mode") from `userOp.signature` before passing it to this `validateUserOp`.
 
-- `validateSignature`: validates signatures dynamically.  Only relevant if you want to use this validator as a "default validator," which we will explain later
+- `validateSignature`: validates signatures dynamically.  Only relevant if you want to use this validator as a "default validator," which we will explain later.
 
 ### Default Validator
 
