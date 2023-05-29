@@ -47,4 +47,6 @@ If you are completely new to ZeroDev, we recommend starting with [the tutorial](
 
 After that, [integrate ZeroDev](/create-wallets/overview) with the onboarding/authentication solution of your choice.
 
-Finally, [enable smart wallet features](/use-wallets/overview) for your users, such as gas sponsoring.
+Then, [enable smart wallet features](/use-wallets/overview) for your users, such as gas sponsoring.
+
+Finally, if necessary, [build smart wallet plugins](https://docs.zerodev.app/extend-wallets/overview) to enable custom functionalities.
