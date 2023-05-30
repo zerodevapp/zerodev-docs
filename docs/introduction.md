@@ -49,4 +49,4 @@ After that, [integrate ZeroDev](/create-wallets/overview) with the onboarding/au
 
 Then, [enable smart wallet features](/use-wallets/overview) for your users, such as gas sponsoring.
 
-Finally, if necessary, [build smart wallet plugins](https://docs.zerodev.app/extend-wallets/overview) to enable custom functionalities.
+Finally, if necessary, [build smart wallet plugins](/extend-wallets/overview) to enable custom functionalities.
