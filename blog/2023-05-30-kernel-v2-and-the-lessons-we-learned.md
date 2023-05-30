@@ -64,7 +64,7 @@ Executors are plugins that add custom functions to Kernel.  In particular, each 
 
 The ability to route each function to a different validator makes it possible to implement ultra-fine-grained security policy.  For example, you might want to add a custom function to Kernel, but you ONLY want that function to be called if the user goes through 2FA.  With Kernel, you can set up routing so that the custom function (executor) is routed through 2FA (validator).
 
-## Kernel v2 Architecture Overview
+## How Kernel v2 Works
 
 In ERC-4337, a transaction (aka “UserOp”) is processed in two phases: a validation phase and an execution phase.  To understand how Kernel v2 works, let’s walk through the lifecycle of a UserOp as processed by Kernel.
 
@@ -97,4 +97,9 @@ When EntryPoint calls the function, Kernel uses a [fallback function](https://d
 
 ## Next Steps
 
-Today we are happy to announce that Kernel v2 has passed the initial audit and therefore entered public beta.  You can read more about Kernel and how to build plugins on [our docs](https://docs.zerodev.app/extend-wallets/overview), or read the [raw notes](https://hackmd.io/joe9mwzPRCCA5Mw0JVWzBw) by Taek which this blog is based off of.  If you want to build some plugins, join our [Discord](https://discord.gg/KS9MRaTSjx) and head to #plugin-devs where our community can help!
+Today we are happy to announce that Kernel v2 has passed the initial audit and therefore entered public beta.  Here are some more resources for learning more about Kernel:
+
+- [Documentation for building plugins](https://docs.zerodev.app/extend-wallets/overview).
+- [Code for Kernel v2](https://github.com/zerodevapp/kernel).
+- [Raw notes by Taek](https://hackmd.io/joe9mwzPRCCA5Mw0JVWzBw) which this blog is based off of.
+- If you want to build some plugins, join our [Discord](https://discord.gg/KS9MRaTSjx) and head to #plugin-devs where our community can help!
