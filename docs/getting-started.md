@@ -42,10 +42,10 @@ cd zerodev-tutorial
 npm init -y
 ```
 
-Then install the ZeroDev SDK and Ethers:
+Then install the ZeroDev SDK:
 
 ```bash
-npm i @zerodevapp/sdk ethers
+npm i @zerodevapp/sdk
 ```
 
 ## Send gasless transactions
@@ -53,45 +53,67 @@ npm i @zerodevapp/sdk ethers
 We will now implement a simple script that:
 
 1. Creates an AA wallet from a private key
-2. Mints an NFT from that wallet, without paying gas
+2. Mints an NFT without paying gas
 
 To make things easier, we already deployed an NFT contract on Polygon Mumbai that allows anyone to mint NFTs.
 
-Create a file `app.js` with the following content
+Create a file `app.js` with the following content:
 
 ```javascript
-const { Contract, Wallet } = require('ethers')
-const { getZeroDevSigner } = require('@zerodevapp/sdk')
+const { ECDSAProvider } = require('@zerodevapp/sdk')
+const { PrivateKeySigner } = require("@alchemy/aa-core")
+const { encodeFunctionData, parseAbi, createPublicClient, http } = require('viem')
+const { polygonMumbai } = require('viem/chains')
 
 const projectId = process.env.PROJECT_ID
-const wallet = new Wallet(process.env.PRIVATE_KEY)
+const owner = PrivateKeySigner.privateKeyToAccountSigner(process.env.PRIVATE_KEY)
 
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
-const contractABI = [
+const contractABI = parseAbi([
   'function mint(address _to) public',
   'function balanceOf(address owner) external view returns (uint256 balance)'
-]
+])
+const publicClient = createPublicClient({
+  chain: polygonMumbai,
+  // the API is rate limited and for demo purposes only
+  // in production, replace this with your own node provider (e.g. Infura/Alchemy)
+  transport: http('https://polygon-mumbai.infura.io/v3/f36f7f706a58477884ce6fe89165666c'),
+})
 
 const main = async () => {
-  const signer = await getZeroDevSigner({
+  // Create the AA wallet
+  const ecdsaProvider = await ECDSAProvider.init({
     projectId,
-    owner: wallet,
+    owner,
   })
-
-  const address = await signer.getAddress()
+  const address = await ecdsaProvider.getAddress()
   console.log('My address:', address)
 
-  const nftContract = new Contract(contractAddress, contractABI, signer)
+  // Mint the NFT
+  const { hash } = await ecdsaProvider.sendUserOperation({
+    target: contractAddress,
+    data: encodeFunctionData({
+      abi: contractABI,
+      functionName: 'mint',
+      args: [address],
+    }),
+  })
+  await ecdsaProvider.waitForUserOperationTransaction(hash)
 
-  const receipt = await nftContract.mint(address)
-  await receipt.wait()
-  console.log(`NFT balance: ${await nftContract.balanceOf(address)}`)
+  // Check how many NFTs we have
+  const balanceOf = await publicClient.readContract({
+    address: contractAddress,
+    abi: contractABI,
+    functionName: 'balanceOf',
+    args: [address],
+  })
+  console.log(`NFT balance: ${balanceOf}`)
 }
 
 main().then(() => process.exit(0))
 ```
 
-Feel free to read the script and see what it's doing.  It should be fairly straightforward to understand.
+Feel free to read the script and see what it's doing.  It should be fairly straightforward.  Note that the ZeroDev SDK is natively compatible with [Viem](https://viem.sh) but you can use it as a [Ethers signer](/packages/sdk#ethers-api) as well
 
 The script requires that we set a project ID and a private key.  We can generate a random private key with this command:
 
@@ -139,25 +161,37 @@ Feel free to run the script a few more times to mint more NFTs.  It's free after
 
 Minting one NFT at a time is cool, but what if we wanna mint two at a time?  With a traditional wallet, you'd have to send two transactions.  With AA, we can bundle multiple transactions and send them as one -- saving the user time and gas.
 
-To mint two NFTs at a time, simply replace this line:
+To mint two NFTs at a time, simply replace this block:
 
 ```javascript
-  const receipt = await nftContract.mint(address)
+  const { hash } = await ecdsaProvider.sendUserOperation([{
+    target: contractAddress,
+    data: encodeFunctionData({
+      abi: contractABI,
+      functionName: 'mint',
+      args: [address],
+    }),
+  }])
 ```
 
-With this line:
+With this block (passing two UserOperations in an array):
 
 ```javascript
-  const receipt = await signer.execBatch([
-    {
-      to: nftContract.address,
-      data: nftContract.interface.encodeFunctionData("mint", [address]),
-    },
-    {
-      to: nftContract.address,
-      data: nftContract.interface.encodeFunctionData("mint", [address]),
-    },
-  ])
+  const { hash } = await ecdsaProvider.sendUserOperation([{
+    target: contractAddress,
+    data: encodeFunctionData({
+      abi: contractABI,
+      functionName: 'mint',
+      args: [address],
+    }),
+  }, {
+    target: contractAddress,
+    data: encodeFunctionData({
+      abi: contractABI,
+      functionName: 'mint',
+      args: [address],
+    }),
+  }])
 ```
 
 Now, run `node app.js` again.  You should see that your NFT balance is now increasing two at a time!

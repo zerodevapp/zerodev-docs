@@ -5,54 +5,105 @@ sidebar_label: Overview
 
 # Creating Smart Wallets
 
-To create a smart wallet, you need a **signer**.  A signer is anything that can cryptographically sign messages and transactions, and it's typically (but not always) backed by a ECDSA private key.
-
-Keep in mind that **whoever owns the signer owns the smart wallet.**  The security of your signer is therefore of paramount importance.
-
-Generally speaking, signers can be grouped into the following catogories:
-
-- **Web2 Auth**: for Web2.5 applications, your users might want to login with their Web2/social accounts.  ZeroDev leverages MPC solutions such as Web3Auth to enable signins with OAuth, JWT, Auth0, and more.
-  - [OAuth](/create-wallets/web2-auth/oauth/rainbowkit)
-  - [JWT](/create-wallets/web2-auth/jwt)
-  - [Auth0](/create-wallets/web2-auth/auth0)
-
-- **Wallets-as-a-Service**: there are many "wallets-as-a-service" (WaaS) solutions out there that can act as signers for ZeroDev.  By combining ZeroDev with such a service, you are using these services to handle the onboarding flow, while using ZeroDev as the wallet, getting the best of both worlds.
-  - [Magic](/create-wallets/wallets-as-a-service/magic)
-  - [Web3Auth](/create-wallets/wallets-as-a-service/web3auth)
-  - [Portal](/create-wallets/wallets-as-a-service/portal)
-  - [Privy](/create-wallets/wallets-as-a-service/privy)
-  - [Rollup](/create-wallets/wallets-as-a-service/rollup)
-  - [Dynamic](/create-wallets/wallets-as-a-service/dynamic)
-
-- **Custodial Wallet APIs**: custodial wallet providers like Fireblocks and Turnkey are also wallets-as-a-service, but we put them in a different category since they are typically used as APIs.  By using them with ZeroDev, you essentially get a custodial AA wallet API.
-  - [Turnkey](/create-wallets/custodial-wallet-apis/turnkey)
-  - [Fireblocks](/create-wallets/custodial-wallet-apis/fireblocks)
-
-- **Custom Keys**: if you already have your own key infrastructure, you can create ZeroDev wallets from private keys directly.
-  - [Raw private keys](/create-wallets/custom-keys/raw-private-keys)
-  - [Custom signers](/create-wallets/custom-keys/custom-key-providers)
-
-- **Wallet signers**: your users can use their existing EOA wallets as signers.  In this case, every transaction will trigger the EOA wallet to sign a message.
-
-- If none of these works for you, you can create AA wallets using [our API](/create-wallets/api).
-
-## Use ZeroDev with Ethers and Wagmi
-
-Unless otherwise noted, all ZeroDev integrations share the same API.
-
-All integrations return a `ZeroDevSigner` object, which is an implementation of [Ethers Signer](https://docs.ethers.org/v5/api/signer/).  Note that this is not to be confused with the signers we talked about earlier -- here we are talking about Ethers's `Signer` interface specifically.
-
-With a Signer object, you can do anything that you would expect a wallet to do, such as sending transactions, signing messages, getting the address, etc.
-
-For example, here's how you would use a `ZeroDevSigner` to interact with a smart contract (which is exactly the same as how you would use a regular Ethers Signer):
+In this document, we describe the general flow for creating a ZeroDev wallet.  Let's start by looking at the code:
 
 ```typescript
-import { Contract } from "ethers"
+import { ECDSAValidator } from "@zerodevapp/sdk";
+import { PrivateKeySigner } from "@alchemy/aa-core";
 
-const nftContract = new Contract(contractAddress, contractABI, zerodevSigner)
-await nftContract.mint()
+// The validator
+const ecdsaProvider = await ECDSAProvider.init({
+  // ZeroDev projectId
+  projectId,
+  // The signer
+  owner: PrivateKeySigner.privateKeyToAccountSigner(PRIVATE_KEY),
+  // The paymaster
+  opts: {
+      paymasterConfig: {
+          policy: "VERIFYING_PAYMASTER"
+      }
+  },
+});
 ```
 
-Of course, the beauty of ZeroDev is that it can do *more* than a regular wallet.  Check out the ["Use AA Wallets"](/use-wallets/overview) document for all smart wallet features.
+As you see, you need to specify three things: validator, signer(s), and paymaster.
 
-When using ZeroDev with Wagmi-based solutions such as RainbowKit, you can also use ZeroDev with a Wagmi API.  See the integration docs with those specific solutions for details.
+- Validator: how does this account validates its transactions?
+- Signer(s): who will be signing transactions?
+- Paymaster: how will this account pay for gas?
+
+Let's dive in.
+
+## Choosing a validator
+
+Regular EOAs validate transactions by checking their ECDSA signatures.  With AA, however, you have the flexibility to choose different validation methods.  In ZeroDev, each different validation method is implemented with a smart contract known as a "validator."  You can read more about ZeroDev's modular architecture [here](/extend-wallets/overview).
+
+The most commonly used validator is a ECDSA validator.  It basically replicates the behavior of an EOA where transactions are signed with a single ECDSA private key.
+
+However, [many other validators](/extend-wallets/example-plugins) are available, such as multisig, recoverable ECDSA, etc.  We use the ECDSA validator as the default example throughout the docs since it's the most popular.
+
+In the ZeroDev SDK, a wallet is typically accessed through an abstraction known as a "provider," not unlike how in Ethers you access wallets through an [Ethers provider](https://docs.ethers.org/v5/api/providers/).  Each validator has its own provider class, so to create a wallet with an ECDSA validator you would do:
+
+```typescript
+const ecdsaProvider = await ECDSAProvider.init(...)
+```
+
+## Choosing a signer
+
+Signers are objects that can sign transactions.  In the case of a ECDSA validator, only one signer is needed, but other validators could require more than one signers, such as a multisig validator.
+
+One common misunderstanding of AA wallets is that they are inherently non-custodial.  In fact, whether a wallet is custodial or not has nothing to do with whether it's AA -- it's the **signer** that determines whether the wallet is custodial.  If only the user controls their signer, then the wallet can be said as non-custodial.  If the signer is controlled by a third party, then the wallet would be custodial.
+
+ZeroDev has support for both [custodial](/create-wallets/custodial) and [non-custodial](/category/noncustodial-wallets) signers, as well as a large number of [third-party signer integrations](/category/third-party-integrations) so you can use ZeroDev with popular Wallet-as-a-Service (WaaS) offerings such as Magic and Web3Auth.
+
+To specify the signer for the ECDSA validator, use the `owner` flag:
+
+```typescript
+const ecdsaProvider = await ECDSAProvider.init({
+  owner: PrivateKeySigner.privateKeyToAccountSigner(PRIVATE_KEY),
+  // other params...
+});
+```
+
+In this example, we use a [private key signer](/create-wallets/custom-signers/raw-private-keys),
+
+## Choosing a paymaster
+
+With a regular wallet, the wallet pays for its own gas.  In other words, if the wallet has no ETH (or whatever token that's native to the network), the wallet cannot send any transactions.
+
+An AA wallet like ZeroDev can leverage *paymasters* -- smart contracts that pay gas for the user, thus enabling the wallet to send transactions even if it can't pay for gas.
+
+Paymasters can encode arbitrarily complex logic, but the most commonly used paymasters are:
+
+- Verifying paymaster: this paymaster pays gas for a transaction if the owner of the paymaster has signed the transaction.
+- ERC20 paymaster: this paymaster pays gas for a transaction in exchange for ERC20 tokens (such as USDC), thus effectively enabling the user to pay gas with ERC20 tokens.
+
+In this example, we use the verifying paymaster.  You can [set up gas sponsoring "policies" in the dashboard](/use-wallets/pay-gas-for-users) to configure the conditions under which the paymaster will pay for sign and therefore pay for the transaction.  Note that the ZeroDev SDK actually uses the verifying paymaster by default, so you don't technically have to specify this option.
+
+```typescript
+const ecdsaProvider = await ECDSAProvider.init({
+  // The paymaster
+  opts: {
+      paymasterConfig: {
+          policy: "VERIFYING_PAYMASTER"
+      }
+  },
+  // other params...
+});
+```
+
+## FAQs
+
+### Do I pay gas when I create a ZeroDev wallet?
+
+As you know, AA wallets are smart contract wallets.  However, when you "create" a wallet with the SDK, the wallet is not actually deployed.  Rather, its address is computed "counterfactually" (using [`CREATE2`](https://docs.openzeppelin.com/cli/2.8/deploying-with-create2) under the hood), meaning that you know your AA wallet's address even though it hasn't been deployed yet.  Therefore, "creating" a ZeroDev wallet and getting an address actually doesn't use any gas, and you can display the address to the user, send assets to the address, etc.
+
+The AA wallet is only actually deployed when you send the first transaction with the wallet.  The wallet deployment happens atomically with the first transaction, so from your user's perspective they are still just sending one transaction, except that the first transaction is going to cost a little more since it includes the deployment cost.
+
+### Who has custody of the ZeroDev wallet?
+
+It's a common misconception that AA wallets are inherently non-custodial.  In fact, whether a wallet is AA or not has nothing to do with whether it's custodial.  It's the signers that determine whether a wallet is custodial.
+
+That is, if you use a non-custodial signer such as local private keys to manage your AA wallet, then it's non-custodial.  At the same time, if you use a custodial key provider such as Fireblocks to manage your AA wallet, then it's custodial.
+
+In any case, whoever has custody over the signers has custody over the wallet.
