@@ -15,13 +15,13 @@ import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
 
 ## What is ZeroDev?
 
-ZeroDev is a developer framework for creating, using, and extending **smart wallets** powered by account abstraction (ERC-4337).
+ZeroDev is a framework for creating, using, and extending **smart wallets** powered by account abstraction (ERC-4337).
 
-- Create: ZeroDev integrates with all popular onboarding and authentication solutions, so that you can easily create *smart wallets* for your users, no matter they are Web2 or Web3.
+- Create: You can create both custodial and non-custodial AA wallets using ZeroDev.  Furthermore, you can use ZeroDev with popular wallet-as-a-service (WaaS) solutions, to turn their regular wallets into AA wallets.
 
-- Use: ZeroDev provides SDKs and APIs for the most popular smart wallet *features*, including gas sponsoring, transaction batching, automated transactions, session keys, and more.
+- Use: ZeroDev enables powerful smart wallet *features* such as gas sponsoring, transaction batching, automated transactions, session keys, and more.
 
-- Extend: if our smart wallet features don't cover your needs, you can easily build custom smart wallet *plugins* using our plugin framework.
+- Extend: if our smart wallet features don't cover your needs, you can build custom smart wallet *plugins* to enable extra functionalities.
 
 No matter if you are building a wallet or a DApp, you can use ZeroDev to dramatically improve Web3 UX for your users.
 
@@ -29,7 +29,7 @@ No matter if you are building a wallet or a DApp, you can use ZeroDev to dramati
 
 - ZeroDev is NOT a fully-featured wallet.  Rather, it's a *headless* wallet that you can embed into your application or build a wallet UI on top of.
 
-- ZeroDev is NOT a fully-featured onboarding solution.  Rather, it's designed to be integrated with your existing onboarding/authentication flow, so that your users get a *smart wallet* after signing in.
+- ZeroDev is NOT a fully-featured onboarding solution.  Rather, it's designed to be integrated with your existing onboarding flow, so that your users get a *smart wallet* after onboarding.
 
 ## What are smart wallets?
 
@@ -45,7 +45,7 @@ And these are just some of the most popular use cases of smart wallets.  Under t
 
 If you are completely new to ZeroDev, we recommend starting with [the tutorial](/getting-started).
 
-After that, [integrate ZeroDev](/create-wallets/overview) with the onboarding/authentication solution of your choice.
+After that, learn how to [create smart wallets](/create-wallets/overview) for your users.
 
 Then, [enable smart wallet features](/use-wallets/overview) for your users, such as gas sponsoring.
 

@@ -26,11 +26,11 @@ const ecdsaProvider = await ECDSAProvider.init({
 });
 ```
 
-As you see, you need to specify three things: validator, signer(s), and paymaster.
+As the code shows, we need to specify three things when creating a ZeroDev wallet: validator, signer(s), and paymaster.
 
-- Validator: how does this account validates its transactions?
+- Validator: how does this wallet validate transactions?
 - Signer(s): who will be signing transactions?
-- Paymaster: how will this account pay for gas?
+- Paymaster: how will this wallet pay for gas?
 
 Let's dive in.
 
@@ -65,20 +65,21 @@ const ecdsaProvider = await ECDSAProvider.init({
 });
 ```
 
-In this example, we use a [private key signer](/create-wallets/custom-signers/raw-private-keys),
+In this example, we use a [private key signer](/create-wallets/custom-signers/raw-private-keys) which signs transactions using a private key, similar to how MetaMask works.
 
 ## Choosing a paymaster
 
-With a regular wallet, the wallet pays for its own gas.  In other words, if the wallet has no ETH (or whatever token that's native to the network), the wallet cannot send any transactions.
+With a regular wallet, the wallet pays for its own gas.  In other words, if the wallet has no ETH (or whatever token native to the network), the wallet cannot send any transactions.
 
-An AA wallet like ZeroDev can leverage *paymasters* -- smart contracts that pay gas for the user, thus enabling the wallet to send transactions even if it can't pay for gas.
+An AA wallet like ZeroDev can leverage *paymasters* -- smart contracts that pay gas for the user, thus enabling the wallet to send transactions even if it doesn't have ETH.
 
-Paymasters can encode arbitrarily complex logic, but the most commonly used paymasters are:
+There are many kinds of paymasters, but the most popular ones are:
 
-- Verifying paymaster: this paymaster pays gas for a transaction if the owner of the paymaster has signed the transaction.
+- Verifying paymaster: this paymaster pays gas if it can verify that the transaction has been approved by the operator of the paymaster.  Presumably, the operator pays for the transaction due to some off-chain arrangements.  With ZeroDev, we let you use the verifying paymaster to sponsor gas for your users.
+
 - ERC20 paymaster: this paymaster pays gas for a transaction in exchange for ERC20 tokens (such as USDC), thus effectively enabling the user to pay gas with ERC20 tokens.
 
-In this example, we use the verifying paymaster.  You can [set up gas sponsoring "policies" in the dashboard](/use-wallets/pay-gas-for-users) to configure the conditions under which the paymaster will pay for sign and therefore pay for the transaction.  Note that the ZeroDev SDK actually uses the verifying paymaster by default, so you don't technically have to specify this option.
+In this example, we use the verifying paymaster.  You can [set up gas sponsoring "policies" in the dashboard](/use-wallets/pay-gas-for-users) to configure the conditions under which the paymaster will sign and therefore pay for the transaction.  Note that the ZeroDev SDK actually uses the verifying paymaster by default, so you don't technically have to specify this option.
 
 ```typescript
 const ecdsaProvider = await ECDSAProvider.init({

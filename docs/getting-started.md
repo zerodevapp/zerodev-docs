@@ -113,7 +113,10 @@ const main = async () => {
 main().then(() => process.exit(0))
 ```
 
-Feel free to read the script and see what it's doing.  It should be fairly straightforward.  Note that the ZeroDev SDK is natively compatible with [Viem](https://viem.sh) but you can use it as a [Ethers signer](/packages/sdk#ethers-api) as well
+Feel free to read the script and see what it's doing.  It should be fairly straightforward.  Note that:
+
+- We are using the ZeroDev SDK with [Viem](https://viem.sh) in this example, but you can [use it with Ethers](/packages/sdk#ethers-api) as well.
+- A transaction from an AA wallet is also known as a "user operation," which is why we use the function `sendUserOperation` to send the transaction.
 
 The script requires that we set a project ID and a private key.  We can generate a random private key with this command:
 

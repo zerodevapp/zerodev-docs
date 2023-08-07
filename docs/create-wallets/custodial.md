@@ -7,9 +7,10 @@ sidebar_label: Custodial Wallets
 
 With ZeroDev, you can create "custodial AA wallets" -- wallets whose owners don't directly control their keys.  This has many use cases, including:
 
-- Creating wallets for users on the server side
+- Creating wallets on the backend
 - Creating wallets for internal admin usage
-- Building wallet APIs for your clients to consume
+- Building wallet APIs for your client application to consume
+  - This is particularly useful if your client can't consume our TypeScript SDK.
 
 ## Downloading the Secret File
 
