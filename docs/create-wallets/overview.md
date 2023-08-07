@@ -54,7 +54,7 @@ Signers are objects that can sign transactions.  In the case of a ECDSA validato
 
 One common misunderstanding of AA wallets is that they are inherently non-custodial.  In fact, whether a wallet is custodial or not has nothing to do with whether it's AA -- it's the **signer** that determines whether the wallet is custodial.  If only the user controls their signer, then the wallet can be said as non-custodial.  If the signer is controlled by a third party, then the wallet would be custodial.
 
-ZeroDev has support for both [custodial](/create-wallets/custodial) and [non-custodial](/category/noncustodial-wallets) signers, as well as a large number of [third-party signer integrations](/category/third-party-integrations) so you can use ZeroDev with popular Wallet-as-a-Service (WaaS) offerings such as Magic and Web3Auth.
+ZeroDev has support for both [custodial](/create-wallets/custodial) and [non-custodial](/category/noncustodial-wallets) signers, as well as a large number of [third-party signer integrations](/category/integrations) so you can use ZeroDev with popular Wallet-as-a-Service (WaaS) offerings such as Magic and Web3Auth.
 
 To specify the signer for the ECDSA validator, use the `owner` flag:
 
@@ -65,7 +65,7 @@ const ecdsaProvider = await ECDSAProvider.init({
 });
 ```
 
-In this example, we use a [private key signer](/create-wallets/custom-signers/raw-private-keys) which signs transactions using a private key, similar to how MetaMask works.
+In this example, we use a [private key signer](/create-wallets/noncustodial/private-keys) which signs transactions using a private key, similar to how MetaMask works.
 
 ## Choosing a paymaster
 
