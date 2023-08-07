@@ -19,27 +19,27 @@ One great advantage of smart contract wallets is the ability to execute transact
 ### Ethers
 
 ```typescript
-// signer is a ZeroDevSigner
-// This will mint two NFTs at a time
-await signer.execBatch([
+const txn = await ecdsaProvider.sendUserOperation([
   {
-    to: nftAddress,
-    data: nftContract.interface.encodeFunctionData("mint", [address]),
+    target: "targetAddress1",
+    data: "callData1",
+    value: value1,
   },
   {
-    to: nftAddress,
-    data: nftContract.interface.encodeFunctionData("mint", [address]),
+    target: "targetAddress2",
+    data: "allData2",
+    value: value2,
   },
 ])
 ```
 
 <br />
 
-Each object in the array for `execBatch` can have three keys:
+Each object in the array for `execBatch` can have three properties:
 
 - `to`: the contract you are interacting with
 - `data`: the calldata
-- `value`: the value of the transaction
+- `value`: the ETH value of the transaction (can be undefined)
 
 ### Wagmi
 
