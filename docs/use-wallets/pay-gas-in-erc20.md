@@ -4,14 +4,20 @@ sidebar_position: 2
 
 # Pay Gas in ERC20
 
-One superpower of AA wallets like ZeroDev is the ability to pay gas in ERC20 tokens.  ZeroDev plans on supporting all major ERC20s.
+One superpower of AA wallets like ZeroDev is the ability to pay gas in ERC20 tokens.  ZeroDev currently supports USDC but plans on supporting all major ERC20s.
 
-To pay gas in ERC20s, simply pass the `gasToken` option when you create a `ZeroDevSigner`.  For example, to pay gas in USDC:
+To pay gas in ERC20s, use `TOKEN_PAYMASTER` in the paymaster config and specify the token.  For example, to pay gas in USDC:
 
 ```typescript
-const signer = await getZeroDevSigner({
-  // ...other options
-  gasToken: 'USDC',
+let ecdsaProvider = await ECDSAProvider.init({
+  projectId, // zeroDev projectId
+  owner,
+  opts: {
+    paymasterConfig: {
+      policy: "TOKEN_PAYMASTER",
+      gasToken: "USDC",
+    },
+  },
 })
 ```
 
@@ -24,13 +30,7 @@ new GoogleSocialWalletConnector({chains, options: {
 }})
 ```
 
-Three distinct situations may arise when utilizing paying gas in ERC20 in tandem with gas sponsoring policies:
-1. If your project does not specify any gas sponsoring policy, then the AA wallet owner pays the gas with their ERC20 tokens.
-2. If your project specifies gas sponsoring policies and the transaction is non-compliant, then the AA wallet owner pays the gas with their ERC20 tokens.
-3. If your project specifies gas sponsoring policies and the transaction is compliant, then you are paying (sponsoring) the gas.
+Note that [gas sponsoring policies](/use-wallets/pay-gas-for-users) override ERC20 paymaster settings.  That is:
 
-ZeroDev currently supports:
-
-- USDC
-- PEPE (mainnet only)
-- DAI (upcoming)
+- If no gas sponsoring policy covers the transaction, then the AA wallet owner pays the gas with their ERC20 tokens.
+- If any gas sponsoring policy covers the transaction, then you (the developer) sponsor the gas.
