@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Update Wallet Owner
+# Change Wallet Owner
 
 :::danger
 Updating the owner of your ZeroDev AA wallet is a very dangerous action, since the current owner will lose access to the wallet after the update.  Only do this if you know exactly what you are doing.
@@ -18,7 +18,7 @@ On the other hand, AA wallets are like houses where locks can be changed.  This 
 
 In the following section, we will show you how to update the owner of the default ZeroDev wallet created with [the ECDSA validator](/create-wallets/overview#choosing-a-validator).  Refer to documentations for the specific validator if you are using another validator such as multisig.
 
-## Update owner
+## Update wallet owner
 
 To update the owner of your wallet, call the function `changeOwner`:
 

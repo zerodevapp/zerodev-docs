@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
-sidebar_label: Custodial Wallets
+sidebar_position: 1
+sidebar_label: User ID
 ---
 
-# Creating Custodial Wallets
+# Creating Custodial Wallets with User ID
 
 With ZeroDev, you can create "custodial AA wallets" -- wallets whose owners don't directly control their keys.  This has many use cases, including:
 

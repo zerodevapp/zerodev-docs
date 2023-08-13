@@ -1,8 +1,9 @@
 ---
 sidebar_position: 3
+sidebar_label: Auth0
 ---
 
-# Auth0
+# Creating Custodial Wallets with Auth0
 
 If your app uses Auth0 for authentication, you can use ZeroDev to seamlessly create a smart wallet for each user.  Follow these steps:
 

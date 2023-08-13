@@ -1,8 +1,9 @@
 ---
 sidebar_position: 2
+sidebar_label: JWT
 ---
 
-# JWT
+# Creating Custodial Wallets with JWT
 
 If your app uses JWTs for authentication, you can use ZeroDev to seamlessly create a smart wallet for each user.  Follow these steps:
 

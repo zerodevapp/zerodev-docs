@@ -17,7 +17,7 @@ import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
 
 ZeroDev is a framework for creating, using, and extending **smart wallets** powered by account abstraction (ERC-4337).
 
-- Create: You can create both custodial and non-custodial AA wallets using ZeroDev.  Furthermore, you can use ZeroDev with popular wallet-as-a-service (WaaS) solutions, to turn their regular wallets into AA wallets.
+- Create: You can create both custodial and non-custodial AA wallets using ZeroDev.  Furthermore, you can use ZeroDev on top of wallet-as-a-service (WaaS) solutions such as Web3Auth to 
 
 - Use: ZeroDev enables powerful smart wallet *features* such as gas sponsoring, transaction batching, automated transactions, session keys, and more.
 
