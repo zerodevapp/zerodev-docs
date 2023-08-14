@@ -36,11 +36,13 @@ Let's dive in.
 
 ## Choosing a validator
 
-Regular EOAs validate transactions by checking their ECDSA signatures.  With AA, however, you have the flexibility to choose different validation methods.  In ZeroDev, each different validation method is implemented with a smart contract known as a "validator."  You can read more about ZeroDev's modular architecture [here](/extend-wallets/overview).
+Regular EOAs validate transactions by checking their ECDSA signatures.  With AA, however, you can choose different validation methods.
+
+In ZeroDev, each different validation method is implemented with a smart contract known as a "validator."  You can read more about ZeroDev's modular architecture [here](/extend-wallets/overview).
 
 The most commonly used validator is a ECDSA validator.  It basically replicates the behavior of an EOA where transactions are signed with a single ECDSA private key.
 
-However, [many other validators](/extend-wallets/example-plugins) are available, such as multisig, recoverable ECDSA, etc.  We use the ECDSA validator as the default example throughout the docs since it's the most popular.
+However, [many other validators](/extend-wallets/example-plugins) are available, such as multisig, recoverable ECDSA, etc.  For simplicity, we use the ECDSA validator as the default example throughout the docs.
 
 In the ZeroDev SDK, a wallet is typically accessed through an abstraction known as a "provider," not unlike how in Ethers you access wallets through an [Ethers provider](https://docs.ethers.org/v5/api/providers/).  Each validator has its own provider class, so to create a wallet with an ECDSA validator you would do:
 
@@ -79,7 +81,7 @@ There are many kinds of paymasters, but the most popular ones are:
 
 - ERC20 paymaster: this paymaster pays gas for a transaction in exchange for ERC20 tokens (such as USDC), thus effectively enabling the user to pay gas with ERC20 tokens.
 
-In this example, we use the verifying paymaster.  You can [set up gas sponsoring "policies" in the dashboard](/use-wallets/pay-gas-for-users) to configure the conditions under which the paymaster will sign and therefore pay for the transaction.  Note that the ZeroDev SDK actually uses the verifying paymaster by default, so you don't technically have to specify this option.
+In this example, we use the verifying paymaster.  You can [set up gas sponsoring "policies" in the dashboard](/use-wallets/pay-gas-for-users) to configure the conditions under which the paymaster will sign and therefore pay for the transaction.  Note that the ZeroDev SDK actually enables the verifying paymaster by default, so you don't technically have to specify this option.
 
 ```typescript
 const ecdsaProvider = await ECDSAProvider.init({
@@ -97,9 +99,9 @@ const ecdsaProvider = await ECDSAProvider.init({
 
 ### Do I pay gas when I create a ZeroDev wallet?
 
-As you know, AA wallets are smart contract wallets.  However, when you "create" a wallet with the SDK, the wallet is not actually deployed.  Rather, its address is computed "counterfactually" (using [`CREATE2`](https://docs.openzeppelin.com/cli/2.8/deploying-with-create2) under the hood), meaning that you know your AA wallet's address even though it hasn't been deployed yet.  Therefore, "creating" a ZeroDev wallet and getting an address actually doesn't use any gas, and you can display the address to the user, send assets to the address, etc.
+As you know, AA wallets are smart contract wallets.  However, when you "create" a wallet with the SDK (e.g. through the `ECDSAProvider.init` function), the wallet is not actually deployed.  Rather, its address is computed "counterfactually" (using [`CREATE2`](https://docs.openzeppelin.com/cli/2.8/deploying-with-create2) under the hood), meaning that you know your AA wallet's address even though it hasn't been deployed yet.  Therefore, you can create AA wallet addresses, display them to your users, send assets to the addresses, etc., all without paying any gas.
 
-The AA wallet is only actually deployed when you send the first transaction with the wallet.  The wallet deployment happens atomically with the first transaction, so from your user's perspective they are still just sending one transaction, except that the first transaction is going to cost a little more since it includes the deployment cost.
+The AA wallet is only actually deployed when you send the first transaction with the wallet.  The wallet deployment happens atomically with the first transaction -- meaning that it happens as a part of the first transaction -- so from your user's perspective they are still just sending one transaction, except that the first transaction is going to cost a little more since it includes the deployment cost.
 
 ### Who has custody of the ZeroDev wallet?
 
