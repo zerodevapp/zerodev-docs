@@ -45,7 +45,7 @@ npm init -y
 Then install the ZeroDev SDK:
 
 ```bash
-npm i @zerodevapp/sdk
+npm i @zerodev/sdk
 ```
 
 ## Send gasless transactions
@@ -60,14 +60,18 @@ To make things easier, we already deployed an NFT contract on Polygon Mumbai tha
 Create a file `app.js` with the following content:
 
 ```javascript
-const { ECDSAProvider } = require('@zerodevapp/sdk')
+const { ECDSAProvider } = require('@zerodev/sdk')
 const { PrivateKeySigner } = require("@alchemy/aa-core")
 const { encodeFunctionData, parseAbi, createPublicClient, http } = require('viem')
 const { polygonMumbai } = require('viem/chains')
 
+// ZeroDev Project ID
 const projectId = process.env.PROJECT_ID
+
+// The "owner" of the AA wallet, which in this case is a private key
 const owner = PrivateKeySigner.privateKeyToAccountSigner(process.env.PRIVATE_KEY)
 
+// The NFT contract we will be interacting with
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 const contractABI = parseAbi([
   'function mint(address _to) public',
@@ -177,24 +181,18 @@ To mint two NFTs at a time, simply replace this block:
   }])
 ```
 
-With this block (passing two UserOperations in an array):
+With this block (passing two UserOperations as an array):
 
 ```javascript
-  const { hash } = await ecdsaProvider.sendUserOperation([{
+  const userOp = {
     target: contractAddress,
     data: encodeFunctionData({
       abi: contractABI,
       functionName: 'mint',
       args: [address],
     }),
-  }, {
-    target: contractAddress,
-    data: encodeFunctionData({
-      abi: contractABI,
-      functionName: 'mint',
-      args: [address],
-    }),
-  }])
+  }
+  const { hash } = await ecdsaProvider.sendUserOperation([userOp, userOp])
 ```
 
 Now, run `node app.js` again.  You should see that your NFT balance is now increasing two at a time!
