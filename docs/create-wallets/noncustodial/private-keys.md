@@ -12,7 +12,7 @@ You can easily create AA wallets for your users from private keys.
 ### Ethers.js
 
 ```typescript
-import { ECDSAValidator } from "@zerodevapp/sdk";
+import { ECDSAValidator } from "@zerodev/sdk";
 import { PrivateKeySigner } from "@alchemy/aa-core";
 
 // The validator
@@ -61,8 +61,8 @@ function PrivateKeyExample() {
 ### Wagmi
 
 ```typescript
-import { ZeroDevConnector } from '@zerodevapp/wagmi'
-import { getPrivateKeyOwner } from '@zerodevapp/sdk'
+import { ZeroDevConnector } from '@zerodev/wagmi'
+import { getPrivateKeyOwner } from '@zerodev/sdk'
 const connector = new ZeroDevConnector({chains, options: {
   projectId: "<your-project-id>",
   owner: getPrivateKeyOwner("<private-key>"),
