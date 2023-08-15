@@ -16,7 +16,7 @@ One great advantage of smart contract wallets is the ability to execute transact
 
 ## API
 
-### Ethers
+### SDK
 
 ```typescript
 const txn = await ecdsaProvider.sendUserOperation([
@@ -27,7 +27,7 @@ const txn = await ecdsaProvider.sendUserOperation([
   },
   {
     target: "targetAddress2",
-    data: "allData2",
+    data: "callData2",
     value: value2,
   },
 ])
