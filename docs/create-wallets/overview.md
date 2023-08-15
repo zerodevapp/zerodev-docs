@@ -42,7 +42,7 @@ In ZeroDev, each different validation method is implemented with a smart contrac
 
 The most commonly used validator is a ECDSA validator.  It basically replicates the behavior of an EOA where transactions are signed with a single ECDSA private key.
 
-However, [many other validators](/extend-wallets/example-plugins) are available, such as multisig, recoverable ECDSA, etc.  For simplicity, we use the ECDSA validator as the default example throughout the docs.
+However, [many other validators](https://github.com/zerodevapp/kernel/tree/main/src/validator) are available, such as multisig, recoverable ECDSA, etc.  For simplicity, we use the ECDSA validator as the default example throughout the docs.
 
 In the ZeroDev SDK, a wallet is typically accessed through an abstraction known as a "provider," not unlike how in Ethers you access wallets through an [Ethers provider](https://docs.ethers.org/v5/api/providers/).  Each validator has its own provider class, so to create a wallet with an ECDSA validator you would do:
 
