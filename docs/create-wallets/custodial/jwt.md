@@ -44,14 +44,14 @@ function WagmiJWTExample() {
         })
     }, [])
 
-    const { chains, provider, webSocketProvider } = configureChains(
+    const { chains, publicClient, webSocketPublicClient } = configureChains(
         [polygonMumbai],
         [infuraProvider({apiKey: infuraApiKey})],
     )
-    const client = createClient({
+    const config = createConfig({
         autoConnect: false,
-        provider,
-        webSocketProvider,
+        publicClient,
+        webSocketPublicClient,
     })
 
     const jwtConnector = new JWTWalletConnector({chains, options: {
@@ -99,7 +99,7 @@ function WagmiJWTExample() {
   }
 
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
       <ConnectButton />
     </WagmiConfig>
   )
@@ -111,16 +111,16 @@ function WagmiJWTExample() {
 ```typescript
 import { ZeroDevWeb3Auth } from '@zerodev/web3auth'
 
-let signer: ZeroDevSigner
+let ecdsaProvider: ECDSAProvider
 const instance = new ZeroDevWeb3Auth(defaultProjectId)
 instance.init({onConnect: async () => {
-    signer = await getZeroDevSigner({
-        projectId: defaultProjectId,
-        owner: await getRPCProviderOwner(provider)
-    })
+  ecdsaProvider = await ECDSAProvider.init({
+    projectId: defaultProjectId,
+    owner: getRPCProviderOwner(provider),
+  });
 }})
 
-zeroDevWeb3Auth.connect('jwt', {jwt: '<your-jwt>'})
+instance.connect('jwt', {jwt: '<your-jwt>'})
 ```
 
 Example:
@@ -148,11 +148,11 @@ function RpcProviderExample() {
     }, [])
 
     const setWallet = async (provider) => {
-        const signer = await getZeroDevSigner({
-            projectId: defaultProjectId,
-            owner: await getRPCProviderOwner(provider)
-        })
-        setAddress(await signer.getAddress())
+        const ecdsaProvider = await ECDSAProvider.init({
+          projectId: defaultProjectId,
+          owner: getRPCProviderOwner(provider),
+        });
+        setAddress(await ecdsaProvider.getAddress())
     }
 
     const zeroDevWeb3Auth = useMemo(() => {

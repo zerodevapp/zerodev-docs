@@ -30,15 +30,15 @@ Example:
 function PrivateKeyExample() {
   const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)
-  const [privateKey, setPrivateKey] = useState('468f0c80d5336c4a45be71fa19b77e9320dc0abaea4fd018e0c49aca90c1db78')
+  const [privateKey, setPrivateKey] = useState('0x468f0c80d5336c4a45be71fa19b77e9320dc0abaea4fd018e0c49aca90c1db78')
 
   const createWallet = async () => {
     setLoading(true)
-    const signer = await getZeroDevSigner({
+    const ecdsaProvider = await ECDSAProvider.init({
       projectId: defaultProjectId,
-      owner: getPrivateKeyOwner(privateKey),
+      owner: PrivateKeySigner.privateKeyToAccountSigner(privateKey),
     })
-    setAddress(await signer.getAddress())
+    setAddress(await ecdsaProvider.getAddress())
     setLoading(false)
   }
 
@@ -62,10 +62,10 @@ function PrivateKeyExample() {
 
 ```typescript
 import { ZeroDevConnector } from '@zerodev/wagmi'
-import { getPrivateKeyOwner } from '@zerodev/sdk'
+import { PrivateKeySigner } from "@alchemy/aa-core";
 const connector = new ZeroDevConnector({chains, options: {
   projectId: "<your-project-id>",
-  owner: getPrivateKeyOwner("<private-key>"),
+  owner: PrivateKeySigner.privateKeyToAccountSigner("<private-key>"),
 }})
 ```
 
@@ -74,20 +74,20 @@ Example:
 ```jsx live folded
 function WagmiPrivateKeyExample() {
 
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
     [polygonMumbai],
     [infuraProvider({apiKey: infuraApiKey})],
   )
-  const client = createClient({
+  const config = createConfig({
     autoConnect: false,
     connectors: [
       new ZeroDevConnector({chains, options: {
         projectId: defaultProjectId,
-        owner: getPrivateKeyOwner('468f0c80d5336c4a45be71fa19b77e9320dc0abaea4fd018e0c49aca90c1db78'),
+        owner: PrivateKeySigner.privateKeyToAccountSigner('0x468f0c80d5336c4a45be71fa19b77e9320dc0abaea4fd018e0c49aca90c1db78'),
       }})
     ],
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   })
 
   const ConnectButton = () => {
@@ -111,7 +111,7 @@ function WagmiPrivateKeyExample() {
     )
   }
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
       <ConnectButton />
     </WagmiConfig>
   )

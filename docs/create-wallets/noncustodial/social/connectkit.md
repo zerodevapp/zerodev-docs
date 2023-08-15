@@ -26,17 +26,17 @@ import {
   TwitterSocialWalletConnector,
 } from '@zerodev/wagmi'
 
-import { createClient } from "wagmi"
+import { createConfig } from "wagmi"
 
-import { getDefaultClient } from "connectkit"
+import { getDefaultConfig } from "connectkit"
 ```
 
 ```jsx live
 function ConnectKitExample() {
   const chains = [polygonMumbai]
-  const options = { options: { projectId: defaultProjectId } } 
+  const options = { chains, options: { projectId: defaultProjectId } } 
 
-  const client = createClient(getDefaultClient({
+  const config = createConfig(getDefaultConfig({
     chains,
     connectors: [
         new GoogleSocialWalletConnector(options),
@@ -45,13 +45,13 @@ function ConnectKitExample() {
         new DiscordSocialWalletConnector(options),
         new TwitchSocialWalletConnector(options),
         new TwitterSocialWalletConnector(options),
-        new MetaMaskConnector(),
+        new InjectedConnector(),
     ],
     autoConnect:false,
   }))
 
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
         <ConnectKitProvider theme="midnight">
             <ConnectKitButton />
         </ConnectKitProvider>

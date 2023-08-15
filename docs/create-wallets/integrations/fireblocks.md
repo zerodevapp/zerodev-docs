@@ -24,12 +24,12 @@ const fireblocksProvider = new FireblocksWeb3Provider({
 
 Make sure the `chainId` actually matches the chain of your ZeroDev project.
 
-Then, create a `ZeroDevSigner` as such:
+Then, create a `ECDSAProvider` as such:
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodev/sdk'
+import { ECDSAProvider, getRPCProviderOwner } from '@zerodev/sdk'
 
-const zdSigner = await getZeroDevSigner({
+const zdSigner = await ECDSAProvider.init({
   projectId: "<project id>",
   owner: getRPCProviderOwner(fireblocksProvider),
 })

@@ -2,9 +2,9 @@ import React from "react";
 import {
   WagmiConfig,
   configureChains,
-  createClient,
+  createConfig,
 } from "wagmi";
-import { publicProvider } from 'wagmi/providers/public'
+import { infuraProvider } from 'wagmi/providers/infura'
 import { polygonMumbai, mainnet } from 'wagmi/chains'
 import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { 
@@ -14,13 +14,13 @@ import {
   discordWallet,
   twitchWallet,
   twitterWallet,
-} from '@zerodevapp/wagmi/rainbowkit'
+} from '@zerodev/wagmi/rainbowkit'
 
 const defaultProjectId = 'b5486fa4-e3d9-450b-8428-646e757c10f6'
 
-const { chains, provider, webSocketProvider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [polygonMumbai],
-  [publicProvider()],
+  [infuraProvider({apiKey: 'f36f7f706a58477884ce6fe89165666c'})]
 )
 const connectors = connectorsForWallets([
   {
@@ -36,16 +36,16 @@ const connectors = connectorsForWallets([
   },
 ]);
 
-const client = createClient({
+const config = createConfig({
   autoConnect: false,
   connectors,
-  provider,
-  webSocketProvider,
+  publicClient,
+  webSocketPublicClient,
 })
 
 function ZeroDevWrapper({children}) {
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
       <RainbowKitProvider chains={chains} modalSize="compact">
         {children}
       </RainbowKitProvider>

@@ -3,15 +3,14 @@ import {
   useAccount,
   useContractRead,
   useNetwork,
-  useSigner,
 } from "wagmi";
 import { Contract } from 'ethers'
-import { ZeroDevSigner } from '@zerodevapp/sdk';
 import contractAbi from "../../static/contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json";
 import { MantineProvider } from '@mantine/core';
 import { Button, Anchor } from '@mantine/core';
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import ZeroDevWrapper from "./ZeroDevWrapper";
+import { useContractBatchWrite, usePrepareContractBatchWrite } from "@zerodev/wagmi";
 
 const nftAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
 
@@ -19,32 +18,31 @@ function BatchMintExample() {
   const { address, isConnected } = useAccount();
   const { chain } = useNetwork()
 
-  const [isLoading, setIsLoading] = useState(false)
+  const { config } = usePrepareContractBatchWrite({
+      calls: [
+          {
+            address: nftAddress,
+            abi: contractAbi,
+            functionName: "mint",
+            args: [address],
+          }, {
+            address: nftAddress,
+            abi: contractAbi,
+            functionName: "mint",
+            args: [address],
+          }
+      ],
+      enabled: isConnected
+  })
 
-  const { data } = useSigner()
-  const signer = data as ZeroDevSigner
-
-  const batchMint = async () => {
-    const nftContract = new Contract(nftAddress, contractAbi, signer)
-    setIsLoading(true)
-    await signer.execBatch([
-      {
-        to: nftAddress,
-        data: nftContract.interface.encodeFunctionData("mint", [address]),
-      },
-      {
-        to: nftAddress,
-        data: nftContract.interface.encodeFunctionData("mint", [address]),
-      },
-    ])
-    setIsLoading(false)
-  }
+  const { sendUserOperation: batchMint, isLoading } = useContractBatchWrite(config) 
 
   const { data: balance = 0, refetch } = useContractRead({
     address: nftAddress,
     abi: contractAbi,
     functionName: "balanceOf",
     args: [address],
+    enabled: isConnected
   });
 
   const interval = useRef<any>()

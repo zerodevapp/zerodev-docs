@@ -38,14 +38,14 @@ Example:
 ```jsx live folded
 function WagmiSocialExample() {
 
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
     [polygonMumbai],
     [infuraProvider({apiKey: infuraApiKey})],
   )
-  const client = createClient({
+  const config = createConfig({
     autoConnect: false,
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   })
   const socialConnector = new SocialWalletConnector({chains, options: {
     projectId: defaultProjectId,
@@ -83,7 +83,7 @@ function WagmiSocialExample() {
     )
   }
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
       <ConnectButton />
     </WagmiConfig>
   )
@@ -98,17 +98,17 @@ Install the following package:
 npm i @zerodev/web3auth
 ```
 
-Then import the social wallets and use them with `getZeroDevSigner` from the SDK:
+Then import the social wallets and use them with `ECDSAProvider` from the SDK:
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodev/sdk'
+import { ECDSAProvider, getRPCProviderOwner } from '@zerodev/sdk'
 import { ZeroDevWeb3Auth, ZeroDevWeb3AuthWithModal } from '@zerodev/web3auth';
 
-let signer: ZeroDevSigner
+let ecdsaProvider: ECDSAProvider
 
 const zeroDevWeb3AuthNoModal = new ZeroDevWeb3Auth(['<project-id>'])
 zeroDevWeb3AuthNoModal.init({onConnect: async () => {
-  signer = await getZeroDevSigner({
+  ecdsaProvider = await ECDSAProvider.init({
     projectId: "<project id>",
     owner: await getRPCProviderOwner(ZeroDevWeb3Auth.provider),
   })
@@ -125,11 +125,11 @@ function RpcProviderExample() {
   const [loading, setLoading] = useState(false)
 
   const setWallet = async (provider) => {
-    const signer = await getZeroDevSigner({
+    const ecdsaProvider = await ECDSAProvider.init({
       projectId: defaultProjectId,
       owner: await getRPCProviderOwner(provider)
     })
-    setAddress(await signer.getAddress())
+    setAddress(await ecdsaProvider.getAddress())
   }
 
   const zeroDevWeb3Auth = useMemo(() => {

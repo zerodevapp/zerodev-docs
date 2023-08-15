@@ -28,16 +28,16 @@ import { Web3Modal, Web3Button } from "@web3modal/react";
 
 ```jsx live
 function Web3ModalExample() {
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
     [polygonMumbai],
     [
       w3mProvider({ projectId: defaultWalletConenctProjectId }),
     ],
   )
-  const client = createClient({
+  const config = createConfig({
     autoConnect: false,
     connectors: [
-      new GoogleSocialWalletConnector({options: {
+      new GoogleSocialWalletConnector({chains, options: {
         projectId: defaultProjectId,
       }}),
       ...w3mConnectors({
@@ -47,13 +47,13 @@ function Web3ModalExample() {
         chains,
       }),
     ],
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   })
-  const ethereumClient = new EthereumClient(client, chains);
+  const ethereumClient = new EthereumClient(config, chains);
   return (
     <>
-      <WagmiConfig client={client}>
+      <WagmiConfig config={config}>
         <Web3Button />
       </WagmiConfig>
       <Web3Modal

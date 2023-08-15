@@ -44,7 +44,7 @@ Each object in the array for `execBatch` can have three properties:
 ### Wagmi
 
 ```typescript
-import { usePrepareContractBatchWrite, useContractBatchWrite, useWaitForAATransaction  } from "@zerodev/wagmi";
+import { usePrepareContractBatchWrite, useContractBatchWrite  } from "@zerodev/wagmi";
 ```
 
 ```typescript live folded zerodev
@@ -67,14 +67,16 @@ function Component() {
               args: [address],
             }
         ],
+        enabled: true
     })
 
-    const { writeAsync: batchMint, isLoading, data } = useContractBatchWrite(config) 
+    const { sendUserOperation: batchMint, isLoading, data } = useContractBatchWrite(config) 
 
-    useWaitForAATransaction({
-      wait: data ? data.wait : undefined,
+    useWaitForTransaction({
+      hash: data ? data.hash : undefined,
+      enabled: !!data,
       onSuccess() {
-        alert("Transaction was successful.")
+        console.log("Transaction was successful.")
       },
       onError() {
         alert("Transaction was unsuccessful.")
@@ -82,7 +84,7 @@ function Component() {
     })
 
     return (
-      <button disabled={isLoading} onClick={batchMint}>
+      <button disabled={isLoading} onClick={() => batchMint()}>
         {isLoading ? 'loading...' : 'Batch Example'}
       </button>
     )

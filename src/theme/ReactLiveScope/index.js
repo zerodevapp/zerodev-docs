@@ -2,26 +2,20 @@ import React, { useEffect, useMemo, useCallback, useRef } from 'react';
 import {
   WagmiConfig,
   useAccount,
+  useWaitForTransaction,
   usePrepareContractWrite,
   useContractWrite,
   useContractRead,
   useNetwork,
   useConnect,
   configureChains,
-  createClient,
+  createConfig,
   useDisconnect,
 } from "wagmi";
 import { polygonMumbai, goerli } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
 import { infuraProvider } from 'wagmi/providers/infura'
-import {
-  getZeroDevSigner,
-  getPrivateKeyOwner,
-  getRPCProviderOwner,
-  getSocialWalletOwner,
-  ZeroDevSigner,
-  initiateProject
-} from "@zerodevapp/sdk"
+import { getRPCProviderOwner, ECDSAProvider } from "@zerodev/sdk"
 import contractAbi from "../../../static/contracts/polygon-mumbai/0x34bE7f35132E97915633BC1fc020364EA5134863.json";
 import { ethers } from "ethers";
 import { 
@@ -40,12 +34,13 @@ import {
   usePrepareContractBatchWrite, 
   useContractBatchWrite, 
   useWaitForAATransaction
-} from '@zerodevapp/wagmi'
+} from '@zerodev/wagmi'
 import {
   ZeroDevWeb3AuthWithModal,
   ZeroDevWeb3Auth
-} from '@zerodevapp/web3auth'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+} from '@zerodev/web3auth'
+import { MetaMaskConnector } from '@wagmi/core/connectors/metaMask'
+import { InjectedConnector } from '@wagmi/core/connectors/injected'
 import { 
   googleWallet,
   facebookWallet,
@@ -54,11 +49,11 @@ import {
   twitchWallet,
   twitterWallet,
   enhanceWalletWithAAConnector
-} from '@zerodevapp/wagmi/rainbowkit'
+} from '@zerodev/wagmi/rainbowkit'
 import { 
   supportedSocialConnectors
-} from '@zerodevapp/wagmi/connectkit'
-import { web3ModalConfig } from '@zerodevapp/wagmi/web3modal'
+} from '@zerodev/wagmi/connectkit'
+import { web3ModalConfig } from '@zerodev/wagmi/web3modal'
 import {
   RainbowKitProvider,
   ConnectButton as RainbowKitConnectButton,
@@ -70,13 +65,14 @@ import {
   rainbowWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets';
-import { ConnectKitProvider, ConnectKitButton, getDefaultClient, supportedConnectors } from "connectkit";
+import { ConnectKitProvider, ConnectKitButton, getDefaultConfig, supportedConnectors } from "connectkit";
 supportedConnectors.push(...supportedSocialConnectors)
 import {
   EthereumClient,
   w3mConnectors,
   w3mProvider,
 } from "@web3modal/ethereum";
+import { PrivateKeySigner } from "@alchemy/aa-core";
 
 import { Web3Modal, Web3Button } from "@web3modal/react";
 import { SponsoredMintExample } from '@site/src/components/SponsoredMintExample';
@@ -88,6 +84,7 @@ const ReactLiveScope = {
   React,
   ...React,
   useAccount,
+  useWaitForTransaction,
   usePrepareContractWrite,
   useContractWrite,
   useContractRead,
@@ -95,16 +92,14 @@ const ReactLiveScope = {
   useConnect,
   useDisconnect,
   contractAbi,
-  getZeroDevSigner,
-  getPrivateKeyOwner,
+  ECDSAProvider,
+  PrivateKeySigner,
   getRPCProviderOwner,
-  getSocialWalletOwner,
-  ZeroDevSigner,
   defaultProjectId: 'b5486fa4-e3d9-450b-8428-646e757c10f6',
   goerliProjectId: '68bc6515-8a0e-4346-b3c4-8f4aa3f780a5',
   WagmiConfig,
   configureChains,
-  createClient,
+  createConfig,
   polygonMumbai,
   goerli,
   publicProvider,
@@ -133,7 +128,7 @@ const ReactLiveScope = {
   RainbowKitConnectButton,
   ConnectKitProvider,
   ConnectKitButton,
-  getDefaultClient,
+  getDefaultConfig,
   connectorsForWallets,
   googleWallet,
   facebookWallet,
@@ -147,6 +142,7 @@ const ReactLiveScope = {
   rainbowWallet,
   walletConnectWallet,
   MetaMaskConnector,
+  InjectedConnector,
   EthereumClient,
   w3mConnectors,
   w3mProvider,

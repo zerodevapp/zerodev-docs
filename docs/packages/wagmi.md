@@ -23,7 +23,7 @@ Using ZeroDev with multiple chains requires providing multiple `projectId`s via 
 ```diff
 import { polygonMumbai, goerli } from 'wagmi/chains'
 
-const { chains, provider, webSocketProvider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
     [polygonMumbai, goerli],
     [publicProvider()],
 )
@@ -38,7 +38,7 @@ const socialConnector = new GoogleWalletConnector({
 ```
 ```jsx live folded
 function RainbowKitExample() {
-  const { chains, provider, webSocketProvider } = useMemo(() => configureChains(
+  const { chains, publicClient, webSocketPublicClient } = useMemo(() => configureChains(
     [polygonMumbai, goerli],
     [infuraProvider({apiKey: infuraApiKey})],
   ), [])
@@ -57,15 +57,15 @@ function RainbowKitExample() {
     },
   ]), []);
 
-  const client = useMemo(() => createClient({
+  const config = useMemo(() => createConfig({
     autoConnect: false,
     connectors,
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   }), [])
 
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
         <RainbowKitProvider chains={chains} modalSize={'compact'}>
             <RainbowKitConnectButton />
         </RainbowKitProvider>

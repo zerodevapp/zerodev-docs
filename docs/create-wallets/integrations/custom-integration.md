@@ -13,9 +13,9 @@ ZeroDev can be easily integrated with any third-party signing service as long as
 ### Ethers
 
 ```typescript
-import { getZeroDevSigner } from '@zerodev/sdk'
+import { ECDSAProvider } from '@zerodev/sdk'
 
-const signer = await getZeroDevSigner({
+const ecdsaProvider = await ECDSAProvider.init({
   projectId: "<project id>",
   owner: <your signer>,
 })
@@ -27,15 +27,15 @@ Example using a private key signer:
 function PrivateKeyExample() {
   const [address, setAddress] = useState('')
   const [loading, setLoading] = useState(false)
-  const [privateKey, setPrivateKey] = useState('468f0c80d5336c4a45be71fa19b77e9320dc0abaea4fd018e0c49aca90c1db78')
+  const [privateKey, setPrivateKey] = useState('0x468f0c80d5336c4a45be71fa19b77e9320dc0abaea4fd018e0c49aca90c1db78')
 
   const createWallet = async () => {
     setLoading(true)
-    const signer = await getZeroDevSigner({
+    const ecdsaProvider = await ECDSAProvider.init({
       projectId: defaultProjectId,
-      owner: new Wallet(privateKey),
+      owner: PrivateKeySigner.privateKeyToAccountSigner(privateKey),
     })
-    setAddress(await signer.getAddress())
+    setAddress(await ecdsaProvider.getAddress())
     setLoading(false)
   }
 
@@ -60,9 +60,9 @@ function PrivateKeyExample() {
 ### Ethers
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodev/sdk'
+import { ECDSAProvider, getRPCProviderOwner } from '@zerodev/sdk'
 
-const signer = await getZeroDevSigner({
+const signer = await ECDSAProvider.init({
   projectId: "<project id>",
   owner: getRPCProviderOwner(rpcProvider),
 })
@@ -81,11 +81,11 @@ function RpcProviderExample() {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts"
       })
-      const signer = await getZeroDevSigner({
+      const ecdsaProvider = await ECDSAProvider.init({
         projectId: defaultProjectId,
         owner: getRPCProviderOwner(window.ethereum),
       })
-      setAddress(await signer.getAddress())
+      setAddress(await ecdsaProvider.getAddress())
     } catch(error) {
       console.log(error)
     }
@@ -111,7 +111,7 @@ function RpcProviderExample() {
 
 ```typescript
 import { ZeroDevConnector } from '@zerodev/wagmi'
-import { getPrivateKeyOwner } from '@zerodev/sdk'
+
 const connector = new ZeroDevConnector({chains, options: {
   projectId: <your-project-id>,
   owner: getRPCProviderOwner(<provider>),
@@ -122,11 +122,11 @@ Example:
 
 ```jsx live folded
 function WagmiRPCProviderExample() {
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
     [polygonMumbai],
     [infuraProvider({apiKey: infuraApiKey})],
   )
-  const client = createClient({
+  const config = createConfig({
     autoConnect: false,
     connectors: [
       new ZeroDevConnector({options: {
@@ -134,8 +134,8 @@ function WagmiRPCProviderExample() {
         owner: getRPCProviderOwner(window.ethereum),
       }})
     ],
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   })
 
   const ConnectButton = () => {
@@ -148,7 +148,7 @@ function WagmiRPCProviderExample() {
         <div>
           <div>{address}</div>
           <div>Connected to {connector.name}</div>
-          <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a>
+          {chain.blockExplorers && <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a>}
         </div>
       )
     }
@@ -165,7 +165,7 @@ function WagmiRPCProviderExample() {
     )
   }
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
       <ConnectButton />
     </WagmiConfig>
   )
@@ -176,9 +176,9 @@ You can also "wrap" an existing Wagmi connect with `enhanceConnectorWithAA`, whi
 
 ```typescript
 import { enhanceConnectorWithAA } from '@zerodev/wagmi'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { MetaMaskConnector } from '@wagmi/core/connectors/metaMask'
 
-const client = createClient({
+const config = createConfig({
   connectors: [
     enhanceConnectorWithAA(
       new MetaMaskConnector({ chains }), 
@@ -190,11 +190,11 @@ const client = createClient({
 
 ```jsx live folded
 function WagmiWrappedRPCProviderExample() {
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
     [polygonMumbai],
     [infuraProvider({apiKey: infuraApiKey})],
   )
-  const client = createClient({
+  const config = createConfig({
     autoConnect: false,
     connectors: [
       enhanceConnectorWithAA(
@@ -202,8 +202,8 @@ function WagmiWrappedRPCProviderExample() {
         { projectId: defaultProjectId }
       ),
     ],
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   })
 
   const ConnectButton = () => {
@@ -216,7 +216,7 @@ function WagmiWrappedRPCProviderExample() {
         <div>
           <div>{address}</div>
           <div>Connected to {connector.name}</div>
-          <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a>
+          {chain.blockExplorers && <a href={`${chain.blockExplorers.default.url}/address/${address}`} target="_blank">Explorer</a>}
         </div>
       )
     }
@@ -233,7 +233,7 @@ function WagmiWrappedRPCProviderExample() {
     )
   }
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
       <ConnectButton />
     </WagmiConfig>
   )

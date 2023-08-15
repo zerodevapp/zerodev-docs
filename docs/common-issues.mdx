@@ -39,16 +39,6 @@ module.exports = {
 
 Here's an [example project](https://github.com/zerodevapp/zerodev-nextjs-example) of ZeroDev + NextJS.
 
-## Cloudflare Workers
-Using ZeroDev with Cloudflare Workers requires setting the `skipFetchSetup` option to `true`.
-```typescript
-const smartContractWallet = await getZeroDevSigner({
-  projectId,
-  owner,
-  skipFetchSetup: true
-})
-```
-
 ## WalletConnect Issues
 
 If you are having issues connecting a ZeroDev wallet through WalletConnect, refer to [this working example](https://github.com/zerodevapp/zerodev-walletconnect-example).

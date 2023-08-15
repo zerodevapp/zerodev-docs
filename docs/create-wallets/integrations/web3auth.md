@@ -13,7 +13,7 @@ By combining ZeroDev with Web3Auth, you can use Web3Auth to enable a smooth soci
 Web3Auth exposes an `provider` object.  To create a ZeroDev wallet using Web3Auth, simply pass the provider to the SDK:
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodev/sdk'
+import { ECDSAProvider, getRPCProviderOwner } from '@zerodev/sdk'
 import { Web3Auth } from "@web3auth/modal"
 
 const web3auth = new Web3Auth({
@@ -24,7 +24,7 @@ await web3auth.initModal()
 
 web3auth.connect()
 
-const signer = await getZeroDevSigner({
+const signer = await ECDSAProvider.init({
   projectId: "<project id>",
   owner: getRPCProviderOwner(web3auth.provider),
 })

@@ -44,19 +44,19 @@ function RainbowKitExample() {
     },
   ]);
 
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
     allowedChains,
     [infuraProvider({apiKey: infuraApiKey})],
   )
-  const client = createClient({
+  const config = createConfig({
     autoConnect: false,
     connectors,
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   })
 
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
         <RainbowKitProvider chains={chains} modalSize={'compact'}>
             <RainbowKitConnectButton />
         </RainbowKitProvider>
@@ -70,7 +70,7 @@ For Web3 wallets like MetaMask, you can use them as they are (as EOA), or "wrap"
 
 ```jsx live folded
 function RainbowKitExample() {
-  const { chains, provider, webSocketProvider } = configureChains(
+  const { chains, publicClient, webSocketPublicClient } = configureChains(
     [polygonMumbai],
     [infuraProvider({apiKey: infuraApiKey})],
   )
@@ -80,7 +80,7 @@ function RainbowKitExample() {
       groupName: 'EOA Wrapped with AA',
       wallets: [
         enhanceWalletWithAAConnector(
-          metaMaskWallet({ chains }),
+          metaMaskWallet({ chains, projectId: defaultWalletConenctProjectId }),
           { projectId: defaultProjectId }
         ),
       ],
@@ -88,7 +88,7 @@ function RainbowKitExample() {
     {
       groupName: 'EOA',
       wallets: [
-        rainbowWallet({ chains }),
+        rainbowWallet({ chains, projectId: defaultWalletConenctProjectId }),
       ],
     },
     {
@@ -99,15 +99,15 @@ function RainbowKitExample() {
     },
   ]);
 
-  const client = createClient({
+  const config = createConfig({
     autoConnect: false,
     connectors,
-    provider,
-    webSocketProvider,
+    publicClient,
+    webSocketPublicClient,
   })
 
   return (
-    <WagmiConfig client={client}>
+    <WagmiConfig config={config}>
         <RainbowKitProvider chains={chains} modalSize={'compact'}>
             <SponsoredMintExample />
         </RainbowKitProvider>
