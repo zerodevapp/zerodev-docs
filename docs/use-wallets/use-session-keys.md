@@ -4,6 +4,10 @@ sidebar_position: 4
 
 # Use Session Keys
 
+:::info
+This document describes session keys for Kernel v1.  We are working on docs for session keys for Kernel v2+.
+:::
+
 **Session keys** are one of the most powerful features of ZeroDev wallets.  It has many applications, some of them we probably haven't even thought of, so it's well worth the time to understand what you can do with them and see if they can benefit your application.
 
 ## What are session keys?
