@@ -33,7 +33,7 @@ Keep in mind that this action is irreversible.  Once the owner has been changed,
 Since ZeroDev wallet addresses are computed counterfactually from the owner, the address of the wallet is computed from the old owner.  Therefore, when you use the wallet with the new owner, you need to manually specify its address:
 
 ```typescript
-import { ECDSAValidator } from "@zerodevapp/sdk"
+import { ECDSAValidator } from "@zerodev/sdk"
 
 const ecdsaProvider = await ECDSAProvider.init({
   projectId,

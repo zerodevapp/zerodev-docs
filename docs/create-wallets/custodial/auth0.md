@@ -17,7 +17,7 @@ Currently, integrating with Auth0 involves some manual setup on our side.  Upon 
 ## Wagmi
 
 ```typescript
-import { Auth0WalletConnector } from '@zerodevapp/wagmi'
+import { Auth0WalletConnector } from '@zerodev/wagmi'
 
 const auth0Connector = new Auth0WalletConnector({options: {
     projectId: '<your-project-id>',
@@ -85,7 +85,7 @@ function WagmiAuth0Example() {
 ## Ethers
 
 ```typescript
-import { ZeroDevWeb3Auth } from '@zerodevapp/web3auth'
+import { ZeroDevWeb3Auth } from '@zerodev/web3auth'
 
 let signer: ZeroDevSigner
 const instance = new ZeroDevWeb3Auth(defaultProjectId)

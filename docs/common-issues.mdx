@@ -21,7 +21,7 @@ For NextJS running on a version <=13.1.x, you need to use [this package](https:/
 ```
 // next.config.js
 
-const withTM = require('next-transpile-modules')(['@zerodevapp', '@web3']); // pass the modules you would like to see transpiled
+const withTM = require('next-transpile-modules')(['@zerodev', '@web3']); // pass the modules you would like to see transpiled
 
 module.exports = withTM({});
 ```
@@ -33,7 +33,7 @@ For NextJS running on a version >= 13.2.x, you can utilize the built-in `transpi
 
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ["@zerodevapp", "@web3"],
+  transpilePackages: ["@zerodev", "@web3"],
 };
 ```
 

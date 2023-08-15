@@ -2,14 +2,14 @@
 sidebar_position: 3
 ---
 
-# @zerodevapp/web3auth
+# @zerodev/web3auth
 
 ## Use Your Own API Keys
 
 You can use ZeroDev with your own Web3Auth crendentials.
 
 ```typescript
-import { ZeroDevWeb3AuthOptions } from '@zerodevapp/web3auth'
+import { ZeroDevWeb3AuthOptions } from '@zerodev/web3auth'
 
 const zeroDevWeb3AuthOptions: ZeroDevWeb3AuthOptions  = {
     adapterSettings: {
@@ -31,7 +31,7 @@ const connector = new GoogleSocialWalletConnector({options: {
 Once a user is logged in, you can retrieve their information via:
 
 ```typescript
-import { ZeroDevWeb3Auth } from '@zerodevapp/web3auth';
+import { ZeroDevWeb3Auth } from '@zerodev/web3auth';
 const zeroDevWeb3Auth = new ZeroDevWeb3Auth('<project-id>')
 zeroDevWeb3Auth.getUserInfo()
 ```

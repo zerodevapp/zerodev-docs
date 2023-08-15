@@ -16,7 +16,7 @@ import {
   discordWallet,
   twitchWallet,
   twitterWallet,
-} from '@zerodevapp/wagmi/rainbowkit'
+} from '@zerodev/wagmi/rainbowkit'
 ```
 
 These can be used with RainbowKit's `connectorsForWallets` function to customize the wallet list:

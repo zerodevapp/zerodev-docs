@@ -19,7 +19,7 @@ Currently, integrating with JWTs involves some manual setup on our side.  Upon s
 ## Wagmi
 
 ```typescript
-import { JWTWalletConnector } from '@zerodevapp/wagmi'
+import { JWTWalletConnector } from '@zerodev/wagmi'
 
 const jwtConnector = new JWTWalletConnector({options: {
     projectId: '<your-project-id>',
@@ -109,7 +109,7 @@ function WagmiJWTExample() {
 ## Ethers
 
 ```typescript
-import { ZeroDevWeb3Auth } from '@zerodevapp/web3auth'
+import { ZeroDevWeb3Auth } from '@zerodev/web3auth'
 
 let signer: ZeroDevSigner
 const instance = new ZeroDevWeb3Auth(defaultProjectId)

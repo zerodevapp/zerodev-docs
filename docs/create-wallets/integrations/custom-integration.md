@@ -13,7 +13,7 @@ ZeroDev can be easily integrated with any third-party signing service as long as
 ### Ethers
 
 ```typescript
-import { getZeroDevSigner } from '@zerodevapp/sdk'
+import { getZeroDevSigner } from '@zerodev/sdk'
 
 const signer = await getZeroDevSigner({
   projectId: "<project id>",
@@ -60,7 +60,7 @@ function PrivateKeyExample() {
 ### Ethers
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getRPCProviderOwner } from '@zerodev/sdk'
 
 const signer = await getZeroDevSigner({
   projectId: "<project id>",
@@ -110,8 +110,8 @@ function RpcProviderExample() {
 ### Wagmi
 
 ```typescript
-import { ZeroDevConnector } from '@zerodevapp/wagmi'
-import { getPrivateKeyOwner } from '@zerodevapp/sdk'
+import { ZeroDevConnector } from '@zerodev/wagmi'
+import { getPrivateKeyOwner } from '@zerodev/sdk'
 const connector = new ZeroDevConnector({chains, options: {
   projectId: <your-project-id>,
   owner: getRPCProviderOwner(<provider>),
@@ -175,7 +175,7 @@ function WagmiRPCProviderExample() {
 You can also "wrap" an existing Wagmi connect with `enhanceConnectorWithAA`, which will create an AA wallet and use the connector as a signer/owner for the AA wallet.
 
 ```typescript
-import { enhanceConnectorWithAA } from '@zerodevapp/wagmi'
+import { enhanceConnectorWithAA } from '@zerodev/wagmi'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 
 const client = createClient({

@@ -44,7 +44,7 @@ Each object in the array for `execBatch` can have three properties:
 ### Wagmi
 
 ```typescript
-import { usePrepareContractBatchWrite, useContractBatchWrite, useWaitForAATransaction  } from "@zerodevapp/wagmi";
+import { usePrepareContractBatchWrite, useContractBatchWrite, useWaitForAATransaction  } from "@zerodev/wagmi";
 ```
 
 ```typescript live folded zerodev

@@ -27,7 +27,7 @@ We recommend reading the following code files to understand how to implement the
 Once you have implemented an account, you can use it with the SDK by passing in an `implementation` parameter when intializing the SDK:
 
 ```typescript
-import { getZeroDevSigner } from '@zerodevapp/sdk'
+import { getZeroDevSigner } from '@zerodev/sdk'
 
 const signer = await getZeroDevSigner({
   projectId: "<project id>",

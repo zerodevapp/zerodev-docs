@@ -8,7 +8,7 @@ sidebar_position: 3
 Due to the way [ConnectKit](https://docs.family.co/connectkit) is structured, we need a hack to add social logins.  Start by adding this code to your app's initialization flow:
 
 ```typescript
-import { supportedSocialConnectors } from '@zerodevapp/wagmi/connectkit'
+import { supportedSocialConnectors } from '@zerodev/wagmi/connectkit'
 import { supportedConnectors } from "connectkit";
 supportedConnectors.push(...supportedSocialConnectors)
 ```
@@ -24,7 +24,7 @@ import {
   DiscordSocialWalletConnector,
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
-} from '@zerodevapp/wagmi'
+} from '@zerodev/wagmi'
 
 import { createClient } from "wagmi"
 

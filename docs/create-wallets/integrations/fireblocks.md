@@ -27,7 +27,7 @@ Make sure the `chainId` actually matches the chain of your ZeroDev project.
 Then, create a `ZeroDevSigner` as such:
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getRPCProviderOwner } from '@zerodev/sdk'
 
 const zdSigner = await getZeroDevSigner({
   projectId: "<project id>",

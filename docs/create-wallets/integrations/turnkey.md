@@ -13,7 +13,7 @@ By combining ZeroDev with Turnkey, you can create **custodial AA wallets** whose
 Since Turnkey provides an [Ethers SDK](https://turnkey.readme.io/docs/sign-with-ethers), the integration is very straightforward.
 
 ```typescript
-import { getZeroDevSigner, getPrivateKeyOwner } from '@zerodevapp/sdk'
+import { getZeroDevSigner, getPrivateKeyOwner } from '@zerodev/sdk'
 import { TurnkeySigner } from "@turnkey/ethers"
 
 const turnkeySigner = new TurnkeySigner({

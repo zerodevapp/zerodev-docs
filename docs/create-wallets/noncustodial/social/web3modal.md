@@ -7,7 +7,7 @@ sidebar_position: 4
 Configure the Wagmi client with ZeroDev's social connectors, and it will seamlessly work with [Web3Modal](https://web3modal.com/).
 
 ```typescript
-import { web3ModalConfig } from '@zerodevapp/wagmi/web3modal'
+import { web3ModalConfig } from '@zerodev/wagmi/web3modal'
 import { 
   SocialWalletConnector,
   GoogleSocialWalletConnector, 
@@ -16,7 +16,7 @@ import {
   DiscordSocialWalletConnector,
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
-} from '@zerodevapp/wagmi'
+} from '@zerodev/wagmi'
 import {
   EthereumClient,
   modalConnectors,

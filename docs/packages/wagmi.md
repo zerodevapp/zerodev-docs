@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# @zerodevapp/wagmi
+# @zerodev/wagmi
 
 ## AutoConnect
 

@@ -13,7 +13,7 @@ By combining ZeroDev with Magic, you can use Magic to enable a smooth social log
 Magic exposes an `rpcProvider` object.  To create a ZeroDev wallet using Magic, simply pass the provider to the SDK:
 
 ```typescript
-import { ECDSAProvider, getRPCProviderOwner } from "@zerodevapp/sdk";
+import { ECDSAProvider, getRPCProviderOwner } from "@zerodev/sdk";
 import { Magic } from "magic-sdk";
 
 const magic = new Magic("MAGIC_API_KEY", {

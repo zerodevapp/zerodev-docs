@@ -8,7 +8,7 @@ sidebar_label: Overview
 In this document, we describe the general flow for creating a ZeroDev wallet.  Let's start by looking at the code:
 
 ```typescript
-import { ECDSAValidator } from "@zerodevapp/sdk";
+import { ECDSAValidator } from "@zerodev/sdk";
 import { PrivateKeySigner } from "@alchemy/aa-core";
 
 // The validator

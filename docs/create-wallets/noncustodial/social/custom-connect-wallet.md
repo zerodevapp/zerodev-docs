@@ -13,7 +13,7 @@ Social connectors are available in Wagmi and Ethers.
 Install our Wagmi package:
 
 ```bash
-npm i @zerodevapp/wagmi
+npm i @zerodev/wagmi
 ```
 
 Then initialize a connector by passing in a ZeroDev project ID, as follows:
@@ -26,7 +26,7 @@ import {
   DiscordSocialWalletConnector,
   TwitchSocialWalletConnector,
   TwitterSocialWalletConnector,
-} from '@zerodevapp/wagmi'
+} from '@zerodev/wagmi'
 
 const connector = new GoogleSocialWalletConnector({options: {
   projectId: <your-project-id>,
@@ -95,14 +95,14 @@ function WagmiSocialExample() {
 Install the following package:
 
 ```bash
-npm i @zerodevapp/web3auth
+npm i @zerodev/web3auth
 ```
 
 Then import the social wallets and use them with `getZeroDevSigner` from the SDK:
 
 ```typescript
-import { getZeroDevSigner, getRPCProviderOwner } from '@zerodevapp/sdk'
-import { ZeroDevWeb3Auth, ZeroDevWeb3AuthWithModal } from '@zerodevapp/web3auth';
+import { getZeroDevSigner, getRPCProviderOwner } from '@zerodev/sdk'
+import { ZeroDevWeb3Auth, ZeroDevWeb3AuthWithModal } from '@zerodev/web3auth';
 
 let signer: ZeroDevSigner
 
