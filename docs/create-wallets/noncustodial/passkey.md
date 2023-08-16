@@ -79,6 +79,74 @@ function AuthenticateScreen() {
 }
 ```
 
+Create Passkey Example:
+
+```jsx live folded
+function CreatePasskeyExample() {
+  const [address, setAddress] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const createPasskey = async () => {
+    setLoading(true)
+    try {
+      const ecdsaProvider = await ECDSAProvider.init({
+        projectId: defaultProjectId,
+        owner: await createPasskeyOwner({name: 'ZeroDev', projectId: defaultProjectId}),
+      })
+      setAddress(await ecdsaProvider.getAddress())
+    } catch (e) {}
+    setLoading(false)
+  }
+
+  return (
+    <div>
+      <div>
+      <button onClick={createPasskey} disabled={loading || address}>{ loading ? 'loading...' : 'Create Passkey Wallet'}</button>
+      </div>
+      {address && 
+        <div>
+          <label>Wallet: {address}</label>
+        </div>
+      }
+    </div>
+  )
+}
+```
+
+Get Passkey Example:
+
+```jsx live folded
+function CreatePasskeyExample() {
+  const [address, setAddress] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const getPasskey = async () => {
+    setLoading(true)
+    try {
+      const ecdsaProvider = await ECDSAProvider.init({
+        projectId: defaultProjectId,
+        owner: await getPasskeyOwner({projectId: defaultProjectId}),
+      })
+      setAddress(await ecdsaProvider.getAddress())
+    } catch (e) {}
+    setLoading(false)
+  }
+
+  return (
+    <div>
+      <div>
+      <button onClick={getPasskey} disabled={loading || address}>{ loading ? 'loading...' : 'Get Passkey Wallet'}</button>
+      </div>
+      {address && 
+        <div>
+          <label>Wallet: {address}</label>
+        </div>
+      }
+    </div>
+  )
+}
+```
+
 To see this example in action, [check out our demo](https://passkey-demo.onrender.com/).
 
 As you see from the example, there are two ways to create passkey owners:

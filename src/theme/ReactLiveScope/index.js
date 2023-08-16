@@ -76,6 +76,7 @@ import { PrivateKeySigner } from "@alchemy/aa-core";
 
 import { Web3Modal, Web3Button } from "@web3modal/react";
 import { SponsoredMintExample } from '@site/src/components/SponsoredMintExample';
+import { createPasskeyOwner, getPasskeyOwner } from '@zerodev/sdk/passkey'
 const defaultWalletConenctProjectId = 'df7cda28d80ccef14260ff3e2bfb1388'
 const infuraApiKey = 'f36f7f706a58477884ce6fe89165666c'
 
@@ -153,7 +154,9 @@ const ReactLiveScope = {
   usePrepareContractBatchWrite, 
   useContractBatchWrite, 
   useWaitForAATransaction,
-  SponsoredMintExample
+  SponsoredMintExample,
+  createPasskeyOwner,
+  getPasskeyOwner
 };
 
 
