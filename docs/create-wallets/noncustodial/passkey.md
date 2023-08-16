@@ -79,7 +79,9 @@ function AuthenticateScreen() {
 }
 ```
 
-Create Passkey Example:
+As you see from the example, there are two ways to create passkey owners:
+
+- `createPasskeyOwner({ name, projectId })` creates a passkey with a given label (`name`).  This function is commonly used to "sign up" for your app since it creates a new passkey.
 
 ```jsx live folded
 function CreatePasskeyExample() {
@@ -113,7 +115,7 @@ function CreatePasskeyExample() {
 }
 ```
 
-Get Passkey Example:
+- `getPasskeyOwner({ projectId })` asks the user to select an existing passkey.  This function is commonly used to "log into" your app since it asks the user to select an existing passkey.
 
 ```jsx live folded
 function CreatePasskeyExample() {
@@ -146,14 +148,6 @@ function CreatePasskeyExample() {
   )
 }
 ```
-
-To see this example in action, [check out our demo](https://passkey-demo.onrender.com/).
-
-As you see from the example, there are two ways to create passkey owners:
-
-- `createPasskeyOwner({ name, projectId })` creates a passkey with a given label (`name`).  This function is commonly used to "sign up" for your app since it creates a new passkey.
-
-- `getPasskeyOwner({ projectId })` asks the user to select an existing passkey.  This function is commonly used to "log into" your app since it asks the user to select an existing passkey.  
 
 ## Security
 
