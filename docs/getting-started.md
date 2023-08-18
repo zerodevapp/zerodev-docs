@@ -34,6 +34,10 @@ Here we are saying that we will sponsor up to 100 transactions per minute.
 
 ## Install dependencies
 
+:::info
+For Node.js we recommend v18 or above.  Lower Node.js versions have not been tested.
+:::
+
 Create an empty working directory and initialize it with `npm`:
 
 ```bash
