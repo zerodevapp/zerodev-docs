@@ -44,13 +44,13 @@ npm i @privy-io/react-auth @zerodev/privy
 
 ### 2. Configure your app's `PrivyProvider`
 
-First, follow the instructions in the [**Privy Quickstart**](../quickstart.mdx) to get your app set up with Privy.
+First, follow the instructions in the [**Privy Quickstart**](https://docs.privy.io/guide/quickstart) to get your app set up with Privy.
 
-Then, update the [**`config.embeddedWallets`**](../../reference/react-auth/modules.md#privyclientconfig) property of your [**`PrivyProvider`**](../../reference/react-auth/modules.md#privyprovider) to have the following values:
-- [**`createOnLogin`**](../../reference/react-auth/modules.md#privyclientconfig): **`'users-without-wallets'`**. This will configure Privy to create an embedded wallet for users logging in via a web2 method (email, phone, socials), ensuring that _all_ of your users have a wallet that can be used as an EOA.
-- [**`noPromptOnSignature`**](../../reference/react-auth/modules.md#privyclientconfig): **`true`**. This will configure Privy to _not_ show its default UIs when your user must sign messages or send transactions. Instead, we recommend you use your own custom UIs for showing users the [`UserOperation`](https://www.alchemy.com/overviews/user-operations)s they sign.
+Then, update the [**`config.embeddedWallets`**](https://docs.privy.io/reference/react-auth/modules.md#privyclientconfig) property of your [**`PrivyProvider`**](https://docs.privy.io/reference/react-auth/modules.md#privyprovider) to have the following values:
+- [**`createOnLogin`**](https://docs.privy.io/reference/react-auth/modules.md#privyclientconfig): **`'users-without-wallets'`**. This will configure Privy to create an embedded wallet for users logging in via a web2 method (email, phone, socials), ensuring that _all_ of your users have a wallet that can be used as an EOA.
+- [**`noPromptOnSignature`**](https://docs.privy.io/reference/react-auth/modules.md#privyclientconfig): **`true`**. This will configure Privy to _not_ show its default UIs when your user must sign messages or send transactions. Instead, we recommend you use your own custom UIs for showing users the [`UserOperation`](https://www.alchemy.com/overviews/user-operations)s they sign.
 
-Your [**`PrivyProvider`**](../../reference/react-auth/modules.md#privyprovider) should then look like:
+Your [**`PrivyProvider`**](https://docs.privy.io/reference/react-auth/modules.md#privyprovider) should then look like:
 ```tsx
 <PrivyProvider
     appId='insert-your-privy-app-id'
@@ -77,7 +77,7 @@ Your [**`PrivyProvider`**](../../reference/react-auth/modules.md#privyprovider) 
 
 First, go to the [**ZeroDev dashboard**](https://dashboard.zerodev.app/), set up a new project, and retrieve your ZeroDev **Project ID**. You can configure your ZeroDev project per the instructions [here](/getting-started).
 
-Then, where you render your [**`PrivyProvider`**](../../reference/react-auth/modules.md#privyprovider), wrap it with a **`ZeroDevProvider`**. In the **`projectId`** property of the **`ZeroDevProvider`**, add your **Project ID** from the ZeroDev dashboard.
+Then, where you render your [**`PrivyProvider`**](https://docs.privy.io/reference/react-auth/modules.md#privyprovider), wrap it with a **`ZeroDevProvider`**. In the **`projectId`** property of the **`ZeroDevProvider`**, add your **Project ID** from the ZeroDev dashboard.
 
 For example, in [NextJS](https://nextjs.org/) or [Create React App](https://create-react-app.dev/), this might look like:
 
@@ -159,6 +159,6 @@ if (zeroDevReady) {
 
 ```
 
-**`usePrivySmartAccount`** will expose all of the same fields and methods as [**`usePrivy`**](../../reference/react-auth/interfaces/PrivyInterface.md), but will override all wallet-related flows ([`signMessage`](../../reference/react-auth/interfaces/PrivyInterface.md#signmessage), [`sendTransaction`](../../reference/react-auth/interfaces/PrivyInterface.md#sendtransaction), [`getEthereumProvider`](../../reference/react-auth/interfaces/PrivyInterface.md#getethereumprovider)) to use the ZeroDev smart wallet _instead_ of the user's EOA.
+**`usePrivySmartAccount`** will expose all of the same fields and methods as [**`usePrivy`**](https://docs.privy.io/reference/react-auth/interfaces/PrivyInterface.md), but will override all wallet-related flows ([`signMessage`](https://docs.privy.io/reference/react-auth/interfaces/PrivyInterface.md#signmessage), [`sendTransaction`](https://docs.privy.io/reference/react-auth/interfaces/PrivyInterface.md#sendtransaction), [`getEthereumProvider`](https://docs.privy.io/reference/react-auth/interfaces/PrivyInterface.md#getethereumprovider)) to use the ZeroDev smart wallet _instead_ of the user's EOA.
 
 **That's it! You've configured your app to create smart wallets for all of your users, and can seamlessly add in AA features like [gas sponsorship](/use-wallets/pay-gas-for-users), [batched transactions](/use-wallets/batch-transactions), and [more](/use-wallets/overview).** 🎉
