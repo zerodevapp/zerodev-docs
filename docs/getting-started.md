@@ -129,7 +129,7 @@ Feel free to read the script and see what it's doing.  It should be fairly strai
 The script requires that we set a project ID and a private key.  We can generate a random private key with this command:
 
 ```bash
-node -e "console.log(require('ethers').Wallet.createRandom().privateKey)"
+node -e "console.log('0x' + require('crypto').randomBytes(32).toString('hex'))"
 ```
 
 Then export the variables:
