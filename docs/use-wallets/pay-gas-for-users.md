@@ -12,7 +12,7 @@ import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
 
 ## Introduction
 
-By default, your users pay for their own gas, but you can choose to sponsor some (or all) transactions for your users.
+By default, your users pay for their own gas, but you can choose to sponsor some (or all) transactions for your users.  When you do, ZeroDev fronts the gas for your users, and charges your credit card on a monthly basis for the gas your users used.
 
 Since it's unsafe to sponsor all transactions (in which case your users could drain your funds), you need to configure *gas policies* to determine which transactions to sponsor.
 
