@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-sidebar_label: Auth0
+sidebar_position: 6
+sidebar_label: Auth0 Wallets
 ---
 
 # Creating Custodial Wallets with Auth0

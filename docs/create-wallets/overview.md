@@ -56,7 +56,7 @@ Signers are objects that can sign transactions.  In the case of a ECDSA validato
 
 One common misunderstanding of AA wallets is that they are inherently non-custodial.  In fact, whether a wallet is custodial or not has nothing to do with whether it's AA -- it's the **signer** that determines whether the wallet is custodial.  If only the user controls their signer, then the wallet can be said as non-custodial.  If the signer is controlled by a third party, then the wallet would be custodial.
 
-ZeroDev has support for both [custodial](/category/custodial-wallets) and [non-custodial](/category/noncustodial-wallets) signers, as well as a large number of [third-party signer integrations](/category/integrations) so you can use ZeroDev with popular Wallet-as-a-Service (WaaS) offerings such as Magic and Web3Auth.
+ZeroDev has support for many signers such as [passkeys](/create-wallets/passkey), [social accounts](/create-wallets/social), [EOAs](/create-wallets/metamask), [raw private keys](/create-wallets/private-keys), as well as a large number of [third-party signer integrations](/category/integrations) so you can use ZeroDev with popular Wallet-as-a-Service (WaaS) offerings such as Magic and Web3Auth.
 
 To specify the signer for the ECDSA validator, use the `owner` flag:
 
@@ -67,7 +67,7 @@ const ecdsaProvider = await ECDSAProvider.init({
 });
 ```
 
-In this example, we use a [private key signer](/create-wallets/noncustodial/private-keys) which signs transactions using a private key, similar to how MetaMask works.
+In this example, we use a [private key signer](/create-wallets/private-keys) which signs transactions using a private key, similar to how MetaMask works.  You can see a full list of signers on the left sidebar.
 
 ## Choosing a paymaster
 
@@ -94,6 +94,12 @@ const ecdsaProvider = await ECDSAProvider.init({
   // other params...
 });
 ```
+
+## Next Steps
+
+If you haven't already, go through [the tutorial](https://docs.zerodev.app/getting-started) first to learn the basics of ZeroDev.
+
+You will likely want to decide on a signer first since it's responsible for your user's signing experience.  Browse the different signing methods in the left sidebar to get started.
 
 ## FAQs
 
