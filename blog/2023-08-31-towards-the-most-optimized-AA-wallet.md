@@ -19,7 +19,7 @@ At the moment, [Kernel](https://github.com/zerodevapp/kernel) is the [most widel
 
 When we first measured the gas efficiency of Kernel (v2), we were disappointed to find that it lagged behind some other implementations out there.  The main reason, we quickly realized, was that there was a tension between performance and modularity.  By [supporting plugins in Kernel](https://docs.zerodev.app/extend-wallets/overview), we also sacrificed some gas efficiency since the code that dispatches to plugins necessarily introduces some gas overhead.  That’s why Kernel used more gas than simpler SCW implementations that don’t support plugins.
 
-But we didn’t want to make any excuses, so we went ahead and squeezed more performance out of Kernel.  **We are now happy to share that Kernel v2.1, the latest version, is now the most optimized AA wallets out there!**  Here are the numbers:
+But we didn’t want to make any excuses, so we went ahead and squeezed more performance out of Kernel.  **We are now happy to share that Kernel v2.1, the latest version, is now the most optimized AA wallets out there!** . This is despite the fact that **we are also the most modular**.  Here are the numbers:
 
 |  | Creation | Native transfer | ERC20 transfer | Total |
 | --- | --- | --- | --- | --- |
@@ -54,7 +54,7 @@ Kernel, being a modular wallet, can handle different kinds of signature schemes,
 
 The first thing we did was to leverage Solady’s ECDSA recovery procedure, which saves 282 gas comparing to OpenZeppelin.  But we realized that there’s a much bigger gain — again, since Kernel is so modular, even ECDSA verification is implemented as a module (that way, it can be easily swapped for another signature scheme such as multisig or RSA).  However, by far the majority of ZeroDev users use ECDSA for signatures, so they are paying for the plugin dispatch cost for no reason.
 
-That’s why we built Kernel Lite — a version of Kernel that hardcodes the ECDSA validation logic.  If you look at the benchmark numbers again, you will see that Kernel Lite has by far the best performance number.  We are currently auditing Kernel Lite and will be releasing it to our SDK soon.
+That’s why we built Kernel Lite — a version of Kernel that hardcodes the ECDSA validation logic.  If you look at the benchmark numbers again, you will see that Kernel Lite has by far the best numbers.  We are currently auditing Kernel Lite and will be releasing it to our SDK soon.
 
 # Open-sourcing the Benchmark
 
