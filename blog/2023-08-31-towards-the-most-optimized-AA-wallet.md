@@ -17,7 +17,7 @@ At the moment, [Kernel](https://github.com/zerodevapp/kernel) is the [most widel
 
 # Optimizing Kernel
 
-When we first measured the gas efficiency of Kernel (v2), we were disappointed to find that it lagged behind some other implementations out there.  The main reason, we quickly realized, was that there was a tension between performance and modularity.  By [supporting plugins in Kernel](http://localhost:8080/extend-wallets/overview), we also sacrificed some gas efficiency since the code that dispatches to plugins necessarily introduces some gas overhead.  That’s why Kernel used more gas than simpler SCW implementations that don’t support plugins.
+When we first measured the gas efficiency of Kernel (v2), we were disappointed to find that it lagged behind some other implementations out there.  The main reason, we quickly realized, was that there was a tension between performance and modularity.  By [supporting plugins in Kernel](https://docs.zerodev.app/extend-wallets/overview), we also sacrificed some gas efficiency since the code that dispatches to plugins necessarily introduces some gas overhead.  That’s why Kernel used more gas than simpler SCW implementations that don’t support plugins.
 
 But we didn’t want to make any excuses, so we went ahead and squeezed more performance out of Kernel.  **We are now happy to share that Kernel v2.1, the latest version, is now the most optimized AA wallets out there!**  Here are the numbers:
 
