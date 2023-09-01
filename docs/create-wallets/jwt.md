@@ -8,9 +8,8 @@ sidebar_label: JWT Wallets
 If your app uses JWTs for authentication, you can use ZeroDev to seamlessly create a smart wallet for each user.  Follow these steps:
 
 1. Visit the [Dashboard](https://dashboard.zerodev.app/).
-2. Click on the top-right menu.
-3. Choose `Authentication Providers`.
-4. Enter your JWKS credentials in the `JWT Wallet` section.
+2. Click on the `Auth0 / JWT` tab in the lower left corner.
+3. Enter your JWKS credentials in the `JWT Wallet` section and click `Save`.
 
 JWKS stands for JSON Web Key Set. It is a standard for representing a set of cryptographic keys, specifically public keys, in a JSON format. These public keys are used to verify the signatures of JWTs in various security and identity protocols, such as OAuth 2.0 and OpenID Connect.  If you are unsure how to retrieve your JWKS endpoint, [join our Discord](https://discord.gg/KS9MRaTSjx) and ask.
 

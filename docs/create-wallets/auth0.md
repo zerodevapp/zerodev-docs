@@ -8,9 +8,8 @@ sidebar_label: Auth0 Wallets
 If your app uses Auth0 for authentication, you can use ZeroDev to seamlessly create a smart wallet for each user.  Follow these steps:
 
 1. Visit the [Dashboard](https://dashboard.zerodev.app/).
-2. Click on the top-right menu.
-3. Choose `Authentication Providers`.
-4. Enter your Auth0 credentials in the `Auth0 Wallet` section.
+2. Click on the `Auth0 / JWT` tab in the lower left corner.
+3. Enter your Auth0 credentials in the `Auth0 Wallet` section and click `Save`.
 
 Currently, integrating with Auth0 involves some manual setup on our side.  Upon saving your Auth0 credentials, we will set up the integration within 24 business hours and email you to confirm.  If in doubt, you can get in touch with us [on Discord](https://discord.gg/KS9MRaTSjx) or email support@zerodev.app.
 
