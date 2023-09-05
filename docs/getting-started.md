@@ -24,7 +24,7 @@ Note that your project has an ID.  We will be using this ID in one of the later 
 
 While we are at the dashboard, let's set up "Gas Policies" -- rules that determine which transactions we will sponsor gas for.
 
-Go to the "Gas Policies" section of you dashboard and create a new "Project Policy":
+Go to the "Gas Policies" section of your dashboard and create a new "Project Policy":
 
 <p align="center">
   <img src="/img/project_policy.png" width="80%" />
