@@ -65,7 +65,7 @@ Create a file `app.js` with the following content:
 
 ```javascript
 const { ECDSAProvider } = require('@zerodev/sdk')
-const { PrivateKeySigner } = require("@alchemy/aa-core")
+const { LocalAccountSigner } = require("@alchemy/aa-core")
 const { encodeFunctionData, parseAbi, createPublicClient, http } = require('viem')
 const { polygonMumbai } = require('viem/chains')
 
@@ -73,7 +73,7 @@ const { polygonMumbai } = require('viem/chains')
 const projectId = process.env.PROJECT_ID
 
 // The "owner" of the AA wallet, which in this case is a private key
-const owner = PrivateKeySigner.privateKeyToAccountSigner(process.env.PRIVATE_KEY)
+const owner = LocalAccountSigner.privateKeyToAccountSigner(process.env.PRIVATE_KEY)
 
 // The NFT contract we will be interacting with
 const contractAddress = '0x34bE7f35132E97915633BC1fc020364EA5134863'
