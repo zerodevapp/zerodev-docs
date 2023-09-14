@@ -10,6 +10,10 @@ For Web3 wallets like MetaMask, you can "wrap" them with ZeroDev to produce AA w
 To wrap a EOA wallet with AA, use the `enhanceConnectorWithAA` function which will produce a [Wagmi connector](https://wagmi.sh/examples/connect-wallet) that can be used with Wagmi:
 
 ```typescript
+// RainbowKit
+import { enhanceWalletWithAAConnector } from '@zerodev/wagmi/rainbowkit'
+
+// Connector
 import { enhanceConnectorWithAA } from '@zerodev/wagmi'
 ```
 
