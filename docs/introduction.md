@@ -5,13 +5,13 @@ slug: /
 
 # Introduction
 
-## Demo
+<!-- ## Demo
 
 import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
 
 <SponsoredMintExample label="Try ZeroDev" />
 
-<br/>
+<br/> -->
 
 ## What is ZeroDev?
 
