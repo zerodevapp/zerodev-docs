@@ -1,11 +1,18 @@
 ---
 sidebar_position: 2
-sidebar_label: Social (OAuth) Wallets
+sidebar_label: Social / Email Wallets
 ---
 
-# Create AA Wallets with Social Accounts
+# Create AA Wallets with Socials/Emails
 
-ZeroDev provides a number of "social connectors" for creating smart wallets with social accounts.  Under the hood, we use Web3Auth to generate a private key from a social account, then set the private key as the owner of the smart wallet.  From the perspective of the end user, they are just signing in with a social account, and getting a smart wallet at the end.
+With ZeroDev, you can create AA wallets for users using their social accounts or emails.  There are two ways to do so:
+
+- [Use Privy](https://docs.zerodev.app/create-wallets/integrations/privy), a popular onboarding solution that natively integrates with ZeroDev.
+  - [Live demo](https://zerodev-example.privy.io/)
+
+- Use our "social connectors" which are compatible with Wagmi/Ethers and wallet kits like RainbowKit/ConnectKit.
+
+Read on to learn more about our social connectors.
 
 ## API
 

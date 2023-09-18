@@ -1,14 +1,16 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # Privy
 
 :::info
 This guide is adopted from [Privy's ZeroDev guide](https://docs.privy.io/guide/guides/zerodev).
+
+Privy is in closed beta.  Email `zerodev@privy.io` to gain priority access to Privy.
 :::
 
-[Privy](https://privy.io/) is a leading Web3 onboarding solution that supports:
+[Privy](https://privy.io/) is a leading Web3 onboarding solution that powers the likes of [Friend.tech](https://www.friend.tech), [Blackbird](https://www.blackbird.xyz/), and [Courtyard](https://courtyard.io/).  It supports:
 
 - Connecting to DApps with both Web3 wallets and social accounts.
 - Fine-grained control over your wallet connection flow.
