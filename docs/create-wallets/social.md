@@ -117,14 +117,14 @@ import { ZeroDevWeb3Auth, ZeroDevWeb3AuthWithModal } from '@zerodev/web3auth';
 let ecdsaProvider: ECDSAProvider
 
 const zeroDevWeb3AuthNoModal = new ZeroDevWeb3Auth(['<project-id>'])
-zeroDevWeb3AuthNoModal.init({onConnect: async () => {
+zeroDevWeb3AuthNoModal.initialize({onConnect: async () => {
   ecdsaProvider = await ECDSAProvider.init({
     projectId: "<project id>",
     owner: await getRPCProviderOwner(ZeroDevWeb3Auth.provider),
   })
 }})
 // 'google' | 'facebook' | 'twitter' | 'discord' | 'github' | 'twitch'
-ZeroDevWeb3Auth.connect('google')
+zeroDevWeb3AuthNoModal.login('google')
 ```
 
 You can pick and choose the social login methods you'd like to use, or use `ZeroDevWeb3Auth` which shows a meta login modal with all login methods.  Here's an example:
@@ -144,7 +144,7 @@ function RpcProviderExample() {
 
   const zeroDevWeb3Auth = useMemo(() => {
     const instance = new ZeroDevWeb3AuthWithModal([defaultProjectId])
-    instance.init({onConnect: async () => {
+    instance.initialize({onConnect: async () => {
       setLoading(true)
       setWallet(zeroDevWeb3Auth.provider)
       setLoading(false)
@@ -159,9 +159,13 @@ function RpcProviderExample() {
 
   const handleClick = async () => {
     setLoading(true)
-    zeroDevWeb3Auth.connect('social').then(provider => {
+    zeroDevWeb3Auth.login().then(provider => {
+      console.log(provider)
       setWallet(provider)
-    }).finally(() => {
+      setLoading(false)
+    })
+    .catch(console.log)
+    .finally(() => {
       setLoading(false)
     })
   }

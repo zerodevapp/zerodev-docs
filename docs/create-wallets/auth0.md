@@ -87,15 +87,15 @@ function WagmiAuth0Example() {
 import { ZeroDevWeb3Auth } from '@zerodev/web3auth'
 
 let ecdsaProvider: ECDSAProvider
-const instance = new ZeroDevWeb3Auth(defaultProjectId)
-instance.init({onConnect: async () => {
+const instance = new ZeroDevWeb3Auth([defaultProjectId])
+instance.initialize({onConnect: async () => {
   ecdsaProvider = await ECDSAProvider.init({
     projectId: defaultProjectId,
     owner: getRPCProviderOwner(provider),
   });
-}})
+}}, 'auth0')
 
-zeroDevWeb3Auth.connect('auth0')
+zeroDevWeb3Auth.login('auth0')
 ```
 
 Example:
@@ -115,11 +115,11 @@ function RpcProviderExample() {
 
     const zeroDevWeb3Auth = useMemo(() => {
         const instance = new ZeroDevWeb3Auth([defaultProjectId])
-        instance.init({onConnect: async () => {
+        instance.initialize({onConnect: async () => {
             setLoading(true)
             setWallet(zeroDevWeb3Auth.provider)
             setLoading(false)
-        }})
+        }}, 'auth0')
         return instance
     }, [])
 
@@ -130,7 +130,7 @@ function RpcProviderExample() {
 
   const handleClick = async () => {
     setLoading(true)
-    zeroDevWeb3Auth.connect('auth0').then(provider => {
+    zeroDevWeb3Auth.login('auth0').then(provider => {
       setWallet(provider)
     }).finally(() => {
       setLoading(false)
