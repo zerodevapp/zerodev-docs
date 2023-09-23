@@ -5,9 +5,9 @@ sidebar_position: 1
 # Privy
 
 :::info
-This guide is adopted from [Privy's ZeroDev guide](https://docs.privy.io/guide/guides/zerodev).
+This guide is adopted from [Privy's ZeroDev guide](https://docs.privy.io/guide/frontend/account-abstraction/zerodev).
 
-Privy is in closed beta.  Email `zerodev@privy.io` to gain priority access to Privy.
+Privy is in closed beta, but you can email `zerodev@privy.io` to gain priority access to Privy.
 :::
 
 [Privy](https://privy.io/) is a leading Web3 onboarding solution that powers the likes of [Friend.tech](https://www.friend.tech), [Blackbird](https://www.blackbird.xyz/), and [Courtyard](https://courtyard.io/).  It supports:
