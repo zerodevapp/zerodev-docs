@@ -15,13 +15,17 @@ import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
 
 ## What is ZeroDev?
 
-ZeroDev is a framework for creating, using, and extending **smart wallets** powered by account abstraction (ERC-4337).  With ZeroDev, you can:
+ZeroDev is an embedded wallet powered by account abstraction (AA).  Using ZeroDev, you can:
 
-- **Create** both custodial and non-custodial AA wallets using ZeroDev, or use ZeroDev on top of wallet-as-a-service (WaaS) solutions such as Web3Auth to turn their EOA wallets into AA wallets.
+- **Create self-custody wallets** for your users that support **Web2 logins** (socials, email, passkeys, etc.), so they don’t need to worry about seed phrases.
 
-- **Use** powerful smart wallet *features* such as gas sponsoring, transaction batching, session keys, social recovery, automated transactions, multisig, and more to supercharge your UX.
+- **Sponsor gas** for your users so they don’t need to worry about gas, or let them **pay gas in ERC20 tokens** like USDC or even your own project tokens.
 
-- **Extend** the smart wallet if the default one doesn't cover your needs, by building custom smart wallet *plugins* that enable advanced wallet logic.
+- Simplify user flow by **batching related transactions**, **removing repetitive signing prompts**, and even **automate transactions** for them while they are offline (think subscriptions).
+
+- **Recover wallets** for users if they lose their login credentials.
+
+And these are just some examples!  ZeroDev wallets are **fully programmable** and can support additional features via plugins.
 
 ## Who is ZeroDev for?
 
@@ -33,17 +37,9 @@ ZeroDev is a framework for creating, using, and extending **smart wallets** powe
 
 ## What ZeroDev is NOT
 
-ZeroDev is NOT a fully-featured wallet.  Rather, it's a *headless wallet* for Web3 developers to embed into their own projects and build a wallet UI on top of.  Think of ZeroDev as a smart wallet backend.
+ZeroDev is NOT a fully-featured wallet.  For example, it doesn't have a UI that shows the user's assets and balances.
 
-## What are smart wallets?
-
-We use the marketing term "smart wallets" to refer to wallets powered by account abstraction (ERC-4337).  These wallets solve some of the main pain points with Web3 UX:
-
-- You can sponsor gas for your users, so they don't have to onramp before using your app.
-- You can batch transactions, so your users don't have to approve multiple transactions in order to perform a single action.
-- Your users can send transactions automatically, which enables features such as subscriptions.
-
-And these are just some of the most popular use cases of smart wallets.  Under the hood, smart wallets are powered by smart contracts, so they can be programmed to enable arbitrarily advanced transaction functionalities.
+Rather, ZeroDev is a **headless wallet** for Web3 developers to embed into their own projects and build a wallet UI on top of.  Think of ZeroDev as a smart wallet backend.  This makes ZeroDev perfect for building fully whitelabeled experiences.
 
 ## How to use ZeroDev
 
