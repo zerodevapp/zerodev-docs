@@ -15,8 +15,6 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@alchemy/aa-core": "^0.1.0-alpha.24",
-    "@alchemy/aa-ethers": "^0.1.0-alpha.24",
     "@docusaurus/core": "2.3.0",
     "@docusaurus/preset-classic": "2.3.0",
     "@docusaurus/theme-live-codeblock": "2.3.0",
@@ -29,9 +27,9 @@
     "@turnkey/http": "^1.0.1",
     "@web3modal/ethereum": "2.3.4",
     "@web3modal/react": "2.3.4",
-    "@zerodev/sdk": "4.0.18",
-    "@zerodev/wagmi": "4.1.7",
-    "@zerodev/web3auth": "4.1.5",
+    "@zerodev/sdk": "4.0.17",
+    "@zerodev/wagmi": "4.1.6",
+    "@zerodev/web3auth": "4.1.4",
     "assert": "^2.0.0",
     "browserify-zlib": "^0.2.0",
     "clsx": "^1.2.1",
