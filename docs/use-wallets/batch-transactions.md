@@ -41,6 +41,31 @@ Each object in the array for `execBatch` can have three properties:
 - `data`: the calldata
 - `value`: the ETH value of the transaction (can be undefined)
 
+To encode the calldata, you can use Viem's `encodeFunctionData`, like this:
+
+```typescript
+import { encodeFunctionData, parseAbi } from 'viem'
+
+const contractABI = parseAbi([
+  'function mint(address _to) public',
+])
+
+const userOp = {
+  target: contractAddress,
+  data: encodeFunctionData({
+    abi: contractABI,
+    functionName: 'mint',
+    args: [address],
+  }),
+}
+
+// Batch two mints in one transaction
+const { hash } = await ecdsaProvider.sendUserOperation([
+  userOp,
+  userOp,
+])
+```
+
 ### Wagmi
 
 ```typescript
