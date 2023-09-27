@@ -29,7 +29,7 @@ There are a few core use cases of session keys:
 ## Using session keys
 
 :::info
-If you are lost at any point, you can always refer to the [complete session key examples](https://github.com/zerodevapp/session-key-examples).
+If you are lost at any point, you can always refer to the [complete session key examples](https://github.com/zerodevapp/plugin-examples/tree/main/session-keys).
 :::
 
 Roughly speaking, using a session key consists of a three steps:
@@ -162,32 +162,32 @@ await sessionKeyProvider.waitForUserOperationTransaction(hash)
 ## Sharing Session Keys over the Network
 
 :::info
-You can refer to the [complete code examples here](https://github.com/zerodevapp/session-key-examples).
+You can refer to the [complete code examples here](https://github.com/zerodevapp/plugin-examples/tree/main/session-keys).
 :::
 
-Since session keys are often shared between the wallet owner (henceforth referred to as the "server") and the session key user (henceforth referred to as the "client"), it's natural to wonder how the session key can be transmitted over the network.
+Since session keys are created by the wallet owner and shared with the session key user, it's natural to wonder how they can be transmitted over the network, in case the owner and the session key user run on separate nodes.
 
-Note that the terms "server" and "client" as used here are not to be confused with the conventional definitions of servers and clients.  Here we simply use "server" to mean "the party that creates the session key," and "client" to mean "the party that uses the session key."
+For brevity, we will be referring to the session key user as the "agent," as in an agent that acts on behalf of the wallet owner through the session key.
 
 Generally speaking, there are two ways to do it:
 
-- The server creates the session key and sends it to the client.
-- The client creates a public-private key pair, sends the public key to the server to "register" it as a session key, and finally uses the session key through the private key.
+- The owner creates the session key and sends it to the agent.
+- The agent creates a public-private key pair, sends the public key to the owner to "register" it as a session key, and finally uses the session key through the private key.
 
-The first approach requires less communication between the server and the client, whereas the second approach is more secure since the private part of the session key never leaves the client (not even the server sees it), so there's less of a chance that the session key is leaked.
+The first approach requires less communication between the owner and the agent, whereas the second approach is more secure since the private part of the session key never leaves the agent (not even the owner sees it), so there's less of a chance for the session key to be leaked.
 
 Now we take a look at how to implement the two approaches:
 
-### Server creating the session key
+### Owner creating the session key
 
-Serialize the session key on the server side:
+Start by serializing the session key:
 
 ```javascript
 // sessionPrivateKey is the private key of the session key
 const serializedSessionKeyParams = await sessionKeyProvider.serializeSessionKeyParams(sessionPrivateKey)
 ```
 
-Then send the serialized key to the client.  On the client side, deserialize it and construct the `SessionKeyProvider`: 
+Then send the serialized key to the agent.  The agent deserializes it and constructs the `SessionKeyProvider`: 
 
 ```javascript
 const sessionKeyParams = SessionKeyProvider.deserializeSessionKeyParams(serializedSessionKeyParams)
@@ -198,9 +198,9 @@ const sessionKeyProvider = await SessionKeyProvider.fromSessionKeyParams({
 })
 ```
 
-### Client creating and registering the session key
+### Agent registering the session key with the owner
 
-The client first creates a public-private key pair.  With Viem, it looks like this:
+The agent first creates a public-private key pair.  With Viem, it looks like this:
 
 ```javascript
 const { LocalAccountSigner } = require("@alchemy/aa-core")
@@ -210,7 +210,7 @@ const sessionKey = LocalAccountSigner.privateKeyToAccountSigner(sessionPrivateKe
 const sessionPublicKey = await sessionKey.getAddress()
 ```
 
-Now, the client sends the public key (address) of the session key to the server.  On the server side, "register" it:
+Now, the agent sends the public key (address) of the session key to the owner.  The owner then "registers" the key:
 
 ```javascript
 const { EmptyAccountSigner } = require('@zerodev/sdk')
@@ -227,7 +227,7 @@ const sessionKeyProvider = await SessionKeyProvider.init({
 const serializedSessionKeyParams = sessionKeyProvider.serializeSessionKeyParams()
 ```
 
-Then the server send the serialized session key to the client.  The client can now reconstruct a functional `SessionKeyProvider`:
+The owner then sends the serialized session key to the agent.  The agent can now reconstruct a functional `SessionKeyProvider`:
 
 ```javascript
 const sessionKeyParams = {
