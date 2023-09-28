@@ -33,6 +33,7 @@ const config = {
   },
 
   plugins: [
+    'docusaurus-plugin-sass',
     '@docusaurus/theme-live-codeblock',
     path.resolve(
       __dirname,
@@ -64,18 +65,22 @@ const config = {
         },
         theme: {
           customCss: [
-            require.resolve('./src/css/custom.css'),
+            require.resolve('./src/css/custom.scss'),
             require.resolve('@rainbow-me/rainbowkit/styles.css'),
           ],
         },
       }),
     ],
   ],
-  themes: ['@docusaurus/theme-mermaid'],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      algolia: {
+        appId: '5LJ5U6HPYS',
+        apiKey: '8cc53b1147b46d953ca445842e4bee2e',
+        indexName: 'zerodev',
+      },
       // Replace with your project's social card
       // image: 'img/zerokit-social-card.jpg',
       navbar: {
