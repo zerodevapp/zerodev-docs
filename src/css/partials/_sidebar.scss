@@ -36,7 +36,7 @@ $fira-font-family: 'Fira Code', monospace;
           > a {
             @include apply-fira-font;
             font-weight: 700;
-            font-size: 0.75rem !important;
+            font-size: 1rem !important;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             color: #777;
