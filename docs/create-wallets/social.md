@@ -5,12 +5,25 @@ sidebar_label: Social / Email Wallets
 
 # Create AA Wallets with Socials/Emails
 
+## Demo
+
+import SponsoredMintExample from '@site/src/components/SponsoredMintExample';
+
+<SponsoredMintExample label="Try ZeroDev" />
+
+<br/>
+
+## Introduction
+
 With ZeroDev, you can create AA wallets for users using their social accounts or emails.  There are two ways to do so:
 
-- [Use Privy](/create-wallets/integrations/privy), a popular onboarding solution that natively integrates with ZeroDev.
-  - [Live demo](https://zerodev-example.privy.io/)
+- Use our "social connectors" which are compatible with Wagmi/Ethers and wallet kits such as:
+  - [RainbowKit](#rainbowkit)
+  - [ConnectKit](#connectkit)
+  - [Web3Modal](#web3modal)
 
-- Use our "social connectors" which are compatible with Wagmi/Ethers and wallet kits like RainbowKit/ConnectKit.
+- Use [third-party integrations](/category/integrations) such as [Privy](https://docs.privy.io/guide/frontend/account-abstraction/zerodev).
+    - [Privy + ZeroDev demo](https://zerodev-example.privy.io/)
 
 Read on to learn more about our social connectors.
 
