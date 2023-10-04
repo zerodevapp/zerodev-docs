@@ -29,7 +29,7 @@ There are a few core use cases of session keys:
 ## Using session keys
 
 :::info
-If you are lost at any point, you can always refer to the [complete session key examples](https://github.com/zerodevapp/plugin-examples/tree/main/session-keys).
+If you ever feel lost, you can always refer to the [complete session key examples](https://github.com/zerodevapp/plugin-examples/tree/main/session-keys).
 :::
 
 Roughly speaking, using a session key consists of a three steps:
