@@ -127,10 +127,10 @@ The recovery API described above is suitable for when you need very fine-grained
 
 ZeroDev offers three recovery flows:
 
-- DApp recovery: the DApp developer (you) can recover accounts for your users.  Presumably, you would verify their authenticity somehow (e.g. through ID checks) before you execute a recovery for them.
+- **DApp recovery**: the DApp developer (you) can recover accounts for your users.  Presumably, you would verify their authenticity somehow (e.g. through ID checks) before you execute a recovery for them.
 
-- Second-factor recovery: the user associates a second auth factor with their account, which could be a social login, passkey, email, or whatnot.  When they lose their account, they can recover it through the second factor.
+- **Second-factor recovery**: the user associates a second auth factor with their account, which could be a social login, passkey, email, or whatnot.  When they lose their account, they can recover it through the second factor.
 
-- Social recovery: the user assigns multiple other users as their guardians.  To recover the account, the user would ask other users to complete the recovery.
+- **Social recovery**: the user assigns multiple other users as their guardians.  To recover the account, the user would ask other users to complete the recovery.
 
 Recovery flows are currently in beta -- please email `hello@zerodev.app` or join [our Discord](https://discord.gg/KS9MRaTSjx) to gain access.
