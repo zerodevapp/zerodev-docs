@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Pay Gas in ERC20
+# Pay Gas with ERC20 tokens
 
-One superpower of AA wallets like ZeroDev is the ability to pay gas in ERC20 tokens.  ZeroDev currently supports USDC but plans on supporting all major ERC20s.
+One superpower of AA wallets like ZeroDev is the ability to pay gas with ERC20 tokens.  ZeroDev currently supports USDC but plans on supporting all major ERC20s.
 
 To pay gas in ERC20s, initialize the AA wallet with the ERC20 token paymaster:
 

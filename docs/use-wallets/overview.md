@@ -11,12 +11,15 @@ For your convenience, we have divided our AA features into the following categor
 
 - Gas
   - [Pay gas for users](/use-wallets/pay-gas-for-users)
-  - [Let users pay gas in ERC20 tokens](/use-wallets/pay-gas-in-erc20)
+  - [Let users pay gas in ERC20 tokens](/use-wallets/pay-gas-with-erc20-tokens)
 
-- Transaction & signing
+- Transactions
   - [Send transactions in batches](/use-wallets/batch-transactions)
   - [Session keys](/use-wallets/use-session-keys)
+
+- Auth
   - [Multisig](/use-wallets/multisig)
+  - [Validate signatures](/use-wallets/validate-signatures)
 
 - Manage Wallets
   - [Update wallet owner](/use-wallets/change-wallet-owner)
