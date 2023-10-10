@@ -69,7 +69,7 @@ const { LocalAccountSigner } = require("@alchemy/aa-core")
 const { encodeFunctionData, parseAbi, createPublicClient, http } = require('viem')
 const { polygonMumbai } = require('viem/chains')
 
-if (!process.env.PRIVATE_KEY && !process.env.PROJECT_ID) {
+if (!process.env.PRIVATE_KEY || !process.env.PROJECT_ID) {
   console.log('Please set private key and project ID as environment variables')
   process.exit(1)
 }
