@@ -9,7 +9,7 @@ You can easily create AA wallets for your users from private keys.
 
 ## Private Keys
 
-### Ethers.js
+### Viem
 
 ```typescript
 import { ECDSAValidator } from "@zerodev/sdk";
