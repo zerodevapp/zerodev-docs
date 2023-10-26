@@ -34,7 +34,7 @@ There are four types of rate limits:
 
 - Amount: limit by the amount of gas
 - Request: limit by the number of requests
-- Gas Price: limit by the curren gas price
+- Gas Price: limit by the current gas price
 - Amount per txn: limit by the amount of gas per transaction
 
 ## Policy examples
