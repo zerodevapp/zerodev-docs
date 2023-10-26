@@ -14,6 +14,7 @@ For your convenience, we have divided our AA features into the following categor
   - [Let users pay gas in ERC20 tokens](/use-wallets/pay-gas-with-erc20-tokens)
 
 - Transactions
+  - [Send transactions](/use-wallets/send-transactions)
   - [Send transactions in batches](/use-wallets/batch-transactions)
   - [Session keys](/use-wallets/use-session-keys)
 
