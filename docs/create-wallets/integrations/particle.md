@@ -2,7 +2,7 @@
 sidebar_position: 9
 ---
 
-# Particle Network
+# Particle
 
 **Particle Network** is an intent-centric, modular wallet-as-a-service (WaaS).  By utilizing MPC-TSS for key management, Particle can streamline onboarding via familiar Web2 methods such as Google, emails, and phone numbers.
 
