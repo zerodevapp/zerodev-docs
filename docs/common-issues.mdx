@@ -48,3 +48,75 @@ If you are having issues connecting a ZeroDev wallet through WalletConnect, refe
 If you are having issues using SIWE with a ZeroDev wallet, refer to [this working example](https://github.com/zerodevapp/nextjs-siwe).
 
 Note that an undeployed ZeroDev wallet cannot sign into SIWE until it supports [ERC-6492](https://eips.ethereum.org/EIPS/eip-6492).  This is an [ongoing effort](https://github.com/spruceid/siwe/pull/153).  Long story short, currently you need to make sure that your ZeroDev wallet is actually deployed (meaning that it must have sent at least one transaction) before SIWE can work.
+
+## Wallet disconnects on page refresh
+
+If you are using `@zerodev/wagmi` or `@zerodev/web3auth` and the wallet disconnects on page refresh, try this:
+
+- Activate [the `autoConnect` option for Wagmi](https://wagmi.sh/react/config#autoconnect-optional)
+- Activate the `shimDisconnect` option on the connector, e.g.:
+
+```typescript
+const connector = new GoogleSocialWalletConnector({options: {
+  shimDisconnect: true
+  // ...other options
+}})
+```
+
+## Chain Switching for RainbowKit
+
+Using ZeroDev + RainbowKit with multiple chains requires providing multiple `projectId`s via the `projectIds` option. Additionally, supplying the `chains` within the connector is required for chain switching.
+
+```diff
+import { polygonMumbai, goerli } from 'wagmi/chains'
+
+const { chains, publicClient, webSocketPublicClient } = configureChains(
+    [polygonMumbai, goerli],
+    [publicProvider()],
+)
+
+const socialConnector = new GoogleWalletConnector({
++   chains, 
+    options: {
+-     projectId: '<project-id>',
++     projectIds: ['<project-id-1>', '<project-id-2>'],
+    }
+})
+```
+```jsx live folded
+function RainbowKitExample() {
+  const { chains, publicClient, webSocketPublicClient } = useMemo(() => configureChains(
+    [polygonMumbai, goerli],
+    [infuraProvider({apiKey: infuraApiKey})],
+  ), [])
+
+  const connectors = useMemo(() => connectorsForWallets([
+    {
+      groupName: 'Social',
+      wallets: [
+        googleWallet({chains, options: { projectIds: [defaultProjectId, goerliProjectId] }}),
+        facebookWallet({chains, options: { projectIds: [defaultProjectId, goerliProjectId] }}),
+        githubWallet({chains, options: { projectIds: [defaultProjectId, goerliProjectId] }}),
+        discordWallet({chains, options: { projectIds: [defaultProjectId, goerliProjectId] }}),
+        twitchWallet({chains, options: { projectIds: [defaultProjectId, goerliProjectId] }}),
+        twitterWallet({chains, options: { projectIds: [defaultProjectId, goerliProjectId] }})
+      ],
+    },
+  ]), []);
+
+  const config = useMemo(() => createConfig({
+    autoConnect: false,
+    connectors,
+    publicClient,
+    webSocketPublicClient,
+  }), [])
+
+  return (
+    <WagmiConfig config={config}>
+        <RainbowKitProvider chains={chains} modalSize={'compact'}>
+            <RainbowKitConnectButton />
+        </RainbowKitProvider>
+    </WagmiConfig>
+  )
+}
+```
