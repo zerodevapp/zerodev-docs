@@ -31,7 +31,7 @@ const connector = new GoogleSocialWalletConnector({options: {
 Once a user is logged in, you can retrieve their information via:
 
 ```typescript
-import { ZeroDevWeb3Auth } from '@zerodev/web3auth';
-const zeroDevWeb3Auth = new ZeroDevWeb3Auth('<project-id>')
-zeroDevWeb3Auth.getUserInfo()
+import { ZeroDevWeb3Auth } from '@zerodevapp/web3auth';
+const zeroDevWeb3Auth = ZeroDevWeb3Auth.getInstance(['<project-id>']);
+const userInfo = await zeroDevWeb3Auth.getUserInfo();
 ```

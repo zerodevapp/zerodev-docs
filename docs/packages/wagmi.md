@@ -73,3 +73,26 @@ function RainbowKitExample() {
   )
 }
 ```
+
+## Using the ECDSAProvider
+
+Sometimes you may want to use the ECDSAProvider object we created.  We added a custom hook to get the provider object from wagmi.
+
+```typescript
+import { useEcdsaProvider } from '@zerodev/wagmi';
+
+const ecdsaProvider = useEcdsaProvider();
+
+// Get the address with the ECDSAProvider
+const address = await ecdsaProvider.getAddress();
+
+// Send a userop with the ECDSAProvider
+const { hash } = await ecdsaProvider.sendUserOperation({
+  target: contractAddress,
+  data: functionData,
+  value: value,
+})
+
+// If you want to wait for the UserOp to complete
+await ecdsaProvider.waitForUserOperationTransaction(hash)
+```
