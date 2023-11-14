@@ -42,23 +42,9 @@ const { hash } = await ecdsaProvider.sendUserOperation({
 })
 ```
 
-## Transferring ETH
+### Wagmi API
 
-Simply set `data` to `0x` if you want to transfer ETH (or whatever native token):
-
-
-```javascript
-const { hash } = await ecdsaProvider.sendUserOperation({
-  target: receiverAddress,
-  data: '0x',
-  value: amount,
-})
-```
-
-## Trasferring ETH with Wagmi
-
-Simply set `data` to `0x` if you want to transfer ETH (or whatever native token):
-
+With Wagmi, use the `usePrepareSendUserOperation` and `useSendUserOperation` hooks to send UserOps:
 
 ```javascript
 import { usePrepareSendUserOperation, useSendUserOperation } from "@zerodev/wagmi";
@@ -66,9 +52,9 @@ import { useWaitForTransaction } from "wagmi";
  
 // Prepare the tx
 const { config } = usePrepareSendUserOperation({
-  to: receiverAddress,
-  data: '0x',
-  value: amount
+  to: contractAddress,
+  data: functionData,
+  value: value,
 });
 
 const { sendUserOperation, data } = useSendUserOperation(config);
@@ -84,6 +70,29 @@ useWaitForTransaction({
 
 // Send the tx
 sendUserOperation();
+```
+
+## Transferring ETH
+
+Simply set `data` to `0x` if you want to transfer ETH (or whatever native token):
+
+
+```javascript
+const { hash } = await ecdsaProvider.sendUserOperation({
+  target: receiverAddress,
+  data: '0x',
+  value: amount,
+})
+```
+
+### Wagmi API
+
+```javascript
+const { config } = usePrepareSendUserOperation({
+  to: receiverAddress,
+  data: '0x',
+  value: amount
+});
 ```
 
 ## Ethers API
