@@ -58,7 +58,7 @@ const sessionKey = LocalAccountSigner.privateKeyToAccountSigner(generatePrivateK
 Let's look at the code first:
 
 ```javascript
-const { SessionKeyProvider, Operation, ParamCondition } = require('@zerodev/sdk')
+const { SessionKeyProvider, Operation, ParamCondition, getPermissionFromABI } = require('@zerodev/sdk')
 const { getFunctionSelector, pad, zeroAddress } = require('viem')
 
 const sessionKeyProvider = await SessionKeyProvider.init({
@@ -79,35 +79,26 @@ const sessionKeyProvider = await SessionKeyProvider.init({
     // contract/function.  To create a key that can interact with multiple
     // contracts/functions, set up one permission for each.
     permissions: [
-      {
+      getPermissionFromABI({
         // Target contract to interact with
         target: contractAddress,
         // Maximum value that can be transferred.  In this case we
         // set it to zero so that no value transfer is possible.
         valueLimit: 0,
-        // The function (as specified with a selector) that can be called on
-        sig: getFunctionSelector(
-          "mint(address)"
-        ),
-        // Whether you'd like to call this function via CALL or DELEGATECALL.
-        // DELEGATECALL is dangerous -- don't use it unless you know what you
-        // are doing.
-        operation: Operation.Call,
-        // Each "rule" is a condition on a parameter.  In this case, we only
-        // allow for minting NFTs to our own account.
-        rules: [
+        // Contract abi
+        abi: contractABI,
+        // Function name
+        functionName: 'mint',
+        // An array of conditions, each corresponding to an argument for
+        // the function.
+        args: [
           {
-            // The condition in this case is "EQUAL"
-            condition: ParamCondition.EQUAL,
-            // The offset of the parameter is 0 since it's the first parameter.
-            // We will simplify this later.
-            offset: 0,
-            // We pad the address to be the correct size.
-            // We will simplify this later.
-            param: pad(address, { size: 32 }),
-          },
+            // Argument operator and value.
+            operator: ParamOperator.EQUAL,
+            value: argumentValue,
+          }
         ],
-      },
+      }),
     ],
     // The "paymaster" param specifies whether the session key needs to
     // be used with a specific paymaster.
@@ -134,13 +125,12 @@ As you can see, there are a LOT of flags you can set to customize the scope of t
   - When this field is a paymaster address, the session key MUST be used with the specified paymaster.
 - `permissions`: this is an array where each element specifies a function (of a specific contract) that the key is allowed to call.  Now we look at the flags within each element:
   - `target`: the target contract to call
-  - `sig`: the [selector](https://solidity-by-example.org/function-selector/) of the function to call
   - `valueLimit`: the maximum [value](https://coinmarketcap.com/alexandria/glossary/ethereum-transaction#:~:text=The%20value%20is%20the%20amount%20of%20Ether%20to%20transfer%20from%20the%20sender%20to%20the%20recipient%2C%20and%20this%20can%20even%20be%20zero.) that can be transmitted.
-  - `operation`: whether the function is to be called via [`CALL` or `DELEGATECALL`](https://ethereum.stackexchange.com/questions/3667/difference-between-call-callcode-and-delegatecall).  Unless you know what you are doing, stick with `CALL` (which is the default).
-  - `rules`: an array where each element specifies a condition for a function parameter.  Now we look at the flags within each element:
-    - `condition`: This can be `EQUAL`, `GREATER_THAN`, `LESS_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN_OR_EQUAL`, `NOT_EQUAL`
-    - `offset`: the offset of the parameter in question.  For example, the first parameter would have an offset of 0.  We are working on making it easier to specify this flag.
-    - `param`: the parameter itself.  Currently it requires some padding, but we are working on making it easier to specify this flag.
+  - `abi`: the contract ABI
+  - `functionName`: the function name
+  - `args`: an array of conditions, each correspondong to an argument, in the order that the arguments are laid out.  use `null` to skip an argument.
+    - `operator`: This can be `EQUAL`, `GREATER_THAN`, `LESS_THAN`, `GREATER_THAN_OR_EQUAL`, `LESS_THAN_OR_EQUAL`, `NOT_EQUAL`.
+    - `value`: the value of the argument to use with the operator.  For instance, `operator = EQUAL` and `value = 2` would mean "the value must be equal to 2".
 
 ### Using the session key
 
@@ -244,3 +234,21 @@ const { hash } = await sessionKeyProvider.sendUserOperation({
   // ...use the session key provider as you normally would
 })
 ```
+
+## Revoking Session Keys
+
+To revoke a session key, use `deleteSessionKey`.  Note that this involves sending a transaction.
+
+```javascript
+SessionKeyProvider.deleteSessionKey(<SessionKeyAddress>)
+```
+
+## FAQs
+
+### Does creating session keys cost gas?
+
+No.  Creating a session key entails simply signing a message, which is done off-chain and doesn't involve any gas cost.
+
+### Is it possible to use session keys with a not-yet-deployed account?
+
+Yes.  If you do so, the first UserOp sent with the session key will deploy the account.

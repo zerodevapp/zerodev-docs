@@ -27,6 +27,8 @@ ZeroDev is an embedded wallet powered by account abstraction (AA).  Using ZeroDe
 
 And these are just some examples!  ZeroDev wallets are **fully programmable** and can support additional features via plugins.
 
+[ZeroDev powers more AA wallets than anyone else today.](https://www.bundlebear.com/factories/all)
+
 ## Who is ZeroDev for?
 
 - **Web 2.5 DApps** can use ZeroDev to embed AA wallets inside their applications, so users can interact with the DApps through AA wallets and enjoy great UX benefits such as gasless transactions.
