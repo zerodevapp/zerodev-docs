@@ -12,10 +12,10 @@ You can easily create AA wallets for your users from private keys.
 ### Viem
 
 ```typescript
-import { ECDSAValidator } from "@zerodev/sdk";
+import { ECDSAProvider } from "@zerodev/sdk";
 import { PrivateKeySigner } from "@alchemy/aa-core";
 
-// The validator
+// The ZeroDev provider
 const ecdsaProvider = await ECDSAProvider.init({
   // ZeroDev projectId
   projectId,
