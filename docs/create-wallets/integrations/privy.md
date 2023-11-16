@@ -30,7 +30,7 @@ Want to see an end-to-end integration of Privy with ZeroDev? Check out [**our ex
 
 An [**EOA, or externally-owned account**](https://ethereum.org/en/developers/docs/accounts/), is any Ethereum account that is controlled by a private key. Privy's embedded wallets and most external wallets (MetaMask, Coinbase Wallet, Rainbow Wallet, etc.) are EOAs.
 
-EOAs differ from **contract accounts**, which are instead controlled by smart contract code and do not have their own private key. ZeroDev's smart wallet is a contract account. Contract accounts have [enhanced capabilites, such as gas sponsorship and batched transactions](https://ethereum.org/en/roadmap/account-abstraction/).
+EOAs differ from **contract accounts**, which are instead controlled by smart contract code and do not have their own private key. ZeroDev's smart wallet is a contract account. Contract accounts have [enhanced capabilities, such as gas sponsorship and batched transactions](https://ethereum.org/en/roadmap/account-abstraction/).
 
 Since they do not have their own private key, contract accounts cannot _directly_ produce signatures and initiate transaction flows. Instead, each contract account is generally "managed" by an EOA, which authorizes actions taken by the contract account via a signature; this EOA is called a **signer**.
 
