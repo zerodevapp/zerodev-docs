@@ -27,5 +27,12 @@ ZeroDev supports EVM networks including:
 - Polygon
   - Mainnet
   - Mumbai
+- Linea
+  - Mainnet
+  - Testnet
+- opBNB
+  - Mainnet
+- Astar Zkatana
+  - Testnet
 
 If you don't see a EVM network that you'd like support for, feel free to reach out to us on [Discord](https://discord.gg/KS9MRaTSjx).
