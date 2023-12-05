@@ -4,10 +4,6 @@ sidebar_position: 9
 
 # Recovery
 
-:::warning
-The recovery plugin is currently in beta and the audit is ongoing.  We do not advise using it in production at the moment.
-:::
-
 One key property of smart contract wallets (SCW) is that the *address* and the *signer* are decoupled.  Whereas with EOAs, the account address is cryptographically derived from the private key, with SCWs the account address is independent of the key(s) that control the SCW.  This means that you can *switch signers* for your SCW, which enables you to *recover* your account if your original signer has been lost.
 
 Note that if you have control of your original signer and simply want to switch to a different one, you can simply [change the wallet owner](/use-wallets/change-wallet-owner).
