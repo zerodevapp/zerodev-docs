@@ -5,6 +5,10 @@ sidebar_label: Passkey Wallets
 
 # Creating Passkey Wallets
 
+:::info
+Our passkey integration with Turnkey (see below) has been deprecated.  We recommend new projects to [use Dynamic + ZeroDev](/create-wallets/integrations/dynamic) instead.
+:::
+
 ## Demo
 
 - [Demo from ZeroDev](https://passkey-demo.onrender.com)
