@@ -124,7 +124,7 @@ As you can see, there are a LOT of flags you can set to customize the scope of t
   - When this field is `address(1)` (we export the value for convenience under `constants.oneAddress`), the session key MUST be used with a paymaster, but it could be any paymaster.
   - When this field is a paymaster address, the session key MUST be used with the specified paymaster.
 - `permissions`: this is an array where each element specifies a function (of a specific contract) that the key is allowed to call.  Now we look at the flags within each element:
-  - `target`: the target contract to call
+  - `target`: the target contract to call.  If this is the `zeroAddress`, then the target can be any contract as long as the ABI matches.
   - `valueLimit`: the maximum [value](https://coinmarketcap.com/alexandria/glossary/ethereum-transaction#:~:text=The%20value%20is%20the%20amount%20of%20Ether%20to%20transfer%20from%20the%20sender%20to%20the%20recipient%2C%20and%20this%20can%20even%20be%20zero.) that can be transmitted.
   - `abi`: the contract ABI
   - `functionName`: the function name
