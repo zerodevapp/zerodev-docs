@@ -35,9 +35,9 @@ const txn = await ecdsaProvider.sendUserOperation([
 
 <br />
 
-Each object in the array for `execBatch` can have three properties:
+Each object in the array can have three properties:
 
-- `to`: the contract you are interacting with
+- `target`: the contract you are interacting with
 - `data`: the calldata
 - `value`: the ETH value of the transaction (can be undefined)
 
