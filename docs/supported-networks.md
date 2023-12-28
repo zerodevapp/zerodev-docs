@@ -8,22 +8,21 @@ ZeroDev supports EVM networks including:
 
 - Arbitrum One
   - Mainnet
-  - Goerli
+  - Sepolia
 - Avalanche
   - Mainnet
   - Fuji
 - Base
   - Mainnet
-  - Goerli
+  - Sepolia
 - Binance Smart Chain
   - Mainnet
 - Ethereum
   - Mainnet
-  - Goerli
   - Sepolia
 - Optimism
   - Mainnet
-  - Goerli
+  - Sepolia
 - Polygon
   - Mainnet
   - Mumbai
