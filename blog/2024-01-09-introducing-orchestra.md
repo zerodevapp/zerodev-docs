@@ -13,7 +13,7 @@ At ZeroDev, we deploy a lot of contracts.  Every release of [Kernel](https://git
 
 This issue is not unique to ZeroDev, of course.  All multi-chain Web3 projects need to tackle multi-chain deployment.  The issue is even more pronounced in larger teams, since the developer deploying contracts may not be the person with access to the company’s treasury, so a complicated reimbursement process follows each deployment, where the developer tries to figure out how much $$$ they should be reimbursed from spending 10+ tokens.
 
-TLDR: multi-chain contract deployment has been a headache — until now.  We’ve create `ZeroDev Orchestra`, a CLI for deploying contracts on multiple chains without needing tokens on each chain.  Here you can see it in action:
+TLDR: multi-chain contract deployment has been a headache — until now.  We’ve create [Orchestra](https://github.com/zerodevapp/orchestra), a CLI for deploying contracts on multiple chains without needing tokens on each chain.  Here you can see it in action:
 
 <p align="center">
   <img src="/img/orchestra.gif" width="100%" />
