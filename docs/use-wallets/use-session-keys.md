@@ -243,6 +243,47 @@ To revoke a session key, use `deleteSessionKey`.  Note that this involves sendin
 SessionKeyProvider.deleteSessionKey(<SessionKeyAddress>)
 ```
 
+## Batch transactions with Session Keys
+
+Session keys can send batched transactions, but you need to add this config when calling `SessionKeyProvider.init()`:
+
+```typescript
+import { KernelAccountAbi } from "@zerodev/sdk"
+import { getAbiItem, getFunctionSelector } from "viem"
+
+const sessionKeyProvider = await SessionKeyProvider.init({
+  // other params
+
+  opts: {
+    validatorConfig: {
+      selector: getFunctionSelector(
+        getAbiItem({
+          abi: KernelAccountAbi,
+          name: "executeBatch",
+        })
+      )
+    }
+  }
+}
+```
+
+Then you can just send batched transactions as usual:
+
+```typescript
+const hash = await sessionKeyProvider.sendUserOperation([
+  {
+    target: "targetAddress1",
+    data: "callData1",
+    value: value1,
+  },
+  {
+    target: "targetAddress2",
+    data: "callData2",
+    value: value2,
+  },
+])
+```
+
 ## FAQs
 
 ### Does creating session keys cost gas?
