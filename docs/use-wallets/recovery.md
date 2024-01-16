@@ -10,6 +10,12 @@ Note that if you have control of your original signer and simply want to switch 
 
 ZeroDev's recovery plugin can be used in two ways: a low-level [recovery API](#api) and a number of high-level [recovery flows](#recovery-flows) that are built on top of the API.
 
+## Recovery flow
+
+The recovery API described above is suitable for when you need very fine-grained control over your recovery flow.  However, most developers will likely find it easier to leverage our *recovery flow* -- recovery UIs built on top of the recovery API.
+
+[Check out our recovery flow here](https://github.com/zerodevapp/recovery-flow).
+
 ## API
 
 :::info
@@ -116,17 +122,3 @@ To complete the recovery, simply do the following:
 Note that *anyone* can complete the recovery -- it can be the user itself, a guardian, or even your own server.  As long as you have the recovery ID and enough weight has been collected, you can complete the recovery.
 
 In any case, the transaction to complete the recovery is sent from the AA wallet itself.  This means that the gas for this transaction will be paid by the AA wallet itself or a paymaster.
-
-## Recovery flows
-
-The recovery API described above is suitable for when you need very fine-grained control over your recovery flow.  However, most developers will likely find it easier to leverage our *recovery flows* -- pre-built recovery services built on top of the recovery API.
-
-ZeroDev offers three recovery flows:
-
-- **DApp recovery**: the DApp developer (you) can recover accounts for your users.  Presumably, you would verify their authenticity somehow (e.g. through ID checks) before you execute a recovery for them.
-
-- **Second-factor recovery**: the user associates a second auth factor with their account, which could be a social login, passkey, email, or whatnot.  When they lose their account, they can recover it through the second factor.
-
-- **Social recovery**: the user assigns multiple other users as their guardians.  To recover the account, the user would ask other users to complete the recovery.
-
-Recovery flows are currently in beta -- please email `hello@zerodev.app` or join [our Discord](https://discord.gg/KS9MRaTSjx) to gain access.
