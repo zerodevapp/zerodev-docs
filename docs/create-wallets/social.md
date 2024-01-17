@@ -22,7 +22,7 @@ With ZeroDev, you can create AA wallets for users using their social accounts or
   - [ConnectKit](#connectkit)
   - [Web3Modal](#web3modal)
 
-- Use [third-party integrations](/category/integrations) such as [Privy](https://docs.privy.io/guide/frontend/account-abstraction/zerodev) and [Dynamic](https://docs.dynamic.xyz/embedded-wallets/add-account-abstraction)
+- Use [third-party integrations](/category/integrations) such as [Privy](https://docs.privy.io/guide/frontend/account-abstraction/zerodev), [Dynamic](https://docs.dynamic.xyz/embedded-wallets/add-account-abstraction), and [WalletKit](/create-wallets/integrations/walletkit)
   - [Privy + ZeroDev demo](https://zerodev-example.privy.io/)
   - [Dynamic + ZeroDev example repo](https://github.com/dynamic-labs/dynamic-zerodev-demo)
 
