@@ -52,30 +52,28 @@ It's recommended, however, that you use `signMessageWith6492` and `signTypedData
 
 ## Validating signatures
 
-While libraries like [Viem](https://viem.sh/docs/actions/public/verifyMessage.html) can validate ERC-1271 signatures (and therefore ERC-6492 signatures if the account has been deployed), currently very few libraries can validate ERC-6492 signatures for undeployed accounts.  Among those, we recommend [Ambire's signature validator library](https://github.com/AmbireTech/signature-validator).
+While libraries like [Viem](https://viem.sh/docs/actions/public/verifyMessage.html) can validate ERC-1271 signatures, they now also support ERC-6492 signatures through the `publicClient.verifyMessage({ ... })` method. This method can validate signatures for both deployed and undeployed accounts. 
+However, be cautious not to use the standalone `verifyMessage({ })` function exported directly from Viem, as it only supports EOA signatures. To work with ERC-6492, always use `publicClient.verifyMessage`.
 
-For example, to validate a message generated from `signMessageWith6492`, you can do:
+For example, to validate a message generated from `signMessageWith6492`, you would use the `publicClient.verifyMessage` method like so:
 
 ```javascript
-import ethers from 'ethers';
-import { verifyMessage } from '@ambire/signature-validator';
+import { publicClient } from './client'
 
-const provider = new ethers.providers.JsonRpcProvider('https://polygon-rpc.com')
-
-async function run() {
-	const isValidSig = await verifyMessage({
-      // The smart contract account address
-	    signer: '0xaC39b311DCEb2A4b2f5d8461c1cdaF756F4F7Ae9',
-	    message: 'Hello world',
-      // Signature should be generated from `signMessageWith6492`
-	    signature: '0x9863d84f3119ac01d9e3bf9294e6c0c3572a07780fc7c49e8dc913806f4b1dbd4cc075462dc84422a9b981b2556f9c9197d76da7ba3603e53e9300869c574d821c',
-	    // this is needed so that smart contract signatures can be verified
-	    provider,
-	})
-	console.log('is the sig valid: ', isValidSig)
-}
-run().catch(e => console.error(e))
+// Public client came from viem, any public client can do it (e.g. `createPublicClient({ ... })``)
+const isValidSig = await publicClient.verifyMessage({
+	// The smart contract account address
+	address: account.address,
+	// The message to verify
+	message: 'hello world',
+	// Signature should be generated from `signMessageWith6492`
+	signature,
+})
+	
+console.log('is the sig valid: ', isValidSig)
 ```
+
+For additional utilities that support ERC-6492, consider exploring libraries such as [Ambire's signature validator library](https://github.com/AmbireTech/signature-validator), which also offers robust solutions for signature validation across various scenarios.
 
 ## FAQs
 
