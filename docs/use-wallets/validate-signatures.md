@@ -83,4 +83,4 @@ run().catch(e => console.error(e))
 
 Since [SIWE doesn't support ERC-6492 yet](https://github.com/spruceid/siwe/pull/153), it will only work if the user's contract account bas been deployed.
 
-Therefore, if you want to validate signatures for even undeployed accounts, you would have to implement your own validation flow as decribed above.
+Therefore, if you want to validate signatures for even undeployed accounts, you would have to implement your own validation flow as described above.
