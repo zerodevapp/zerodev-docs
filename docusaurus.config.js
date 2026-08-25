@@ -32,6 +32,17 @@ const config = {
     locales: ['en'],
   },
 
+  // Zero-delay meta refresh: search engines treat it as a permanent redirect.
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        'http-equiv': 'refresh',
+        content: '0; url=https://docs.zerodev.app/',
+      },
+    },
+  ],
+
   plugins: [
     'docusaurus-plugin-sass',
     '@docusaurus/theme-live-codeblock',
